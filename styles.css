@@ -401,3 +401,218 @@ footer {
     max-width: 600px;
     margin: 0 auto 30px;
 }
+
+/* ===== MENU HAMBURGER ===== */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.hamburger {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--text);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 3px;
+    background: var(--text);
+    transition: all 0.3s ease;
+}
+
+.hamburger::before {
+    top: -8px;
+}
+
+.hamburger::after {
+    bottom: -8px;
+}
+
+/* Animation du hamburger en croix */
+.menu-toggle.active .hamburger {
+    background: transparent;
+}
+
+.menu-toggle.active .hamburger::before {
+    transform: rotate(45deg);
+    top: 0;
+}
+
+.menu-toggle.active .hamburger::after {
+    transform: rotate(-45deg);
+    bottom: 0;
+}
+
+/* Responsive - Menu mobile */
+@media(max-width: 768px) {
+    nav {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 15px 20px;
+    }
+    
+    .menu-toggle {
+        display: block;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        max-width: 300px;
+        height: 100vh;
+        background: var(--bg);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
+        transition: right 0.4s ease;
+        z-index: 1000;
+        box-shadow: -5px 0 20px rgba(0,0,0,0.3);
+        border-left: 1px solid var(--border);
+    }
+    
+    body.light .nav-links {
+        background: rgba(245,245,245,0.95);
+    }
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
+    nav a {
+        margin: 0;
+        font-size: 1.2rem;
+        padding: 10px 20px;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .theme-switch {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+    
+    /* Overlay pour fermer le menu */
+    .menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+    
+    .menu-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/* Tablette (entre 768px et 1024px) */
+@media(max-width: 1024px) and (min-width: 769px) {
+    nav {
+        padding: 15px 30px;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    nav a {
+        margin: 0 8px;
+        font-size: 0.9rem;
+    }
+    
+    .theme-switch {
+        margin-left: 8px;
+    }
+}
+
+/* Petit écran (max 480px) */
+@media(max-width: 480px) {
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .hero span {
+        font-size: 1.5rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+        padding: 0 15px;
+    }
+    
+    .hero button {
+        padding: 12px 30px;
+        font-size: 0.9rem;
+    }
+    
+    section {
+        padding: 80px 15px;
+    }
+    
+    section h2 {
+        font-size: 1.6rem;
+    }
+    
+    .cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .card {
+        padding: 25px;
+    }
+    
+    .page-content {
+        padding: 120px 15px 40px 15px;
+    }
+    
+    .page-content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .page-content h2 {
+        font-size: 1.4rem;
+    }
+    
+    .card-section {
+        padding: 20px;
+    }
+    
+    .discord {
+        padding: 60px 15px;
+    }
+    
+    .discord a {
+        padding: 12px 35px;
+        margin-top: 25px;
+    }
+    
+    .testimonial-content {
+        font-size: 1rem;
+    }
+}
