@@ -616,3 +616,25 @@ footer {
         font-size: 1rem;
     }
 }
+/* --- Ajout pour le titre dans la barre de navigation --- */
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.site-title-text {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #000; /* Noir (s'adaptera selon ton mode clair/sombre) */
+    flex-grow: 1;
+    text-align: center;
+}
+
+nav img {
+    height: 40px; /* Ajuste la taille de ton logo si besoin */
+    width: auto;
+}
+
