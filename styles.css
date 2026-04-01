@@ -616,25 +616,18 @@ footer {
         font-size: 1rem;
     }
 }
-/* --- Ajout pour le titre dans la barre de navigation --- */
-
+/* Pour aligner le logo, le nom et le menu sur la même ligne */
 nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 20px;
+    padding: 10px;
 }
 
+/* Pour donner du style au nom de l'association */
 .site-title-text {
     font-weight: bold;
     font-size: 1.1rem;
-    color: #000; /* Noir (s'adaptera selon ton mode clair/sombre) */
-    flex-grow: 1;
-    text-align: center;
+    color: #333; /* Ou une autre couleur si tu préfères */
+    margin-left: 10px; /* Espace un peu par rapport au logo */
 }
-
-nav img {
-    height: 40px; /* Ajuste la taille de ton logo si besoin */
-    width: auto;
-}
-
