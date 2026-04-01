@@ -616,18 +616,3 @@ footer {
         font-size: 1rem;
     }
 }
-/* Pour aligner le logo, le nom et le menu sur la même ligne */
-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-}
-
-/* Pour donner du style au nom de l'association */
-.site-title-text {
-    font-weight: bold;
-    font-size: 1.1rem;
-    color: #333; /* Ou une autre couleur si tu préfères */
-    margin-left: 10px; /* Espace un peu par rapport au logo */
-}
