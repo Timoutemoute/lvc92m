@@ -73,6 +73,19 @@
         <a href="https://discord.gg/dT24UwdK" target="_blank" class="btn">Rejoindre le Discord</a>
         <a href="mailto:les.voix.claires.92@gmail.com" target="_blank" class="btn">Envoyez-nous un mail</a>
     </div>
+<div id="quiz-container">
+    <h2>Est-ce que quelqu'un a partagé une photo de toi sans ton accord ?</h2>
+    <button onclick="ajouterPoint(1)">OUI</button>
+    <button onclick="ajouterPoint(0)">NON</button>
+    
+    <button onclick="afficherResultat()">Voir mon bilan</button>
+</div>
+
+<div id="resultat" style="display:none;">
+    <h3>Ton bilan :</h3>
+    <p id="message-diagnostic"></p>
+    <a href="tel:3018" style="background:blue; color:white; padding:10px;">Appeler le 30 18</a>
+</div>
 
     <footer>
         © 2025 Les Voix Claires 92 – Association contre le harcèlement
