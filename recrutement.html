@@ -1,1 +1,129 @@
-# à remplir 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recrutement - Les Voix Claires 92</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="Logo.png">
+    
+    <style>
+        /* Style spécifique pour le formulaire de recrutement */
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.05); /* S'adapte bien au dark mode */
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            box-sizing: border-box;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .btn-submit {
+            background-color: #333; /* À changer selon la couleur de ton asso */
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+        }
+        .btn-submit:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <img src="Logo.png" alt="Les Voix Claires">
+        <div class="nav-links">
+            <a href="index.html">Accueil</a>
+            <a href="urgence.html">Urgences</a>
+            <a href="equipe.html">Notre équipe</a>
+            <!-- J'ai glissé le lien recrutement ici -->
+            <a href="recrutement.html">Recrutement</a>
+            <a href="temoignages.html">Témoignages</a>
+            <div class="theme-switch" onclick="toggleTheme()">
+                <span id="themeIcon">🌙</span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-content">
+        <h1>Rejoignez-nous</h1>
+        
+        <div class="card-section" style="margin-top: 20px;">
+            <p>L'association Les Voix Claires 92 s'agrandit ! Nous recherchons de nouveaux talents pour compléter notre équipe de bénévoles engagés. Nous avons actuellement des postes clés à pourvoir, notamment à la <strong>Trésorerie</strong> et aux <strong>Ressources Humaines</strong>.</p>
+            
+            <div class="form-container" style="margin-top: 40px;">
+                <!-- Remplacer le # par le lien de ton webhook Discord ou de ton script PHP si tu en as un -->
+                <form action="#" method="POST">
+                    
+                    <div class="form-group">
+                        <label for="nom">Nom et Prénom *</label>
+                        <input type="text" id="nom" name="nom" required placeholder="Ex: Jean Dupont">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Adresse E-mail *</label>
+                        <input type="email" id="email" name="email" required placeholder="jean.dupont@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="age">Âge *</label>
+                        <input type="number" id="age" name="age" required placeholder="Ton âge">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="poste">Poste visé *</label>
+                        <select id="poste" name="poste" required>
+                            <option value="">-- Choisis un poste --</option>
+                            <option value="tresorier">Trésorier(e)</option>
+                            <option value="rh">Directeur(trice) RH</option>
+                            <option value="benevole_phare">Membre programme pHARe</option>
+                            <option value="benevole_terrain">Bénévole terrain / Écoute</option>
+                            <option value="autre">Autre (précise dans tes motivations)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="motivation">Quelles sont tes motivations ? *</label>
+                        <textarea id="motivation" name="motivation" required placeholder="Raconte-nous pourquoi la lutte contre le harcèlement te tient à cœur..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Envoyer ma candidature</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        © 2026 Les Voix Claires 92 – Association contre le harcèlement
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
