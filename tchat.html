@@ -7,9 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="Logo.png">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="Logo.png">
-
 </head>
 <body>
     <nav>
@@ -34,7 +31,6 @@
         </p>
 
         <div class="chat-container">
-            <!-- Carte d'information sur le service de chat -->
             <div class="info-card">
                 <h2>📱 Chat en direct</h2>
                 <p>Discutez directement avec un membre de notre équipe. Posez vos questions, partagez votre situation en toute confidentialité.</p>
@@ -46,16 +42,11 @@
                 <div class="badge">🔒 100% anonyme et confidentiel</div>
             </div>
 
-            <!-- ============================================= -->
-            <!-- ZONE DU CHAT 3CX - VERSION CORRIGÉE           -->
-            <!-- L'identifiant 'LiveChat459960' est le bon     -->
-            <!-- ============================================= -->
             <call-us-selector 
                 phonesystem-url="https://1761.3cx.cloud" 
                 party="LiveChat459960">
             </call-us-selector>
             
-            <!-- Message d'information supplémentaire -->
             <div class="disclaimer">
                 <p>⚠️ En cas d'urgence vitale ou de danger immédiat, appelez immédiatement le <strong>15</strong> (SAMU) ou le <strong>17</strong> (Police secours).<br>
                 Ce chat n'est pas un service d'urgence. Il est destiné à une écoute bienveillante et une orientation vers les ressources adaptées.</p>
@@ -64,20 +55,14 @@
     </main>
 
     <footer>
-        © 2025 Les Voix Claires 92 – Association contre le harcèlement scolaire
+        © 2026 Les Voix Claires 92 – Association contre le harcèlement scolaire
     </footer>
 
-    <!-- Script de la bibliothèque 3CX (chargement asynchrone) -->
-    <!-- Le script est chargé une seule fois et initialise automatiquement le tag 'call-us-selector' -->
     <script defer src="https://downloads-global.3cx.com/downloads/livechatandtalk/v1/callus.js" id="tcx-callus-js" charset="utf-8"></script>
-    
-    <!-- Script principal du site -->
     <script src="script.js"></script>
     
     <script>
-        // Script de vérification et de style additionnel
         document.addEventListener('DOMContentLoaded', function() {
-            // Ajouter un peu d'espace autour du widget pour qu'il ne touche pas les bords
             const style = document.createElement('style');
             style.textContent = `
                 call-us-selector {
@@ -85,7 +70,6 @@
                     margin: 1rem auto;
                     min-height: 100px;
                 }
-                /* S'assurer que le widget 3CX s'adapte au thème clair/sombre */
                 body.light call-us-selector {
                     --call-us-main-background-color: #e0e0e0;
                     --call-us-plate-background-color: #f5f5f5;
@@ -99,19 +83,6 @@
                 }
             `;
             document.head.appendChild(style);
-            
-            // Petite vérification : si le widget ne s'affiche pas après 5 secondes, afficher un message d'aide
-            setTimeout(function() {
-                const widget = document.querySelector('call-us-selector');
-                if (widget && widget.shadowRoot) {
-                    // Le widget est chargé
-                    console.log('Widget 3CX chargé avec succès');
-                } else if (widget && !widget.shadowRoot) {
-                    console.log('Le widget est présent mais pas encore initialisé');
-                } else {
-                    console.log('Widget 3CX non trouvé');
-                }
-            }, 5000);
         });
     </script>
 </body>
