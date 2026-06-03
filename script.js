@@ -130,6 +130,7 @@ function closeMobileMenu() {
     }
     
     document.body.style.overflow = '';
+    document.body.style.overflow = '';
 }
 
 // Gestion du redimensionnement de la fenêtre

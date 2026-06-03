@@ -670,3 +670,23 @@ footer {
             opacity: 0.8;
         }
 }
+/* ===== FOOTER LINDS (à ajouter) ===== */
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: var(--text);
+    text-decoration: underline;
+}
