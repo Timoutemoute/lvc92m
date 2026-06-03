@@ -756,4 +756,5 @@ footer {
         @media (max-width: 768px) {
             .info-card h2 { font-size: 1.4rem; }
             .chat-container { padding: 1rem; }
+            
 }
