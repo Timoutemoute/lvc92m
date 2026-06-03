@@ -251,3 +251,511 @@ input, textarea {
 .submit:hover {
     background: var(--text);
     color: var(--bg);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+.submit:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--gray);
+    border-top: 1px solid var(--border);
+}
+
+/* ===== PAGE CONTENT ===== */
+.page-content {
+    padding: 140px 20px 60px 20px;
+    max-width: 900px;
+    margin: auto;
+}
+
+.page-content h1, .page-content h2 {
+    font-weight: 800;
+}
+
+.page-content h1 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.page-content h2 {
+    font-size: 2rem;
+    margin-top: 40px;
+    margin-bottom: 15px;
+}
+
+.page-content p, .page-content li {
+    font-size: 1.05rem;
+    color: var(--gray);
+    line-height: 1.8;
+}
+
+.page-content ul {
+    margin-left: 20px;
+    margin-bottom: 30px;
+}
+
+.card-section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 25px 30px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    transition: 0.3s;
+}
+
+.card-section:hover {
+    transform: translateY(-3px);
+    border-color: var(--text);
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width: 1024px) {
+    nav {
+        padding: 15px 30px;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+    
+    nav a {
+        margin: 0 10px;
+    }
+    
+    .theme-switch {
+        margin-left: 15px;
+    }
+}
+
+@media(max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero span {
+        font-size: 2rem;
+    }
+    
+    section h2 {
+        font-size: 2rem;
+    }
+    
+    .page-content h1 {
+        font-size: 2.2rem;
+    }
+    
+    .page-content h2 {
+        font-size: 1.6rem;
+    }
+}
+
+/* ===== TÉMOIGNAGES ===== */
+.intro-text {
+    font-size: 1.1rem;
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 40px;
+    max-width: 800px;
+}
+
+.testimonial-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text);
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.testimonial-author {
+    font-size: 0.95rem;
+    color: var(--gray);
+    font-weight: 600;
+    text-align: right;
+    border-top: 1px solid var(--border);
+    padding-top: 15px;
+}
+
+.testimonial-cta {
+    text-align: center;
+    padding: 40px;
+}
+
+.testimonial-cta h2 {
+    margin-bottom: 20px;
+}
+
+.testimonial-cta p {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 30px;
+}
+
+/* ===== MENU HAMBURGER ===== */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.hamburger {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--text);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 3px;
+    background: var(--text);
+    transition: all 0.3s ease;
+}
+
+.hamburger::before {
+    top: -8px;
+}
+
+.hamburger::after {
+    bottom: -8px;
+}
+
+/* Animation du hamburger en croix */
+.menu-toggle.active .hamburger {
+    background: transparent;
+}
+
+.menu-toggle.active .hamburger::before {
+    transform: rotate(45deg);
+    top: 0;
+}
+
+.menu-toggle.active .hamburger::after {
+    transform: rotate(-45deg);
+    bottom: 0;
+}
+
+/* Responsive - Menu mobile */
+@media(max-width: 768px) {
+    nav {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 15px 20px;
+    }
+    
+    .menu-toggle {
+        display: block;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        max-width: 300px;
+        height: 100vh;
+        background: var(--bg);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
+        transition: right 0.4s ease;
+        z-index: 1000;
+        box-shadow: -5px 0 20px rgba(0,0,0,0.3);
+        border-left: 1px solid var(--border);
+    }
+    
+    body.light .nav-links {
+        background: rgba(245,245,245,0.95);
+    }
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
+    nav a {
+        margin: 0;
+        font-size: 1.2rem;
+        padding: 10px 20px;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .theme-switch {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+    
+    /* Overlay pour fermer le menu */
+    .menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+    
+    .menu-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/* Tablette (entre 768px et 1024px) */
+@media(max-width: 1024px) and (min-width: 769px) {
+    nav {
+        padding: 15px 30px;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    nav a {
+        margin: 0 8px;
+        font-size: 0.9rem;
+    }
+    
+    .theme-switch {
+        margin-left: 8px;
+    }
+}
+
+/* Petit écran (max 480px) */
+@media(max-width: 480px) {
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .hero span {
+        font-size: 1.5rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+        padding: 0 15px;
+    }
+    
+    .hero button {
+        padding: 12px 30px;
+        font-size: 0.9rem;
+    }
+    
+    section {
+        padding: 80px 15px;
+    }
+    
+    section h2 {
+        font-size: 1.6rem;
+    }
+    
+    .cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .card {
+        padding: 25px;
+    }
+    
+    .page-content {
+        padding: 120px 15px 40px 15px;
+    }
+    
+    .page-content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .page-content h2 {
+        font-size: 1.4rem;
+    }
+    
+    .card-section {
+        padding: 20px;
+    }
+    
+    .discord {
+        padding: 60px 15px;
+    }
+    
+    .discord a {
+        padding: 12px 35px;
+        margin-top: 25px;
+    }
+    
+    .testimonial-content {
+        font-size: 1rem;
+    }   
+    
+        .form-container {
+            max-width: 600px;
+            margin: 40px auto;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            box-sizing: border-box;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .form-group input[type="file"] {
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.02);
+            border: 2px dashed #bbb;
+            cursor: pointer;
+        }
+        .form-group input[type="file"]:hover {
+            border-color: #666;
+        }
+        .btn-submit {
+            background-color: #333;
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+        }
+        .btn-submit:hover {
+            opacity: 0.8;
+        }
+}
+/* ===== FOOTER LINDS (à ajouter) ===== */
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: var(--text);
+    text-decoration: underline;
+}
+
+    <style>
+        /* Styles spécifiques pour la page tchat */
+        .chat-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem
+}
+        .info-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+}
+        .info-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--text);
+}
+        .info-card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+}
+        .info-card p {
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+}
+        .info-card .badge {
+            display: inline-block;
+            background: rgba(20, 165, 255, 0.15);
+            color: #14A5FF;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 1rem;
+}
+        .hours-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+}
+        .hour-item {
+            background: var(--bg);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            border: 1px solid var(--border);
+}
+        .disclaimer {
+            font-size: 0.85rem;
+            text-align: center;
+            margin-top: 2rem;
+            color: var(--gray);
+            border-top: 1px solid var(--border);
+            padding-top: 1.5rem;
+}
+        @media (max-width: 768px) {
+            .info-card h2 { font-size: 1.4rem; }
+            .chat-container { padding: 1rem; }
+            
+}
+Corrige ce script 
