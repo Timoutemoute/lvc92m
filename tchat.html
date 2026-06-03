@@ -1,12 +1,83 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
+<head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Chat & Assistance - Les Voix Claires 92</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="Logo.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="Logo.png">
+
+    <style>
+        .chat-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        .info-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .info-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--text);
+        }
+        .info-card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+        .info-card p {
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        .info-card .badge {
+            display: inline-block;
+            background: rgba(20, 165, 255, 0.15);
+            color: #14A5FF;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+        .hours-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .hour-item {
+            background: var(--bg);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            border: 1px solid var(--border);
+            color: var(--text);
+            display: inline-block;
+        }
+        .disclaimer {
+            font-size: 0.85rem;
+            text-align: center;
+            margin-top: 2rem;
+            color: var(--gray);
+            border-top: 1px solid var(--border);
+            padding-top: 1.5rem;
+        }
+        @media (max-width: 768px) {
+            .info-card h2 { font-size: 1.4rem; }
+            .chat-container { padding: 1rem; }
+        }
+    </style>
 </head>
 <body>
     <nav>
