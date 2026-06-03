@@ -3,79 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Témoignages - Les Voix Claires</title>
+    <title>Témoignages - Les Voix Claires 92</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="Logo.png">
 </head>
 <body>
     <nav>
         <img src="Logo.png" alt="Les Voix Claires">
+        <button class="menu-toggle" aria-label="Menu">
+            <span class="hamburger"></span>
+        </button>
         <div class="nav-links">
             <a href="index.html">Accueil</a>
             <a href="urgence.html">Urgences</a>
             <a href="equipe.html">Notre équipe</a>
             <a href="recrutement.html">Recrutement</a>
             <a href="temoignages.html">Témoignages</a>
+            <a href="encoursdecréation.html">TChat</a>
             <div class="theme-switch" onclick="toggleTheme()">
                 <span id="themeIcon">🌙</span>
             </div>
         </div>
     </nav>
 
-    <main>
-        <section class="page-content">
-            <h1>Témoignages</h1>
-            <p class="intro-text">Des parcours de reconstruction et d'espoir. Partager son expérience peut être une étape importante dans le processus de reconstruction. Ces témoignages anonymisés montrent que vous n'êtes pas seul(e) et qu'il est possible de s'en sortir.</p>
-            
-            <div class="cards">
-                
-                <div class="card">
-                    <div class="testimonial-content">
-                        <p>"En 5e j'ai vomi dans le bus est un groupe de filles mon harcèler elle mon appeler vomito des insulte frapper humilier et un jour ma voisine a vu une vidéo sur j'ai poster avent c'était choupinette gacha et j'avais mie comme titre si je me suicide que ferai vous elle en a parler a ma mère au collège et après elles ont eu un conseil de discipline et c'est comme sa que en 5e j'ai failli me suicider et en 4 e c'était la meme chose mais pour les vêtements et la coupe sauf pour la vidéo et en 3e pareil et au lycée a cause de l'homophobie conseil parler en avant qu'il sois trop tard "</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <span>Jayden 17 ans</span>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <div class="testimonial-content">
-                        <p>"En tant que témoin de harcèlement scolaire, je ne savais pas comment réagir. L'association m'a guidé vers les bonnes démarches et m'a aidé à soutenir ma camarade sans me mettre en danger."</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <span>Lucas, 16 ans (témoignage fictif)</span>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <div class="testimonial-content">
-                        <p>"Le soutien psychologique m'a sauvé la vie. Je me sentais seule et incomprise. Aujourd'hui, je participe même à des groupes de parole pour aider d'autres personnes."</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <span>Sophie, 28 ans (témoignage fictif)</span>
-                    </div>
-                </div>
+    <div class="menu-overlay"></div>
 
-                
-            </div>
+    <section class="page-content">
+        <h1>Témoignages</h1>
+        <p class="intro-text">Des parcours de reconstruction et d'espoir. Ces témoignages montrent que vous n'êtes pas seul(e).</p>
         
-            <div class="testimonial-cta card-section" style="margin-top: 60px;">
-                <h2>Partager votre expérience</h2>
-                <p>Votre témoignage anonyme peut aider d'autres personnes. Si vous souhaitez partager votre histoire, contactez-nous.</p>
-                <a href="mailto:les.voix.claires.92@gmail.com" class="submit" style="display: inline-block; text-decoration: none; text-align: center; margin-top: 20px;">
-                    Nous contacter
-                </a>
+        <div class="cards">
+            <div class="card">
+                <div class="testimonial-content">
+                    <p>"En 5e, j'ai été victime de harcèlement. Une voisine a parlé à ma mère, le collège a réagi. Aujourd'hui, je témoigne pour aider les autres."</p>
+                </div>
+                <div class="testimonial-author">
+                    <span>Jayden, 17 ans</span>
+                </div>
             </div>
-        </section>
-    </main>
+            
+            <div class="card">
+                <div class="testimonial-content">
+                    <p>"En tant que témoin, je ne savais pas comment réagir. L'association m'a guidé vers les bonnes démarches."</p>
+                </div>
+                <div class="testimonial-author">
+                    <span>Lucas, 16 ans</span>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="testimonial-content">
+                    <p>"Le soutien psychologique m'a sauvé la vie. Aujourd'hui, je participe à des groupes de parole."</p>
+                </div>
+                <div class="testimonial-author">
+                    <span>Sophie, 28 ans</span>
+                </div>
+            </div>
+        </div>
+    
+        <div class="testimonial-cta card-section" style="margin-top: 60px;">
+            <h2>Partagez votre expérience</h2>
+            <p>Votre témoignage anonyme peut aider d'autres personnes.</p>
+            <a href="mailto:les.voix.claires.92@gmail.com" class="submit" style="display: inline-block; text-decoration: none; text-align: center; margin-top: 20px;">
+                Nous contacter
+            </a>
+        </div>
+    </section>
 
     <footer>
-        © 2025 Les Voix Claires 92 – Association contre le harcèlement
+        <div class="footer-links">
+            <a href="mentions-legales.html">Mentions légales</a>
+            <a href="confidentialite.html">Politique de confidentialité</a>
+            <a href="cgu.html">CGU</a>
+        </div>
+        <p>© 2026 Les Voix Claires 92 – Association contre le harcèlement</p>
     </footer>
 
     <script src="script.js"></script>
 </body>
-
 </html>
-
-

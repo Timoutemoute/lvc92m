@@ -11,64 +11,56 @@
 <body>
     <nav>
         <img src="Logo.png" alt="Les Voix Claires">
+        <button class="menu-toggle" aria-label="Menu">
+            <span class="hamburger"></span>
+        </button>
         <div class="nav-links">
             <a href="index.html">Accueil</a>
             <a href="urgence.html">Urgences</a>
             <a href="equipe.html">Notre équipe</a>
             <a href="recrutement.html">Recrutement</a>
             <a href="temoignages.html">Témoignages</a>
+            <a href="encoursdecréation.html">TChat</a>
             <div class="theme-switch" onclick="toggleTheme()">
                 <span id="themeIcon">🌙</span>
             </div>
         </div>
     </nav>
 
+    <div class="menu-overlay"></div>
+
     <section class="page-content">
         <h1>Politique de confidentialité</h1>
         
         <div class="card-section">
-            <h2>1. Collecte des données</h2>
-            <p>Nous collectons uniquement les données nécessaires au fonctionnement du site et à la réponse à vos demandes via le formulaire de contact : nom, email et message.</p>
+            <h2>Collecte des données</h2>
+            <p>Nous collectons uniquement les données nécessaires : nom, email et message.</p>
         </div>
 
         <div class="card-section">
-            <h2>2. Utilisation des données</h2>
-            <p>Les données collectées sont utilisées pour :<br>
-            - Répondre à vos demandes de contact<br>
-            - Vous informer des activités de l'association (si vous y avez consenti)<br>
-            - Améliorer nos services</p>
+            <h2>Utilisation des données</h2>
+            <p>Les données sont utilisées pour répondre à vos demandes et améliorer nos services.</p>
         </div>
 
         <div class="card-section">
-            <h2>3. Conservation des données</h2>
-            <p>Vos données sont conservées pendant la durée nécessaire à la réalisation des finalités pour lesquelles elles ont été collectées, et conformément aux obligations légales.</p>
+            <h2>Vos droits (RGPD)</h2>
+            <p>Vous disposez d'un droit d'accès, de rectification et d'effacement.</p>
+            <p>Contact : les.voix.claires.92@gmail.com</p>
         </div>
 
         <div class="card-section">
-            <h2>4. Partage des données</h2>
-            <p>Nous ne vendons, n'échangeons ni ne transférons vos données personnelles à des tiers, sauf obligation légale.</p>
-        </div>
-
-        <div class="card-section">
-            <h2>5. Vos droits</h2>
-            <p>Conformément au RGPD, vous disposez des droits suivants :<br>
-            - Droit d'accès à vos données<br>
-            - Droit de rectification<br>
-            - Droit à l'effacement<br>
-            - Droit à la limitation du traitement<br>
-            - Droit à la portabilité des données<br>
-            - Droit d'opposition</p>
-            <p>Pour exercer ces droits, contactez-nous à : les.voix.claires.92@gmail.com</p>
-        </div>
-
-        <div class="card-section">
-            <h2>6. Sécurité</h2>
-            <p>Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données contre tout accès non autorisé, modification ou destruction.</p>
+            <h2>Sécurité</h2>
+            <p>Nous protégeons vos données contre tout accès non autorisé.</p>
         </div>
     </section>
 
     <footer>
-        © 2025 Les Voix Claires 92– Association contre le harcèlement
+        <div class="footer-links">
+            <a href="mentions-legales.html">Mentions légales</a>
+            <a href="confidentialite.html">Politique de confidentialité</a>
+            <a href="cgu.html">CGU</a>
+        </div>
+        <p>© 2026 Les Voix Claires 92 – Association contre le harcèlement</p>
     </footer>
 
     <script src="script.js"></script>

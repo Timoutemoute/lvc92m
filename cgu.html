@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conditions Générales d'Utilisation - Les Voix Claires 92</title>
+    <title>CGU - Les Voix Claires 92</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="Logo.png">
@@ -12,59 +11,65 @@
 <body>
     <nav>
         <img src="Logo.png" alt="Les Voix Claires">
+        <button class="menu-toggle" aria-label="Menu">
+            <span class="hamburger"></span>
+        </button>
         <div class="nav-links">
             <a href="index.html">Accueil</a>
             <a href="urgence.html">Urgences</a>
             <a href="equipe.html">Notre équipe</a>
             <a href="recrutement.html">Recrutement</a>
             <a href="temoignages.html">Témoignages</a>
+            <a href="encoursdecréation.html">TChat</a>
             <div class="theme-switch" onclick="toggleTheme()">
                 <span id="themeIcon">🌙</span>
             </div>
         </div>
     </nav>
 
+    <div class="menu-overlay"></div>
+
     <section class="page-content">
         <h1>Conditions Générales d'Utilisation</h1>
         
         <div class="card-section">
-            <h2>1. Acceptation des conditions</h2>
-            <p>L'utilisation du site des Voix Claires implique l'acceptation pleine et entière des conditions générales d'utilisation décrites ci-après.</p>
+            <h2>1. Acceptation</h2>
+            <p>L'utilisation du site implique l'acceptation pleine des CGU.</p>
         </div>
 
         <div class="card-section">
-            <h2>2. Objet du site</h2>
-            <p>Ce site a pour objet de fournir des informations sur l'association Les Voix Claires 92, ses actions contre le harcèlement scolaire, et de mettre à disposition des ressources et contacts utiles.</p>
+            <h2>2. Objet</h2>
+            <p>Ce site fournit des informations sur l'association et ses actions contre le harcèlement.</p>
         </div>
 
         <div class="card-section">
-            <h2>3. Accès au site</h2>
-            <p>L'accès au site est gratuit. Les Voix Claires 92 se réserve le droit de suspendre, interrompre ou modifier l'accès à tout moment sans préavis.</p>
+            <h2>3. Accès</h2>
+            <p>L'accès est gratuit. L'association peut le suspendre à tout moment.</p>
         </div>
 
         <div class="card-section">
             <h2>4. Responsabilités</h2>
-            <p>Les informations diffusées sur le site le sont à titre indicatif. L'association ne peut garantir l'exactitude, la complétude ou l'actualité des informations.</p>
+            <p>Les informations sont fournies à titre indicatif.</p>
         </div>
 
         <div class="card-section">
             <h2>5. Propriété intellectuelle</h2>
-            <p>Tous les contenus sont protégés par le droit d'auteur. Toute reproduction sans autorisation préalable est interdite.</p>
+            <p>Toute reproduction sans autorisation est interdite.</p>
         </div>
 
         <div class="card-section">
-            <h2>6. Liens hypertextes</h2>
-            <p>Le site peut contenir des liens vers d'autres sites. Les Voix Claires 92 n'exerce aucun contrôle sur ces sites et décline toute responsabilité quant à leur contenu.</p>
-        </div>
-
-        <div class="card-section">
-            <h2>7. Modification des CGU</h2>
-            <p>Les Voix Claires 92 se réserve le droit de modifier les présentes conditions d'utilisation à tout moment.</p>
+            <h2>6. Modification</h2>
+            <p>Les CGU peuvent être modifiées à tout moment.</p>
         </div>
     </section>
 
     <footer>
-        © 2025 Les Voix Claires 92 – Association contre le harcèlement
+        <div class="footer-links">
+            <a href="mentions-legales.html">Mentions légales</a>
+            <a href="confidentialite.html">Politique de confidentialité</a>
+            <a href="cgu.html">CGU</a>
+        </div>
+        <p>© 2026 Les Voix Claires 92 – Association contre le harcèlement</p>
     </footer>
 
     <script src="script.js"></script>

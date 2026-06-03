@@ -1,8 +1,6 @@
-// Initialisation au chargement de la page
-window.addEventListener("load", () => {
-    window.scrollTo(0,0);
-    
-    // Initialiser l'icône du thème
+// Initialisation au chargement
+document.addEventListener("DOMContentLoaded", function() {
+    // Thème
     const isLightMode = localStorage.getItem('theme') === 'light';
     if (isLightMode) {
         document.body.classList.add("light");
@@ -10,11 +8,39 @@ window.addEventListener("load", () => {
         if (themeIcon) themeIcon.textContent = "☀️";
     }
     
-    // Configurer le menu mobile
-    setupMobileMenu();
+    // Menu mobile
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const overlay = document.querySelector('.menu-overlay');
+    
+    if (menuToggle && navLinks && overlay) {
+        menuToggle.addEventListener('click', function() {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+        });
+        
+        overlay.addEventListener('click', function() {
+            menuToggle.classList.remove('active');
+            navLinks.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+        
+        const links = navLinks.querySelectorAll('a');
+        links.forEach(link => {
+            link.addEventListener('click', function() {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+    }
 });
 
-// Fonction pour basculer le thème
+// Bascule du thème
 function toggleTheme() {
     const body = document.body;
     const themeIcon = document.getElementById("themeIcon");
@@ -30,75 +56,7 @@ function toggleTheme() {
     }
 }
 
-// Fonction pour ouvrir l'email
+// Email
 function openEmailClient() {
-    const email = "les.voix.claires.92@gmail.com";
-    const subject = "Contact - Les Voix Claires 92";
-    const body = "Bonjour,\n\nJe souhaite vous contacter pour : \n\n[Veuillez détailler votre demande ici]\n\nCordialement,\n\n";
-    
-    window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = "mailto:les.voix.claires.92@gmail.com?subject=Contact%20-%20Les%20Voix%20Claires%2092&body=Bonjour%2C%0A%0AJe%20souhaite%20vous%20contacter%20pour%20%3A%0A%0A";
 }
-
-// Configurer le menu hamburger
-function setupMobileMenu() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    const overlay = document.querySelector('.menu-overlay');
-    
-    if (!menuToggle) return;
-    
-    // Ouvrir/fermer le menu
-    menuToggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        menuToggle.classList.toggle('active');
-        navLinks.classList.toggle('active');
-        if (overlay) overlay.classList.toggle('active');
-        
-        if (navLinks.classList.contains('active')) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-        }
-    });
-    
-    // Fermer le menu en cliquant sur un lien
-    const links = navLinks.querySelectorAll('a');
-    links.forEach(link => {
-        link.addEventListener('click', () => {
-            menuToggle.classList.remove('active');
-            navLinks.classList.remove('active');
-            if (overlay) overlay.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-    });
-    
-    // Fermer le menu en cliquant sur l'overlay
-    if (overlay) {
-        overlay.addEventListener('click', () => {
-            menuToggle.classList.remove('active');
-            navLinks.classList.remove('active');
-            overlay.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-    }
-}
-
-// Gestion du redimensionnement de la fenêtre
-let resizeTimer;
-window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-        if (window.innerWidth > 768) {
-            const menuToggle = document.querySelector('.menu-toggle');
-            const navLinks = document.querySelector('.nav-links');
-            const overlay = document.querySelector('.menu-overlay');
-            
-            if (menuToggle && menuToggle.classList.contains('active')) {
-                menuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-                if (overlay) overlay.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        }
-    }, 250);
-});

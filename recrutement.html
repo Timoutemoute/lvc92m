@@ -7,80 +7,87 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="Logo.png">
-    
 </head>
 <body>
     <nav>
         <img src="Logo.png" alt="Les Voix Claires">
+        <button class="menu-toggle" aria-label="Menu">
+            <span class="hamburger"></span>
+        </button>
         <div class="nav-links">
             <a href="index.html">Accueil</a>
             <a href="urgence.html">Urgences</a>
             <a href="equipe.html">Notre équipe</a>
             <a href="recrutement.html">Recrutement</a>
             <a href="temoignages.html">Témoignages</a>
+            <a href="encoursdecréation.html">TChat</a>
             <div class="theme-switch" onclick="toggleTheme()">
                 <span id="themeIcon">🌙</span>
             </div>
         </div>
     </nav>
 
+    <div class="menu-overlay"></div>
+
     <section class="page-content">
         <h1>Rejoignez-nous</h1>
+        <p class="intro-text" style="text-align: center;">L'association s'agrandit ! Nous recherchons des bénévoles motivés.</p>
         
-        <div class="card-section" style="margin-top: 20px;">
-            <p>L'association Les Voix Claires 92 s'agrandit ! Nous recherchons de nouveaux talents pour compléter notre équipe de bénévoles engagés. Nous serons heureux de vous accueillir.
-            
-            <div class="form-container">
-                <form action="https://formsubmit.co/les.voix.claires.92@gmail.com" method="POST" enctype="multipart/form-data">
-                    
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_next" value="https://les-voix-claires-92.fr/merci.html">
-                    
-                    <div class="form-group">
-                        <label for="nom">Nom et Prénom *</label>
-                        <input type="text" id="nom" name="Nom_Prenom" required placeholder="Ex: Jean Dupont">
-                    </div>
+        <div class="form-container">
+            <form action="https://formsubmit.co/les.voix.claires.92@gmail.com" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://les-voix-claires-92.fr/merci.html">
+                <input type="hidden" name="_subject" value="Nouvelle candidature - Les Voix Claires 92">
+                
+                <div class="form-group">
+                    <label for="nom">Nom et Prénom *</label>
+                    <input type="text" id="nom" name="Nom_Prenom" required placeholder="Ex: Jean Dupont">
+                </div>
 
-                    <div class="form-group">
-                        <label for="email">Adresse E-mail *</label>
-                        <input type="email" id="email" name="Email" required placeholder="jean.dupont@email.com">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="age">Âge *</label>
-                        <input type="number" id="age" name="Age" required placeholder="Ton âge">
-                    </div>
+                <div class="form-group">
+                    <label for="email">Adresse E-mail *</label>
+                    <input type="email" id="email" name="Email" required placeholder="jean.dupont@email.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="age">Âge *</label>
+                    <input type="number" id="age" name="Age" required placeholder="Ton âge">
+                </div>
 
-                    <div class="form-group">
-                        <label for="poste">Poste visé *</label>
-                        <select id="poste" name="Poste_Vise" required>
-                            <option value="">-- Choisis un poste --</option>
-                            <option value="Trésorier">Trésorier(e)</option>
-                            <option value="Directeur RH">Directeur(trice) RH</option>
-                            <option value="Bénévole sur le terrain">Bénévole terrain</option>
-                               <option value="Bénévole écoutant">Bénévole écoutant</option>
-                            <option value="Autre">Autre (à préciser ci-dessous)</option>
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <label for="poste">Poste visé *</label>
+                    <select id="poste" name="Poste_Vise" required>
+                        <option value="">-- Choisis un poste --</option>
+                        <option value="Trésorier">Trésorier(ère)</option>
+                        <option value="Directeur RH">Directeur(trice) RH</option>
+                        <option value="Bénévole terrain">Bénévole terrain</option>
+                        <option value="Bénévole écoutant">Bénévole écoutant</option>
+                        <option value="Autre">Autre</option>
+                    </select>
+                </div>
 
-                    <div class="form-group">
-                        <label for="motivation">Quelles sont tes motivations ? *</label>
-                        <textarea id="motivation" name="Motivations" required placeholder="Raconte-nous pourquoi la lutte contre le harcèlement te tient à cœur..."></textarea>
-                    </div>
+                <div class="form-group">
+                    <label for="motivation">Tes motivations *</label>
+                    <textarea id="motivation" name="Motivations" required placeholder="Pourquoi la lutte contre le harcèlement te tient à cœur ?"></textarea>
+                </div>
 
-                    <div class="form-group">
-                        <label for="fichier">Ajouter un justificatif ou un CV (Optionnel)</label>
-                        <input type="file" id="fichier" name="Piece_Jointe" accept=".pdf,.doc,.docx,.png,.jpg">
-                    </div>
+                <div class="form-group">
+                    <label for="fichier">CV ou lettre (optionnel)</label>
+                    <input type="file" id="fichier" name="Piece_Jointe" accept=".pdf,.doc,.docx,.png,.jpg">
+                </div>
 
-                    <button type="submit" class="btn-submit">Envoyer ma candidature</button>
-                </form>
-            </div>
+                <button type="submit" class="btn-submit">Envoyer ma candidature</button>
+            </form>
         </div>
     </section>
 
     <footer>
-        © 2026 Les Voix Claires 92 – Association contre le harcèlement
+        <div class="footer-links">
+            <a href="mentions-legales.html">Mentions légales</a>
+            <a href="confidentialite.html">Politique de confidentialité</a>
+            <a href="cgu.html">CGU</a>
+        </div>
+        <p>© 2026 Les Voix Claires 92 – Association contre le harcèlement</p>
     </footer>
 
     <script src="script.js"></script>

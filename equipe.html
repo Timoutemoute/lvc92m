@@ -11,74 +11,80 @@
 <body>
     <nav>
         <img src="Logo.png" alt="Les Voix Claires">
+        <button class="menu-toggle" aria-label="Menu">
+            <span class="hamburger"></span>
+        </button>
         <div class="nav-links">
             <a href="index.html">Accueil</a>
             <a href="urgence.html">Urgences</a>
             <a href="equipe.html">Notre équipe</a>
             <a href="recrutement.html">Recrutement</a>
             <a href="temoignages.html">Témoignages</a>
+            <a href="encoursdecréation.html">TChat</a>
             <div class="theme-switch" onclick="toggleTheme()">
                 <span id="themeIcon">🌙</span>
             </div>
         </div>
     </nav>
+
+    <div class="menu-overlay"></div>
+
     <section class="page-content">
         <h1>Notre équipe</h1>
         
         <div class="cards">
             <div class="card">
                 <h3>Laure Assemat-Tessandier</h3>
-                <p><strong>Présidente</strong><br>
-                Préside l'entierté de l'association ainsi que ancienne juriste.</p>
+                <p><strong>Présidente</strong><br>Juriste de formation, elle dirige l'association avec rigueur.</p>
             </div>
             
             <div class="card">
                 <h3>Jules Legrez</h3>
-                <p><strong>Président d'honneur</strong><br>
-                Préside l'entierté de l'association.</p>
+                <p><strong>Président d'honneur</strong><br>Figure emblématique de l'engagement contre le harcèlement.</p>
             </div>
             
             <div class="card">
                 <h3>Martine Assemat-Tessandier</h3>
-                <p><strong>Secrétaire</strong><br>
-                Gère l'ensemble des document de l'association. Ainsi que retraité.</p>
+                <p><strong>Secrétaire</strong><br>Gère l'ensemble des documents administratifs.</p>
             </div>
             
             <div class="card">
-                <h3>Disponible</h3>
-                <p><strong>Trésorière</strong><br>
-                Comptable et gestionnaire associative.</p>
+                <h3>À pourvoir</h3>
+                <p><strong>Trésorier(ère)</strong><br>Comptable et gestionnaire associative.</p>
             </div>
             
-              <div class="card">
-                <h3>Disponible</h3>
-                <p><strong>Directeur RH</strong><br>
-                Gestion de l'association et également des recrutements</p>
+            <div class="card">
+                <h3>À pourvoir</h3>
+                <p><strong>Directeur(trice) RH</strong><br>Gestion des recrutements et bénévoles.</p>
             </div>
             
             <div class="card">
                 <h3>Mathéo Vanhoutte</h3>
-                <p><strong>Directeur Pôle Communication</strong><br>
-               Directeur Pôle Communication ainsi que ambasadeur du programme pHARe.</p>
+                <p><strong>Directeur Communication</strong><br>Ambassadeur du programme pHARe.</p>
             </div>
         </div>
 
         <div class="card-section" style="margin-top: 40px;">
             <h2>Nos bénévoles</h2>
-            <p>Notre association compte plus de 20 bénévoles engagés, provenant de divers horizons :</p>
+            <p>Notre association compte plus de <strong>20 bénévoles engagés</strong> :</p>
             <ul>
-                <li>Anciennes victimes de harcèlement.</li>
-                <li>Personnes ayant fait des études de droit.</li>
-                <li>Professionnel de la santé.</li>
-                <li>Membre du programme pHARe.</li>
-                <li>Parent d'élèves.</li>
+                <li>Anciennes victimes de harcèlement</li>
+                <li>Étudiants en droit</li>
+                <li>Professionnels de santé</li>
+                <li>Membres du programme pHARe</li>
+                <li>Parents d'élèves</li>
             </ul>
-            <p>Tous partagent la même conviction : personne ne doit subir le harcèlement.</p>
+            <a href="recrutement.html" class="submit" style="display: inline-block; margin-top: 20px;">Rejoindre l'équipe</a>
         </div>
     </section>
 
     <footer>
-        © 2025 Les Voix Claires 92 – Association contre le harcèlement
+        <div class="footer-links">
+            <a href="mentions-legales.html">Mentions légales</a>
+            <a href="confidentialite.html">Politique de confidentialité</a>
+            <a href="cgu.html">CGU</a>
+        </div>
+        <p>© 2026 Les Voix Claires 92 – Association contre le harcèlement</p>
     </footer>
 
     <script src="script.js"></script>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Urgence</title>
+    <title>Urgences - Les Voix Claires 92</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="Logo.png">
@@ -11,100 +11,79 @@
 <body>
     <nav>
         <img src="Logo.png" alt="Les Voix Claires">
+        <button class="menu-toggle" aria-label="Menu">
+            <span class="hamburger"></span>
+        </button>
         <div class="nav-links">
             <a href="index.html">Accueil</a>
             <a href="urgence.html">Urgences</a>
             <a href="equipe.html">Notre équipe</a>
             <a href="recrutement.html">Recrutement</a>
             <a href="temoignages.html">Témoignages</a>
+            <a href="encoursdecréation.html">TChat</a>
             <div class="theme-switch" onclick="toggleTheme()">
                 <span id="themeIcon">🌙</span>
             </div>
         </div>
     </nav>
 
+    <div class="menu-overlay"></div>
+
     <section class="page-content">
-    <h1>Fiche Avec les Numéros d'Urgence</h1>
-    
+        <h1>Numéros d'urgence & aide immédiate</h1>
+        <p class="intro-text" style="text-align: center; margin-bottom: 30px;">En situation de crise, n'attendez pas. Ces lignes sont gratuites et confidentielles.</p>
 
-    <div class="card-section">
-        <h2>URGENCES VITALES</h2>
-        <ul>
-            <li>112 – Numéro d’urgence européen (police, pompiers, ambulance)</li>
-            <li>15 – SAMU (urgence médicale)</li>
-            <li>17 – Police secours</li>
-            <li>18 – Pompiers</li>
-            <li>114 – Urgences par SMS (sourds/malentendants)</li>
-        </ul>
-    </div>
+        <div class="card-section">
+            <h2>🆘 URGENCES VITALES (24h/24)</h2>
+            <ul>
+                <li><strong>112</strong> – Numéro d'urgence européen</li>
+                <li><strong>15</strong> – SAMU</li>
+                <li><strong>17</strong> – Police secours</li>
+                <li><strong>18</strong> – Pompiers</li>
+                <li><strong>114</strong> – Urgences par SMS (sourds/malentendants)</li>
+            </ul>
+        </div>
 
-    <div class="card-section">
-        <h2>SANTÉ & PSYCHOLOGIE</h2>
-        <ul>
-            <li>3114 – Prévention suicide (24h/24)</li>
-            <li><strong>3018</strong> – Harcèlement scolaire et cyberharcèlement (7j/7, 9h-23h)</li>
-            <li>0 800 130 000 – Cellule psychologique (crises majeures)</li>
-            <li>116 117 – Médecin de garde (hors urgence vitale)</li>
-            <li>0 800 235 236 – Alcool info service</li>
-            <li>0 800 23 13 13 – Cannabis info service</li>
-            <li>0 800 840 800 – Tabac info service</li>
-            <li>0 800 858 858 – SOS Suicide</li>
-            <li>09 72 39 40 50 - SOS Amitié</li>
-            <li>0 800 00 56 96 - Souffrance & Travail</li>
-        </ul>
-    </div>
+        <div class="card-section">
+            <h2>🧠 SANTÉ & PSYCHOLOGIE</h2>
+            <ul>
+                <li><strong>3114</strong> – Prévention suicide (24h/24)</li>
+                <li><strong>3018</strong> – Harcèlement scolaire (7j/7, 9h-23h)</li>
+                <li><strong>09 72 39 40 50</strong> – SOS Amitié</li>
+                <li>0 800 130 000 – Cellule psychologique</li>
+                <li>116 117 – Médecin de garde</li>
+            </ul>
+        </div>
 
-    <div class="card-section">
-        <h2>ENFANTS / ENLÈVEMENTS / VIOLENCES</h2>
-        <ul>
-            <li>119 – Allô Enfance en Danger</li>
-            <li>116 000 – Enfants disparus / enlèvements</li>
-            <li>3919 – Violences conjugales</li>
-            <li>3018 – Harcèlement scolaire</li>
-            <li>0 805 802 804 – Violences sexuelles</li>
-            <li>0 800 05 95 95 – Enfance & violences sexuelles</li>
-        </ul>
-    </div>
+        <div class="card-section">
+            <h2>👧 ENFANTS & VIOLENCES</h2>
+            <ul>
+                <li><strong>119</strong> – Allô Enfance en Danger</li>
+                <li><strong>3919</strong> – Violences conjugales</li>
+                <li>116 000 – Enfants disparus</li>
+                <li>0 805 802 804 – Violences sexuelles</li>
+            </ul>
+        </div>
 
-    <div class="card-section">
-        <h2>CATASTROPHES / RISQUES / INONDATIONS</h2>
-        <ul>
-            <li>112 – Urgence européenne (catastrophes, inondations)</li>
-            <li>18 – Pompiers (inondations, feux, accidents)</li>
-            <li>196 – Secours en mer</li>
-            <li>191 – Urgences aéronautiques</li>
-            <li>0 800 100 200 – Info Sécurité Civile (selon situations)</li>
-        </ul>
-    </div>
+        <div class="card-section">
+            <h2>🤝 AIDE SOCIALE</h2>
+            <ul>
+                <li><strong>115</strong> – Hébergement d'urgence</li>
+                <li><strong>116 006</strong> – Aide aux victimes</li>
+                <li>3939 – Service public</li>
+            </ul>
+        </div>
+    </section>
 
-    <div class="card-section">
-        <h2>SITUATIONS SOCIALES & AIDE</h2>
-        <ul>
-            <li>115 – Hébergement d’urgence</li>
-            <li>116 006 – Aide aux victimes</li>
-            <li>0 800 360 360 – Handicap / situations complexes</li>
-            <li>0 800 47 47 47 – Drogues info service</li>
-            <li>0 810 004 333 – Info escroqueries</li>
-        </ul>
-    </div>
+    <footer>
+        <div class="footer-links">
+            <a href="mentions-legales.html">Mentions légales</a>
+            <a href="confidentialite.html">Politique de confidentialité</a>
+            <a href="cgu.html">CGU</a>
+        </div>
+        <p>© 2026 Les Voix Claires 92 – Association contre le harcèlement</p>
+    </footer>
 
-    <div class="card-section">
-        <h2>ADMINISTRATION & INFOS</h2>
-        <ul>
-            <li>3939 – Service public (infos administratives)</li>
-            <li>0 800 006 006 – Aide aux victimes (numéro national)</li>
-        </ul>
-    </div>
-</section>
-
-<footer>
-    © 2025 Les Voix Claires 92 – Association contre le harcèlement
-</footer>
-
-<script src="script.js"></script>
-
+    <script src="script.js"></script>
 </body>
 </html>
-
-
-
