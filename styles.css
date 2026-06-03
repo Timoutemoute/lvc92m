@@ -543,6 +543,120 @@ footer {
     padding: 2rem 1rem;
 }
 
+/* ===== CORRECTIF POUR LE MENU OVERLAY ===== */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ===== BOUTON MENU HAMBURGER (Version corrigée) ===== */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.hamburger {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--text);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 3px;
+    background: var(--text);
+    transition: all 0.3s ease;
+}
+
+.hamburger::before {
+    top: -8px;
+}
+
+.hamburger::after {
+    bottom: -8px;
+}
+
+.menu-toggle.active .hamburger {
+    background: transparent;
+}
+
+.menu-toggle.active .hamburger::before {
+    transform: rotate(45deg);
+    top: 0;
+}
+
+.menu-toggle.active .hamburger::after {
+    transform: rotate(-45deg);
+    bottom: 0;
+}
+
+/* ===== MOBILE (max 768px) - Version corrigée ===== */
+@media(max-width: 768px) {
+    .menu-toggle {
+        display: block !important;
+    }
+    
+    .nav-links {
+        position: fixed !important;
+        top: 0 !important;
+        right: -100% !important;
+        width: 70% !important;
+        max-width: 300px !important;
+        height: 100vh !important;
+        background: var(--bg) !important;
+        backdrop-filter: blur(20px) !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 25px !important;
+        transition: right 0.4s ease !important;
+        z-index: 1000 !important;
+        box-shadow: -5px 0 20px rgba(0,0,0,0.3) !important;
+        border-left: 1px solid var(--border) !important;
+    }
+    
+    .nav-links.active {
+        right: 0 !important;
+    }
+    
+    nav a {
+        margin: 0 !important;
+        font-size: 1.2rem !important;
+        padding: 10px 20px !important;
+    }
+    
+    .hero h1 {
+        font-size: 2rem !important;
+    }
+    
+    .hero span {
+        font-size: 1.6rem !important;
+    }
+}
+
 .info-card {
     background: var(--card);
     border: 1px solid var(--border);
