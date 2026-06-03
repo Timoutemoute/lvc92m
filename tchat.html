@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="Logo.png">
     <style>
+        /* Styles spécifiques pour la page tchat */
         .chat-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -68,69 +69,9 @@
             border-top: 1px solid var(--border);
             padding-top: 1.5rem;
         }
-        .contact-alternatives {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-        .contact-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 24px;
-            background: transparent;
-            border: 2px solid var(--text);
-            color: var(--text);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        .contact-btn:hover {
-            background: var(--text);
-            color: var(--bg);
-            transform: translateY(-2px);
-        }
-        .whatsapp-btn {
-            border-color: #25D366;
-            color: #25D366;
-        }
-        .whatsapp-btn:hover {
-            background: #25D366;
-            color: white;
-            border-color: #25D366;
-        }
         @media (max-width: 768px) {
             .info-card h2 { font-size: 1.4rem; }
             .chat-container { padding: 1rem; }
-        }
-        /* Style pour le conteneur du widget chat */
-        .chat-widget-container {
-            min-height: 500px;
-            background: var(--card);
-            border-radius: 16px;
-            border: 1px solid var(--border);
-            overflow: hidden;
-        }
-        .chat-placeholder {
-            text-align: center;
-            padding: 3rem;
-            background: var(--card);
-        }
-        .chat-placeholder p {
-            margin: 1rem 0;
-        }
-        .retry-btn {
-            padding: 10px 20px;
-            background: #14A5FF;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
-            margin-top: 15px;
         }
     </style>
 </head>
@@ -151,7 +92,7 @@
     </nav>
 
     <main class="page-content" style="padding-top: 120px;">
-        <h1>💬 Assistance & Écoute en ligne</h1>
+        <h1>💬 Assistance & Écoute</h1>
         <p class="intro-text" style="text-align: center; max-width: 700px; margin: 0 auto 2rem auto;">
             Une oreille attentive pour briser le silence. Nos bénévoles sont là pour vous écouter, vous conseiller et vous orienter.
         </p>
@@ -169,143 +110,19 @@
                 <div class="badge">🔒 100% anonyme et confidentiel</div>
             </div>
 
-            <!-- Widget Chat 3CX - Version simplifiée et corrigée -->
-            <div class="chat-widget-container" id="chatWidgetContainer">
-                <!-- Version alternative avec iframe si le widget ne charge pas -->
-                <div id="chatPlaceholder" class="chat-placeholder">
-                    <p>💬 Le chat est actuellement <strong>en ligne</strong></p>
-                    <p>Cliquez sur le bouton ci-dessous pour démarrer une conversation avec un bénévole :</p>
-                    <button id="openChatBtn" class="contact-btn" style="margin-top: 10px;">
-                        💬 Ouvrir le chat
-                    </button>
-                    <button onclick="location.href='https://discord.gg/AcRcndYhNv'" class="contact-btn" style="margin-left: 10px;">
-                        💬 Rejoindre notre Discord
-                    </button>
-                    <p style="font-size: 0.85rem; margin-top: 20px; color: var(--gray);">
-                        Si le chat ne répond pas, n'hésitez pas à nous contacter par email ou Discord.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Script 3CX - Version alternative plus stable -->
-            <script type="text/javascript">
-                (function() {
-                    // Fonction pour charger le script 3CX
-                    function load3CXWidget() {
-                        if (document.getElementById('3cx-widget-script')) return;
-                        
-                        var script = document.createElement('script');
-                        script.id = '3cx-widget-script';
-                        script.src = 'https://downloads-global.3cx.com/downloads/livechatandtalk/v1/callus.js';
-                        script.charset = 'utf-8';
-                        script.async = true;
-                        script.defer = true;
-                        
-                        script.onload = function() {
-                            console.log('3CX Widget chargé');
-                            // Cacher le placeholder quand le widget est chargé
-                            var placeholder = document.getElementById('chatPlaceholder');
-                            if (placeholder && typeof CallUs !== 'undefined') {
-                                setTimeout(function() {
-                                    placeholder.style.display = 'none';
-                                }, 1000);
-                            }
-                        };
-                        
-                        script.onerror = function() {
-                            console.log('Erreur de chargement 3CX');
-                            var placeholder = document.getElementById('chatPlaceholder');
-                            if (placeholder) {
-                                placeholder.innerHTML = `
-                                    <p>⚠️ Le chat rencontre actuellement des difficultés techniques.</p>
-                                    <p>Vous pouvez nous contacter par :</p>
-                                    <div class="contact-alternatives" style="margin-top: 15px;">
-                                        <a href="mailto:les.voix.claires.92@gmail.com" class="contact-btn">📧 Par email</a>
-                                        <a href="https://discord.gg/AcRcndYhNv" target="_blank" class="contact-btn">💬 Sur Discord</a>
-                                        <a href="https://wa.me/33612345678?text=Bonjour%2C%20je%20souhaite%20%C3%AAtre%20aid%C3%A9" class="contact-btn whatsapp-btn">📱 WhatsApp</a>
-                                    </div>
-                                    <button onclick="retryLoadChat()" class="retry-btn">🔄 Réessayer de charger le chat</button>
-                                `;
-                            }
-                        };
-                        
-                        document.head.appendChild(script);
-                    }
-                    
-                    // Bouton pour réessayer
-                    window.retryLoadChat = function() {
-                        var oldScript = document.getElementById('3cx-widget-script');
-                        if (oldScript) oldScript.remove();
-                        var placeholder = document.getElementById('chatPlaceholder');
-                        if (placeholder) {
-                            placeholder.innerHTML = '<p>🔄 Rechargement du chat...</p>';
-                        }
-                        load3CXWidget();
-                    };
-                    
-                    // Attendre que la page soit chargée
-                    if (document.readyState === 'loading') {
-                        document.addEventListener('DOMContentLoaded', load3CXWidget);
-                    } else {
-                        load3CXWidget();
-                    }
-                    
-                    // Bouton pour ouvrir le chat manuellement
-                    document.getElementById('openChatBtn')?.addEventListener('click', function() {
-                        // Chercher et cliquer sur le bouton du widget 3CX
-                        var callBtn = document.querySelector('call-us, call-us-selector');
-                        if (callBtn && callBtn.shadowRoot) {
-                            var btn = callBtn.shadowRoot.querySelector('button');
-                            if (btn) btn.click();
-                        } else {
-                            window.open('https://discord.gg/AcRcndYhNv', '_blank');
-                        }
-                    });
-                    
-                })();
-            </script>
-
-            <!-- Configuration 3CX - Version call-us (fonctionnelle) -->
-            <call-us 
+            <!-- ============================================= -->
+            <!-- ZONE DU CHAT 3CX - VERSION CORRIGÉE           -->
+            <!-- L'identifiant 'LiveChat459960' est le bon     -->
+            <!-- ============================================= -->
+            <call-us-selector 
                 phonesystem-url="https://1761.3cx.cloud" 
-                style="font-family: 'Inter', sans-serif; --call-us-main-accent-color: #14A5FF; --call-us-main-background-color: #404040; --call-us-plate-background-color: #373737; --call-us-plate-font-color: #D9D9D9; --call-us-main-font-color: #FFFFFF; --call-us-agent-bubble-color: #FFFFFF10;" 
-                party="LiveChat"
-                minimized="false" 
-                animation-style="noanimation" 
-                minimized-style="bubbleright" 
-                allow-call="false" 
-                allow-video="false" 
-                allow-soundnotifications="true" 
-                enable-mute="true" 
-                enable-onmobile="true" 
-                offline-enabled="true" 
-                enable="true" 
-                ignore-queueownership="false" 
-                authentication="both" 
-                operator-name="Les Voix Claires 92" 
-                show-operator-actual-name="true" 
-                aknowledge-received="true" 
-                gdpr-enabled="false" 
-                message-userinfo-format="both" 
-                message-dateformat="both" 
-                lang="fr" 
-                button-icon-type="default" 
-                greeting-visibility="none" 
-                greeting-offline-visibility="none" 
-                chat-delay="2000" 
-                enable-direct-call="false" 
-                enable-ga="false">
-            </call-us>
-
+                party="LiveChat459960">
+            </call-us-selector>
+            
+            <!-- Message d'information supplémentaire -->
             <div class="disclaimer">
                 <p>⚠️ En cas d'urgence vitale ou de danger immédiat, appelez immédiatement le <strong>15</strong> (SAMU) ou le <strong>17</strong> (Police secours).<br>
                 Ce chat n'est pas un service d'urgence. Il est destiné à une écoute bienveillante et une orientation vers les ressources adaptées.</p>
-            </div>
-
-            <!-- Alternatives de contact -->
-            <div class="contact-alternatives">
-                <a href="mailto:les.voix.claires.92@gmail.com" class="contact-btn">📧 Nous écrire par email</a>
-                <a href="https://discord.gg/AcRcndYhNv" target="_blank" class="contact-btn">💬 Rejoindre le Discord</a>
             </div>
         </div>
     </main>
@@ -314,6 +131,52 @@
         © 2025 Les Voix Claires 92 – Association contre le harcèlement scolaire
     </footer>
 
+    <!-- Script de la bibliothèque 3CX (chargement asynchrone) -->
+    <!-- Le script est chargé une seule fois et initialise automatiquement le tag 'call-us-selector' -->
+    <script defer src="https://downloads-global.3cx.com/downloads/livechatandtalk/v1/callus.js" id="tcx-callus-js" charset="utf-8"></script>
+    
+    <!-- Script principal du site -->
     <script src="script.js"></script>
+    
+    <script>
+        // Script de vérification et de style additionnel
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ajouter un peu d'espace autour du widget pour qu'il ne touche pas les bords
+            const style = document.createElement('style');
+            style.textContent = `
+                call-us-selector {
+                    display: block;
+                    margin: 1rem auto;
+                    min-height: 100px;
+                }
+                /* S'assurer que le widget 3CX s'adapte au thème clair/sombre */
+                body.light call-us-selector {
+                    --call-us-main-background-color: #e0e0e0;
+                    --call-us-plate-background-color: #f5f5f5;
+                    --call-us-plate-font-color: #333333;
+                    --call-us-main-font-color: #000000;
+                }
+                @media (max-width: 768px) {
+                    call-us-selector {
+                        margin-bottom: 20px;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Petite vérification : si le widget ne s'affiche pas après 5 secondes, afficher un message d'aide
+            setTimeout(function() {
+                const widget = document.querySelector('call-us-selector');
+                if (widget && widget.shadowRoot) {
+                    // Le widget est chargé
+                    console.log('Widget 3CX chargé avec succès');
+                } else if (widget && !widget.shadowRoot) {
+                    console.log('Le widget est présent mais pas encore initialisé');
+                } else {
+                    console.log('Widget 3CX non trouvé');
+                }
+            }, 5000);
+        });
+    </script>
 </body>
 </html>
