@@ -616,61 +616,62 @@ footer {
         font-size: 1rem;
     }   
     
-        .form-container {
-            max-width: 600px;
-            margin: 40px auto;
-            text-align: left;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-family: 'Inter', sans-serif;
-            box-sizing: border-box;
-        }
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-        .form-group input[type="file"] {
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.02);
-            border: 2px dashed #bbb;
-            cursor: pointer;
-        }
-        .form-group input[type="file"]:hover {
-            border-color: #666;
-        }
-        .btn-submit {
-            background-color: #333;
-            color: white;
-            padding: 14px 20px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 16px;
-            cursor: pointer;
-            width: 100%;
-            transition: 0.3s;
-        }
-        .btn-submit:hover {
-            opacity: 0.8;
-        }
+    .form-container {
+        max-width: 600px;
+        margin: 40px auto;
+        text-align: left;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+    }
+    .form-group input, .form-group select, .form-group textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-family: 'Inter', sans-serif;
+        box-sizing: border-box;
+    }
+    .form-group textarea {
+        resize: vertical;
+        min-height: 120px;
+    }
+    .form-group input[type="file"] {
+        padding: 10px;
+        background: rgba(0, 0, 0, 0.02);
+        border: 2px dashed #bbb;
+        cursor: pointer;
+    }
+    .form-group input[type="file"]:hover {
+        border-color: #666;
+    }
+    .btn-submit {
+        background-color: #333;
+        color: white;
+        padding: 14px 20px;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 16px;
+        cursor: pointer;
+        width: 100%;
+        transition: 0.3s;
+    }
+    .btn-submit:hover {
+        opacity: 0.8;
+    }
 }
-/* ===== FOOTER LINDS (à ajouter) ===== */
+
+/* ===== FOOTER LINKS ===== */
 .footer-links {
     display: flex;
     justify-content: center;
@@ -691,71 +692,68 @@ footer {
     text-decoration: underline;
 }
 
-    <style>
-        /* Styles spécifiques pour la page tchat */
-        .chat-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 1rem
+/* ===== TCHAT & INFO CARD ===== */
+.chat-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
 }
-        .info-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            text-align: center;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+.info-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease, border-color 0.3s ease;
 }
-        .info-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--text);
+.info-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--text);
 }
-        .info-card h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--text);
+.info-card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--text);
 }
-        .info-card p {
-            color: var(--gray);
-            line-height: 1.6;
-            margin-bottom: 1rem;
+.info-card p {
+    color: var(--gray);
+    line-height: 1.6;
+    margin-bottom: 1rem;
 }
-        .info-card .badge {
-            display: inline-block;
-            background: rgba(20, 165, 255, 0.15);
-            color: #14A5FF;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-top: 1rem;
+.info-card .badge {
+    display: inline-block;
+    background: rgba(20, 165, 255, 0.15);
+    color: #14A5FF;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 1rem;
 }
-        .hours-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
+.hours-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
 }
-        .hour-item {
-            background: var(--bg);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            border: 1px solid var(--border);
+.hour-item {
+    background: var(--bg);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    border: 1px solid var(--border);
 }
-        .disclaimer {
-            font-size: 0.85rem;
-            text-align: center;
-            margin-top: 2rem;
-            color: var(--gray);
-            border-top: 1px solid var(--border);
-            padding-top: 1.5rem;
+.disclaimer {
+    font-size: 0.85rem;
+    text-align: center;
+    margin-top: 2rem;
+    color: var(--gray);
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
 }
-        @media (max-width: 768px) {
-            .info-card h2 { font-size: 1.4rem; }
-            .chat-container { padding: 1rem; }
-            
+@media (max-width: 768px) {
+    .info-card h2 { font-size: 1.4rem; }
+    .chat-container { padding: 1rem; }
 }
-Corrige ce script 
