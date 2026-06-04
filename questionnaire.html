@@ -1,0 +1,959 @@
+# EN DÉVELOPPEMENT 
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suis-je victime de harcèlement ? – Les Voix Claires 92</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="Logo.png">
+    <style>
+        /* ===== VARIABLES DE THÈMES ===== */
+        :root {
+            /* Mode Sombre par défaut (Style Moderne) */
+            --bg: #0f172a;
+            --text: #f8fafc;
+            --gray: #94a3b8;
+            --card: #1e293b;
+            --border: #334155;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --nav-bg: rgba(15, 23, 42, 0.85);
+        }
+
+        body.light {
+            /* Mode Clair */
+            --bg: #f8fafc;
+            --text: #0f172a;
+            --gray: #64748b;
+            --card: #ffffff;
+            --border: #e2e8f0;
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --nav-bg: rgba(255, 255, 255, 0.85);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            transition: background 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            transition: background 0.3s, border-color 0.3s;
+        }
+
+        nav img {
+            height: 42px;
+            width: 42px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            transition: color 0.2s;
+        }
+
+        nav a:hover { color: var(--accent); }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1001;
+        }
+
+        .hamburger {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: var(--text);
+            position: relative;
+        }
+
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 3px;
+            background: var(--text);
+            transition: 0.3s;
+        }
+
+        .hamburger::before { top: -8px; }
+        .hamburger::after { bottom: -8px; }
+
+        .menu-toggle.active .hamburger { background: transparent; }
+        .menu-toggle.active .hamburger::before { transform: rotate(45deg); top: 0; }
+        .menu-toggle.active .hamburger::after  { transform: rotate(-45deg); bottom: 0; }
+
+        .menu-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            opacity: 0; visibility: hidden;
+            transition: 0.3s;
+        }
+
+        .menu-overlay.active { opacity: 1; visibility: visible; }
+
+        .theme-switch {
+            width: 48px; height: 26px;
+            background: var(--border);
+            border-radius: 999px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 0 3px;
+            transition: background 0.3s;
+        }
+
+        .theme-switch span {
+            width: 20px; height: 20px;
+            background: var(--bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        body.light .theme-switch span { transform: translateX(22px); }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            .nav-links {
+                position: fixed;
+                top: 0; right: -100%;
+                width: 70%; max-width: 280px;
+                height: 100vh;
+                background: var(--card);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 25px;
+                transition: right 0.3s ease;
+                z-index: 1000;
+                border-left: 1px solid var(--border);
+            }
+            .nav-links.active { right: 0; }
+            nav a { font-size: 1.1rem; }
+        }
+
+        /* ===== STRUCTURE CONTENU ===== */
+        .page-content {
+            padding: 120px 20px 60px;
+            max-width: 680px;
+            margin: auto;
+            flex: 1;
+            width: 100%;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .quiz-header .tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--accent);
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 40px;
+            padding: 6px 16px;
+            margin-bottom: 20px;
+        }
+
+        .quiz-header h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .quiz-header p {
+            color: var(--gray);
+            font-size: 1rem;
+            line-height: 1.6;
+            max-width: 540px;
+            margin: 0 auto 20px;
+        }
+
+        .anon-notice {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 0.8rem;
+            color: var(--gray);
+            background: var(--card);
+        }
+
+        .anon-dot {
+            width: 8px; height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            flex-shrink: 0;
+            box-shadow: 0 0 8px #10b981;
+            animation: blink 2s ease-in-out infinite;
+        }
+
+        @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+        /* ===== PROGRESSION ===== */
+        .progress-area {
+            display: none;
+            margin-bottom: 35px;
+        }
+
+        .progress-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .progress-cat {
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .progress-track {
+            height: 6px;
+            background: var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        /* ===== BLOC CARTES QUESTIONS ===== */
+        .card-section {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            transition: border-color 0.3s, background-color 0.3s;
+        }
+
+        .screen { display: none; }
+        .screen.active {
+            display: block;
+            animation: fadeUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .q-num {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-bottom: 8px;
+        }
+
+        .q-emoji { font-size: 42px; display: block; margin-bottom: 16px; }
+        .q-text { font-size: 1.4rem; font-weight: 700; line-height: 1.3; margin-bottom: 8px; }
+        .q-sub { font-size: 0.9rem; color: var(--gray); margin-bottom: 30px; line-height: 1.5; }
+
+        /* ===== OPTIONS ===== */
+        .options { display: flex; flex-direction: column; gap: 12px; }
+
+        .option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            padding: 16px 20px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: var(--bg);
+            user-select: none;
+        }
+
+        .option:hover {
+            border-color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        .option.selected {
+            border-color: var(--accent);
+            background: rgba(59, 130, 246, 0.08);
+        }
+
+        body.light .option.selected {
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .opt-text { font-size: 0.95rem; font-weight: 500; color: var(--text); flex: 1; }
+        .opt-radio {
+            width: 20px; height: 20px;
+            border: 2px solid var(--border);
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .option:hover .opt-radio { border-color: var(--accent); }
+
+        .option.selected .opt-radio {
+            border-color: var(--accent);
+            background: var(--accent);
+        }
+
+        .option.selected .opt-radio::after {
+            content: '';
+            width: 8px; height: 8px;
+            background: #ffffff;
+            border-radius: 50%;
+            display: block;
+        }
+
+        /* ===== BOUTONS INTERACTION ===== */
+        .btn-nav { display: flex; gap: 12px; margin-top: 32px; }
+
+        .btn-primary {
+            flex: 1;
+            padding: 14px 28px;
+            border: none;
+            background: var(--accent);
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: background 0.2s, opacity 0.2s;
+        }
+
+        .btn-primary:hover:not(:disabled) { background: var(--accent-hover); }
+        .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+
+        .btn-secondary {
+            padding: 14px 24px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover { border-color: var(--text); }
+
+        /* ===== ZONE RÉSULTATS ===== */
+        .result-screen { display: none; }
+        .result-screen.show { display: block; animation: fadeUp 0.4s ease forwards; }
+
+        .result-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border-radius: 30px;
+            padding: 6px 16px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .result-badge.low    { background: rgba(16, 185, 129, 0.12); color: #10b981; }
+        .result-badge.medium { background: rgba(245, 158, 11, 0.12); color: #f59e0b; }
+        .result-badge.high   { background: rgba(239, 68, 68, 0.12); color: #ef4444; }
+
+        .result-icon { font-size: 52px; display: block; margin-bottom: 16px; }
+        .result-title { font-size: 1.8rem; font-weight: 800; line-height: 1.3; margin-bottom: 14px; }
+        .result-desc { color: var(--gray); font-size: 1rem; line-height: 1.7; margin-bottom: 30px; }
+
+        .score-section {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 24px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 32px;
+            background: var(--bg);
+        }
+
+        .score-big { font-size: 3.2rem; font-weight: 800; color: var(--accent); }
+        .score-right { flex: 1; }
+        .score-lbl { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--gray); margin-bottom: 8px; }
+        .score-track { height: 6px; background: var(--border); border-radius: 10px; overflow: hidden; }
+        .score-bar { height: 100%; border-radius: 10px; transition: width 1s ease; width: 0%; }
+
+        .bar-low    { background: #10b981; }
+        .bar-medium { background: #f59e0b; }
+        .bar-high   { background: #ef4444; }
+
+        .advice-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 32px; }
+        .adv-card { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
+        .adv-em { font-size: 24px; display: block; margin-bottom: 12px; }
+        .adv-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+        .adv-card p { color: var(--gray); font-size: 0.85rem; line-height: 1.5; }
+
+        .contact-card {
+            background: linear-gradient(135deg, rgba(59,130,246,0.1) 0%, rgba(37,99,235,0.05) 100%);
+            border: 1px solid var(--accent);
+            border-radius: 16px;
+            padding: 35px;
+            margin-bottom: 24px;
+        }
+
+        .contact-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 8px; }
+        .contact-desc { color: var(--gray); font-size: 0.95rem; line-height: 1.6; margin-bottom: 24px; }
+        .contact-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+        
+        .btn-contact {
+            display: inline-block;
+            padding: 12px 24px;
+            background: var(--accent);
+            color: #ffffff;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: background 0.2s;
+        }
+        .btn-contact:hover { background: var(--accent-hover); }
+
+        .btn-restart {
+            width: 100%; padding: 14px; background: transparent; border: 1px solid var(--border);
+            color: var(--gray); font-weight: 500; cursor: pointer; border-radius: 10px; transition: all 0.2s;
+        }
+        .btn-restart:hover { border-color: var(--text); color: var(--text); }
+
+        /* ===== PIED DE PAGE ===== */
+        footer { padding: 40px 20px; text-align: center; border-top: 1px solid var(--border); margin-top: auto; }
+        .footer-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 15px; }
+        .footer-links a { color: var(--gray); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--text); }
+        footer p { font-size: 0.8rem; color: var(--gray); }
+
+        @media (max-width: 480px) {
+            .quiz-header h1 { font-size: 1.8rem; }
+            .card-section { padding: 24px; }
+            .btn-nav { flex-direction: column; }
+            .btn-secondary { order: 2; }
+            .contact-btns { flex-direction: column; }
+            .btn-contact { text-align: center; }
+        }
+    </style>
+</head>
+<body class="light">
+
+    <!-- NAVIGATION -->
+    <nav>
+        <img src="Logo.png" alt="Les Voix Claires 92">
+        <button class="menu-toggle" aria-label="Menu">
+            <span class="hamburger"></span>
+        </button>
+        <div class="nav-links">
+            <a href="index.html">Accueil</a>
+            <a href="urgence.html">Urgences</a>
+            <a href="equipe.html">Notre équipe</a>
+            <a href="recrutement.html">Recrutement</a>
+            <a href="temoignages.html">Témoignages</a>
+            <a href="encoursdecréation.html">TChat</a>
+            <div class="theme-switch" onclick="toggleTheme()">
+                <span id="themeIcon">☀️</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="menu-overlay"></div>
+
+    <!-- MAIN PAGE -->
+    <div class="page-content">
+
+        <!-- ZONE PROGRESSION -->
+        <div class="progress-area" id="progressArea">
+            <div class="progress-meta">
+                <span id="progStep">1 / 10</span>
+                <span class="progress-cat" id="progCat"></span>
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill" id="progFill"></div>
+            </div>
+        </div>
+
+        <!-- ECRAN INTRO -->
+        <div class="screen active" id="sc-intro">
+            <div class="quiz-header">
+                <div class="tag">Auto-évaluation Écoliers & Collégiens</div>
+                <h1>Suis-je victime de harcèlement ?</h1>
+                <p>Ce questionnaire t'aide à mettre des mots sur ce que tu traverses au quotidien. Réalisé par l'équipe des Voix Claires 92 pour t'orienter sans jugement.</p>
+                <div class="anon-notice">
+                    <span class="anon-dot"></span>
+                    Test sécurisé — Aucune information n'est enregistrée
+                </div>
+            </div>
+
+            <div class="card-section">
+                <p style="font-size:0.95rem;color:var(--gray);line-height:1.7;margin-bottom:20px;">
+                    Moqueries répétées, mise à l'écart dans la cour, messages malveillants sur les réseaux sociaux... Ne reste pas dans le doute.
+                </p>
+                <p style="font-size:0.85rem;color:var(--gray);line-height:1.6;padding:16px;border:1px solid var(--border);border-radius:10px;margin-bottom:30px;background:var(--bg);">
+                    🔒 <strong style="color:var(--text)">Confidentialité totale :</strong> Les calculs se font directement sur ton téléphone ou ton ordinateur. Personne d'autre ne pourra voir tes réponses.
+                </p>
+                <button class="btn-primary" style="width:100%; padding:16px;" onclick="startQuiz()">Commencer l'évaluation</button>
+            </div>
+        </div>
+
+        <!-- BLOCS DE QUESTIONS (1 À 10) -->
+        <!-- Q1 -->
+        <div class="screen" id="sc-0" data-cat="Climat Scolaire">
+            <div class="card-section">
+                <div class="q-num">Question 1 sur 10</div>
+                <span class="q-emoji">😰</span>
+                <div class="q-text">Je redoute ou j'ai de l'appréhension à l'idée d'aller en cours</div>
+                <div class="q-sub">Ce que tu ressens le matin au réveil ou devant les grilles de l'école.</div>
+                <div class="options">
+                    <div class="option" data-val="0" onclick="pick(this)"><span class="opt-text">Jamais</span><div class="opt-radio"></div></div>
+                    <div class="option" data-val="1" onclick="pick(this)"><span class="opt-text">De temps en temps</span><div class="opt-radio"></div></div>
+                    <div class="option" data-val="2" onclick="pick(this)"><span class="opt-text">Souvent</span><div class="opt-radio"></div></div>
+                    <div class="option" data-val="3" onclick="pick(this)"><span class="opt-text">Presque tous les jours</span><div class="opt-radio"></div></div>
+                </div>
+                <div class="btn-nav">
+                    <button class="btn-secondary" onclick="goBack()">Retour</button>
+                    <button class="btn-primary" id="btn-0" onclick="goNext()" disabled>Suivant</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="screen" id="sc-1" data-cat="Agressions Verbales">
+            <div class="card-section">
+                <div class="q-num">Question 2 sur 10</div>
+                <span class="q-emoji">🗣️</span>
+                <div class="q-text">Des élèves m'insultent, se moquent de moi ou me rabaissent</div>
+                <div class="q-sub">Dans l'enceinte de l'établissement, dans les transports ou aux abords.</div>
+                <div class="options">
+                    <div class="option" data-val="0" onclick="pick(this)"><span class="opt-text">Non, jamais</span><div class="opt-radio"></div></div>
+                    <div class="option" data-val="1" onclick="pick(this)"><span class="opt-text">Quelquefois</span><div class="opt-radio"></div></div>
+                    <div class="option" data-val="2" onclick="pick(this)"><span class="opt-text">Régulièrement</span><div class="opt-radio"></div></div>
+                    <div class="option" data-val="3" onclick="pick(this)"><span class="opt-text">Tous les jours ou presque</span><div class="opt-radio"></div></div>
+                </div>
+                <div class="btn-nav">
+                    <button class="btn-secondary" onclick="goBack()">Retour</button>
+                    <button class="btn-primary" id="btn-1" onclick="goNext()" disabled>Suivant</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="screen" id="sc-2" data-cat="Isolement">
+            <div class="card-section">
+                <div class="q-num">Question 3 sur 10</div>
+                <span class="q-emoji">🙅</span>
+                <div class="q-text">Je suis volontairement rejeté(e) ou ignoré(e) par les autres</div>
+                <div class="q-sub">Pour faire les groupes, manger au self, ou participer aux jeux.</div>
+                <div class="options">
+                    <div class="option" data-val="0" onclick="pick(this)"><span class="opt-text">Non, je me sens inclus(e)</span><div class="opt-radio"></div></div>
+                    <div class="option" data-val="1" onclick="pick(this)"><span class="opt-text">Parfois</span><div class="opt-radio"></div></div>
+                    <div class="option" data-val="2" onclick="pick(this)"><span class="opt-text">Souvent</span><div class="opt-radio"></div></div>
+                    <div class="option" data-val="3" onclick="pick(this)"><span class="opt-text">Tout le temps — je me sens isolé(e)</span><div class="opt-radio"></div></div>
+                </div>
+                <div class="btn-nav">
+                    <button class="btn-secondary" onclick="goBack()">Retour</button>
+                    <button class="btn-primary" id="btn-2" onclick="goNext()" disabled>Suivant</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="screen" id="sc-3" data-cat="Réseaux Sociaux">
+            <div class="card-section">
+                <div class="q-num">Question 4 sur 10</div>
+                <span class="q-emoji">📱</span>
+                <div class="q-text">Je reçois des messages méchants, des moqueries ou des menaces en ligne</div>
+                <div class="q-sub">Sur TikTok, Snapchat, Instagram, WhatsApp ou Discord.</div>
+                <div class="options">
+                    <div class="option" data-val="0" onclick="pick(this)"><span class="opt-text">Non, jamais</span><div class="opt-radio"></div></div>
+                    <div class="option" data-val="1" onclick="pick(this)"><span class="opt-text">Rarement</span><div class="opt-radio"></div></div>
+                    <div class="option" data-val="2" onclick="pick(this)"><span class="opt-text">Régulièrement</span><div class="opt-radio"></div></div>
+                    <div class="option" data-val="3" onclick="pick(this)"><span class="opt-text">En permanence, cela ne s'arrête jamais</span><div class="opt-radio"></div></div>
+                </div>
+                <div class="btn-nav">
+                    <button class="btn-secondary" onclick="goBack()">Retour</button>
+                    <button class="btn-primary" id="btn-3" onclick="goNext()" disabled>Suivant</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="screen" id="sc-4" data-cat="Droit à l'image">
+            <div class="card-section">
+                <div class="q-num">Question 5 sur 10</div>
+                <span class="q-emoji">📸</span>
+                <div class="q-text">Des photos/vidéos compromettantes de moi circulent sans mon accord</div>
+                <div class="q-sub">Montages, photos volées en classe ou partagées dans des groupes.</div>
+                <div class="options">
+                    <div class="option" data-val="0" onclick="pick(this)"><span class="opt-text">Non, jamais</span><div class="opt-radio"></div></div>
+                    <div class="option" data-val="2" onclick="pick(this)"><span class="opt-text">Oui, c'est arrivé une fois</span><div class="opt-radio"></div></div>
+                    <div class="option" data-val="3" onclick="pick(this)"><span class="opt-text">Oui, plusieurs contenus circulent</span><div class="opt-radio"></div></div>
+                </div>
+                <div class="btn-nav">
+                    <button class="btn-secondary" onclick="goBack()">Retour</button>
+                    <button class="btn-primary" id="btn-4" onclick="goNext()" disabled>Suivant</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="screen" id="sc-5" data-cat="Violences Physiques">
+            <div class="card-section">
+                <div class="q-num">Question 6 sur 10</div>
+                <span class="q-emoji">👊</span>
+                <div class="q-text">J'ai subi des bousculades, des coups, ou on dégrade mes affaires</div>
+                <div class="q-sub">Vol de fournitures, cartable jeté à terre, bousculades répétées.</div>
+                <div class="options">
+                    <div class="option" data-val="0" onclick="pick(this)"><span class="opt-text">Non, jamais</span><div class="opt-radio"></div></div>
+                    <div class="option" data-val="2" onclick="pick(this)"><span class="opt-text">Oui, c'est arrivé une ou deux fois</span><div class="opt-radio"></div></div>
+                    <div class="option" data-val="3" onclick="pick(this)"><span class="opt-text">Oui, cela se produit régulièrement</span><div class="opt-radio"></div></div>
+                </div>
+                <div class="btn-nav">
+                    <button class="btn-secondary" onclick="goBack()">Retour</button>
+                    <button class="btn-primary" id="btn-5" onclick="goNext()" disabled>Suivant</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="screen" id="sc-6" data-cat="Santé Mentale">
+            <div class="card-section">
+                <div class="q-num">Question 7 sur 10</div>
+                <span class="q-emoji">😔</span>
+                <div class="q-text">Cette situation perturbe mon sommeil, ma concentration ou me rend triste</div>
+                <div class="q-sub">Nervosité, maux de ventre avant de partir, baisse des notes...</div>
+                <div class="options">
+                    <div class="option" data-val="0" onclick="pick(this)"><span class="opt-text">Non, tout va bien</span><div class="opt-radio"></div></div>
+                    <div class="option" data-val="1" onclick="pick(this)"><span class="opt-text">Un peu, mais c'est gérable</span><div class="opt-radio"></div></div>
+                    <div class="option" data-val="2" onclick="pick(this)"><span class="opt-text">Oui, j'y pense souvent</span><div class="opt-radio"></div></div>
+                    <div class="option" data-val="3" onclick="pick(this)"><span class="opt-text">Oui, je me sens très mal au quotidien</span><div class="opt-radio"></div></div>
+                </div>
+                <div class="btn-nav">
+                    <button class="btn-secondary" onclick="goBack()">Retour</button>
+                    <button class="btn-primary" id="btn-6" onclick="goNext()" disabled>Suivant</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q8 -->
+        <div class="screen" id="sc-7" data-cat="Répétition">
+            <div class="card-section">
+                <div class="q-num">Question 8 sur 10</div>
+                <span class="q-emoji">🎯</span>
+                <div class="q-text">Ces agissements visent toujours ma personne en particulier</div>
+                <div class="q-sub">La répétition ciblée est le principal indicator du harcèlement.</div>
+                <div class="options">
+                    <div class="option" data-val="0" onclick="pick(this)"><span class="opt-text">Non, ce sont des disputes générales</span><div class="opt-radio"></div></div>
+                    <div class="option" data-val="2" onclick="pick(this)"><span class="opt-text">Oui, ce sont souvent les mêmes qui m'attaquent</span><div class="opt-radio"></div></div>
+                    <div class="option" data-val="3" onclick="pick(this)"><span class="opt-text">Oui, je suis clairement leur cible unique</span><div class="opt-radio"></div></div>
+                </div>
+                <div class="btn-nav">
+                    <button class="btn-secondary" onclick="goBack()">Retour</button>
+                    <button class="btn-primary" id="btn-7" onclick="goNext()" disabled>Suivant</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q9 -->
+        <div class="screen" id="sc-8" data-cat="Temporalité">
+            <div class="card-section">
+                <div class="q-num">Question 9 sur 10</div>
+                <span class="q-emoji">📅</span>
+                <div class="q-text">Ces faits durent et persistent depuis...</div>
+                <div class="q-sub">La durée permet de mesurer l'ancrage de la situation.</div>
+                <div class="options">
+                    <div class="option" data-val="0" onclick="pick(this)"><span class="opt-text">Quelques jours</span><div class="opt-radio"></div></div>
+                    <div class="option" data-val="1" onclick="pick(this)"><span class="opt-text">Quelques semaines</span><div class="opt-radio"></div></div>
+                    <div class="option" data-val="2" onclick="pick(this)"><span class="opt-text">Plusieurs mois</span><div class="opt-radio"></div></div>
+                    <div class="option" data-val="3" onclick="pick(this)"><span class="opt-text">Plus d'une année scolaire</span><div class="opt-radio"></div></div>
+                </div>
+                <div class="btn-nav">
+                    <button class="btn-secondary" onclick="goBack()">Retour</button>
+                    <button class="btn-primary" id="btn-8" onclick="goNext()" disabled>Suivant</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q10 -->
+        <div class="screen" id="sc-9" data-cat="Dialogue">
+            <div class="card-section">
+                <div class="q-num">Question 10 sur 10</div>
+                <span class="q-emoji">🤝</span>
+                <div class="q-text">As-tu déjà partagé cette situation avec une personne adulte ?</div>
+                <div class="q-sub">Parents, infirmière, prof, CPE... briser le silence est la clé.</div>
+                <div class="options">
+                    <div class="option" data-val="0" onclick="pick(this)"><span class="opt-text">Oui, et j'ai été écouté(e) / soutenu(e)</span><div class="opt-radio"></div></div>
+                    <div class="option" data-val="1" onclick="pick(this)"><span class="opt-text">Oui, mais les choses n'ont pas changé</span><div class="opt-radio"></div></div>
+                    <div class="option" data-val="1" onclick="pick(this)"><span class="opt-text">Non, car j'ai peur que ça s'aggrave</span><div class="opt-radio"></div></div>
+                    <div class="option" data-val="0" onclick="pick(this)"><span class="opt-text">Non, je n'en ressens pas le besoin</span><div class="opt-radio"></div></div>
+                </div>
+                <div class="btn-nav">
+                    <button class="btn-secondary" onclick="goBack()">Retour</button>
+                    <button class="btn-primary" id="btn-9" onclick="goNext()" disabled>Obtenir mes résultats</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- AFFICHAGE RÉSULTATS DYNAMIQUES -->
+        <div class="result-screen" id="sc-result">
+            <div class="card-section">
+                <div class="result-badge" id="rBadge"></div>
+                <span class="result-icon" id="rIcon"></span>
+                <div class="result-title" id="rTitle"></div>
+                <p class="result-desc" id="rDesc"></p>
+
+                <div class="score-section">
+                    <div class="score-big" id="rPct">0%</div>
+                    <div class="score-right">
+                        <div class="score-lbl">Indice de vigilance estimé</div>
+                        <div class="score-track"><div class="score-bar" id="scoreFill"></div></div>
+                    </div>
+                </div>
+
+                <div class="advice-grid" id="adviceGrid"></div>
+
+                <div class="contact-card">
+                    <div class="contact-title">Besoin d'écoute ? LVC 92 est là</div>
+                    <p class="contact-desc">Nous agissons concrètement dans les Hauts-de-Seine. Notre équipe de bénévoles t'accueille en toute discrétion pour t'épauler et t'aider à désamorcer la situation.</p>
+                    <div class="contact-btns">
+                        <a href="mailto:les.voix.claires.92@gmail.com" class="btn-contact">✉ Nous écrire</a>
+                        <a href="https://discord.gg/AcRcndYhNv" target="_blank" class="btn-contact">Serveur Discord</a>
+                        <a href="tel:3020" class="btn-contact">Ligne Nationale : 3020</a>
+                    </div>
+                </div>
+
+                <button class="btn-restart" onclick="restart()">↩ Refaire l'évaluation</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- PIED DE PAGE -->
+    <footer>
+        <div class="footer-links">
+            <a href="mentions-legales.html">Mentions légales</a>
+            <a href="confidentialite.html">Confidentialité</a>
+            <a href="cgu.html">CGU</a>
+        </div>
+        <p>© 2026 Les Voix Claires 92 – Association de lutte contre le harcèlement scolaire</p>
+    </footer>
+
+    <script>
+        /* ===== SCRIPTS ET LOGIQUE LOGICIELLE ===== */
+        function toggleTheme() {
+            document.body.classList.toggle('light');
+            document.getElementById('themeIcon').textContent =
+                document.body.classList.contains('light') ? '☀️' : '🌙';
+        }
+
+        const menuToggle  = document.querySelector('.menu-toggle');
+        const navLinks    = document.querySelector('.nav-links');
+        const menuOverlay = document.querySelector('.menu-overlay');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+        });
+
+        menuOverlay.addEventListener('click', () => {
+            menuToggle.classList.remove('active');
+            navLinks.classList.remove('active');
+            menuOverlay.classList.remove('active');
+        });
+
+        /* ===== SYSTÈME DE CALCUL DU DIAGNOSTIC ===== */
+        const TOTAL = 10;
+        let cur = -1;
+        let answers = new Array(TOTAL).fill(null);
+
+        const progressArea = document.getElementById('progressArea');
+        const progFill     = document.getElementById('progFill');
+        const progStep     = document.getElementById('progStep');
+        const progCat      = document.getElementById('progCat');
+
+        function showScreen(id) {
+            document.querySelectorAll('.screen, .result-screen').forEach(s => {
+                s.classList.remove('active', 'show');
+            });
+            const el = document.getElementById(id);
+            if (!el) return;
+            el.classList.add(el.classList.contains('result-screen') ? 'show' : 'active');
+        }
+
+        function updateUI() {
+            const inQuiz = cur >= 0 && cur < TOTAL;
+            progressArea.style.display = inQuiz ? 'block' : 'none';
+            if (!inQuiz) return;
+
+            const pct = Math.round(((cur + 1) / TOTAL) * 100);
+            progFill.style.width  = pct + '%';
+            progStep.textContent  = `${cur + 1} / ${TOTAL}`;
+
+            const el = document.getElementById(`sc-${cur}`);
+            progCat.textContent = el ? (el.dataset.cat || '') : '';
+
+            const btn = document.getElementById(`btn-${cur}`);
+            if (btn) btn.disabled = answers[cur] === null;
+        }
+
+        window.startQuiz = function () {
+            cur = 0; showScreen('sc-0'); updateUI();
+        };
+
+        window.pick = function (el) {
+            el.closest('.options').querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+            el.classList.add('selected');
+            answers[cur] = parseInt(el.dataset.val);
+            const btn = document.getElementById(`btn-${cur}`);
+            if (btn) btn.disabled = false;
+        };
+
+        window.goNext = function () {
+            if (answers[cur] === null) return;
+            if (cur < TOTAL - 1) {
+                cur++;
+                showScreen(`sc-${cur}`);
+                updateUI();
+            } else {
+                showResult();
+            }
+        };
+
+        window.goBack = function () {
+            if (cur === 0)  { cur = -1; showScreen('sc-intro'); updateUI(); return; }
+            if (cur > 0)    { cur--; showScreen(`sc-${cur}`); }
+            updateUI();
+        };
+
+        function showResult() {
+            progressArea.style.display = 'none';
+            showScreen('sc-result');
+
+            const total = answers.reduce((a, b) => a + (b || 0), 0);
+            const pct   = Math.round((total / (3 * TOTAL)) * 100);
+
+            let sev, icon, badge, title, desc, barClass;
+
+            if (pct <= 22) {
+                sev = 'low'; icon = '💚'; badge = 'Situation stable';
+                title = 'Peu ou pas de signaux de harcèlement détectés.';
+                desc  = "Tes indicateurs actuels sont rassurants. Cependant, si un conflit ponctuel te pèse ou si tu constates des tensions grandissantes, sache que la bienveillance n'attend pas : parle de tes doutes à un proche ou contacte Les Voix Claires 92.";
+                barClass = 'bar-low';
+            } else if (pct <= 55) {
+                sev = 'medium'; icon = '⚠️'; badge = 'Alerte Vigilance';
+                title = "Une situation inconfortable s'installe.";
+                desc  = "Plusieurs réponses démontrent une récurrence inquiétante qui s'apparente à du harcèlement précoce. Ne minimise pas ton mal-être (notamment tes maux physiques). Rapproche-toi rapidement d'un membre de l'équipe des Voix Claires 92.";
+                barClass = 'bar-medium';
+            } else {
+                sev = 'high'; icon = '🆘'; badge = 'Urgence Signalement';
+                title = 'Situation hautement critique identifiée.';
+                desc  = "Les faits cumulés indiquent de lourdes présomptions de harcèlement à ton encontre. C'est illégal, injustifié, et tu n'as pas à le tolérer. Contacte immédiatement notre cellule associative locale ou compose directement le 3020 (appel anonyme).";
+                barClass = 'bar-high';
+            }
+
+            document.getElementById('rBadge').textContent = badge;
+            document.getElementById('rBadge').className   = `result-badge ${sev}`;
+            document.getElementById('rIcon').textContent  = icon;
+            document.getElementById('rTitle').textContent = title;
+            document.getElementById('rDesc').textContent  = desc;
+            document.getElementById('rPct').textContent   = pct + '%';
+
+            const sf = document.getElementById('scoreFill');
+            sf.className = `score-bar ${barClass}`;
+            setTimeout(() => { sf.style.width = pct + '%'; }, 100);
+
+            document.getElementById('adviceGrid').innerHTML = [
+                { em: '📸', h: 'Sauvegarde tout', p: "Ne supprime rien. Fais des captures d'écran lisibles des messages, stories ou vidéos anonymes." },
+                { em: '🔒', h: 'Protège tes comptes', p: 'Bascule tes profils en mode strictement privé et bloque les profils perturbateurs.' },
+                { em: '🏫', h: 'Préviens un adulte', p: "Une infirmière scolaire, un professeur principal ou le CPE ont le devoir légal d'intervenir." },
+                { em: '🗣️', h: 'Reste entouré(e)', p: 'L\'isolement redouble la force des harceleurs. Parler rompt instantanément leur emprise.' }
+            ].map(a => `
+                <div class="adv-card">
+                    <span class="adv-em">${a.em}</span>
+                    <h3>${a.h}</h3>
+                    <p>${a.p}</p>
+                </div>
+            `).join('');
+        }
+
+        window.restart = function () {
+            cur = -1;
+            answers = new Array(TOTAL).fill(null);
+            document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+            showScreen('sc-intro');
+            updateUI();
+        };
+    </script>
+</body>
+</html>
