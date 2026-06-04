@@ -61,6 +61,31 @@
     </footer>
 
     <script defer src="https://downloads-global.3cx.com/downloads/livechatandtalk/v1/callus.js" id="tcx-callus-js" charset="utf-8"></script>
-    <script src="script.js"></script>
+<!-- Déplacer le script AVANT l'élément et forcer un délai léger si besoin -->
+<script defer src="https://downloads-global.3cx.com/downloads/livechatandtalk/v1/callus.js" id="tcx-callus-js" charset="utf-8"></script>
+
+<call-us-selector 
+    phonesystem-url="https://1761.3cx.cloud" 
+    party="LiveChat459960"
+    style="display: block; min-height: 80px;">
+</call-us-selector>
+
+<!-- Fallback en cas de non chargement du widget -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Vérifier si le widget a bien été initialisé après 5 secondes
+        setTimeout(function() {
+            var selector = document.querySelector('call-us-selector');
+            if (selector && !selector.shadowRoot) {
+                console.warn("Widget 3CX non chargé - vérifier console et adblockers");
+                // Option : afficher un message alternatif
+                var fallback = document.createElement('div');
+                fallback.style.cssText = 'background:#f8f9fa;padding:20px;border-radius:12px;text-align:center;margin:20px 0;';
+                fallback.innerHTML = '<p>💬 Service de chat momentanément indisponible.<br>📞 Vous pouvez nous contacter au <strong>01 23 45 67 89</strong> (standard).</p>';
+                selector.parentNode.insertBefore(fallback, selector.nextSibling);
+            }
+        }, 5000);
+    });
+</script>
 </body>
 </html>
