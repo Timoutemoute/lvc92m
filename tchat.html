@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr"> 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,14 +7,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="Logo.png">
+    
+    <style>
+        /* Correctif de sécurité pour forcer Safari à rendre le bouton cliquable au premier plan */
+        call-us-selector {
+            position: fixed !important;
+            z-index: 99999 !important;
+            cursor: pointer !important;
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
 </head>
 <body>
     <nav>
         <img src="Logo.png" alt="Les Voix Claires">
-        <button class="menu-toggle" aria-label="Menu">
+        <!-- Le bouton des trois barres avec l'événement au clic -->
+        <button class="menu-toggle" aria-label="Menu" onclick="toggleMenu()">
             <span class="hamburger"></span>
         </button>
-        <div class="nav-links">
+        <div class="nav-links" id="navLinks">
             <a href="index.html">Accueil</a>
             <a href="urgence.html">Urgences</a>
             <a href="equipe.html">Notre équipe</a>
@@ -27,7 +38,8 @@
         </div>
     </nav>
 
-    <div class="menu-overlay"></div>
+    <!-- Le fond sombre quand le menu mobile est ouvert -->
+    <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
 
     <section class="page-content" style="padding-top: 120px;">
         <h1>TCHAT et Assistance</h1>
@@ -42,10 +54,10 @@
                     <span class="hour-item">Dimanche : 7h30-20h</span>
                 </div>
             </div>
-                <p>Pour ouvrir un TCHAT il suffit d'appuyer sur le bouton en abs a droite.</p>
+            <p style="text-align: center; margin-bottom: 20px;">Pour ouvrir un TCHAT il suffit d'appuyer sur le bouton en bas à droite.</p>
             
             <div class="disclaimer">
-                <p>En cas d'urgence vitale, appelez le <strong>15</strong> , <strong>17</strong> ou egalemnt le <strong>112</strong> . Ou également aller consulter notre fiche avec tous les numéros d'urgence</p>
+                <p>En cas d'urgence vitale, appelez le <strong>15</strong>, <strong>17</strong> ou également le <strong>112</strong>. Ou également aller consulter notre fiche avec tous les numéros d'urgence</p>
             </div>
         </div>
     </section>
@@ -59,7 +71,32 @@
         <p>© 2026 Les Voix Claires 92 – Association contre le harcèlement</p>
     </footer>
 
-<!-- Déplacer le script AVANT l'élément et forcer un délai léger si besoin -->
+<!-- Script pour faire fonctionner le menu hamburger (les trois barres) -->
+<script>
+    function toggleMenu() {
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.getElementById('navLinks');
+        const menuOverlay = document.getElementById('menuOverlay');
+        
+        // On ajoute ou on enlève la classe "active" pour déclencher les animations CSS
+        menuToggle.classList.toggle('active');
+        navLinks.classList.toggle('active');
+        menuOverlay.classList.toggle('active');
+    }
+
+    // Sécurité si la fonction toggleTheme n'existe pas encore ailleurs
+    function toggleTheme() {
+        document.body.classList.toggle('light');
+        const icon = document.getElementById('themeIcon');
+        if (document.body.classList.contains('light')) {
+            icon.textContent = '☀️';
+        } else {
+            icon.textContent = '🌙';
+        }
+    }
+</script>
+
+<!-- Script 3CX Live Chat -->
 <script
     defer
     src="https://downloads-global.3cx.com/downloads/livechatandtalk/v1/callus.js"
@@ -71,18 +108,16 @@
     party="LiveChat459960">
 </call-us-selector>
 
-<!-- Fallback en cas de non chargement du widget -->
+<!-- Fallback en cas de blocage persistant par Safari -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Vérifier si le widget a bien été initialisé après 5 secondes
         setTimeout(function() {
             var selector = document.querySelector('call-us-selector');
             if (selector && !selector.shadowRoot) {
-                console.warn("Widget 3CX non chargé - vérifier console et adblockers");
-                // Option : afficher un message alternatif
+                console.warn("Widget 3CX non chargé");
                 var fallback = document.createElement('div');
-                fallback.style.cssText = 'background:#f8f9fa;padding:20px;border-radius:12px;text-align:center;margin:20px 0;';
-                fallback.innerHTML = '<p>💬 Service de chat momentanément indisponible.<br>📞 Vous pouvez nous contacter au <strong>01 23 45 67 89</strong> (standard).</p>';
+                fallback.style.cssText = 'background:rgba(255,255,255,0.05);padding:20px;border-radius:12px;text-align:center;margin:20px 0;border:1px dashed var(--border);';
+                fallback.innerHTML = '<p>💬 Le tchat est bloqué par les réglages de confidentialité de votre navigateur (ex: Empêcher le suivi intersite sur Safari).<br>Veuillez autoriser les scripts ou utiliser un autre navigateur pour lancer la discussion.</p>';
                 selector.parentNode.insertBefore(fallback, selector.nextSibling);
             }
         }, 5000);
