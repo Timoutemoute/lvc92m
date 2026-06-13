@@ -3,56 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Est-ce que je suis victime de harcèlement ? – Les Voix Claires 92</title>
+    <title>Questionnaire de détection du harcèlement – Les Voix Claires 92</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="Logo.png">
     <style>
         /* Styles spécifiques au questionnaire */
-        .questionnaire-container {
+        .page-header {
+            text-align: center;
+            padding: 40px 20px 20px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 40px;
+        }
+
+        .page-header h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            color: var(--gray);
+            font-size: 1.05rem;
             max-width: 700px;
             margin: 0 auto;
         }
 
         .intro-section {
             display: none;
-            text-align: center;
-            padding: 60px 20px;
-            animation: fadeIn 0.5s ease;
         }
 
         .intro-section.active {
             display: block;
+            padding: 60px 20px;
         }
 
-        .intro-card {
-            background: var(--card);
-            border: 2px solid var(--border);
-            border-radius: 12px;
-            padding: 60px 40px;
-            max-width: 600px;
+        .intro-content {
+            max-width: 700px;
             margin: 0 auto;
         }
 
-        .intro-title {
-            font-size: 2rem;
-            font-weight: 800;
+        .intro-text {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 40px;
             margin-bottom: 30px;
-        }
-
-        .intro-info {
-            font-size: 1.1rem;
             line-height: 1.8;
-            margin-bottom: 25px;
-            color: var(--gray);
         }
 
-        .intro-highlight {
-            background: rgba(255, 255, 255, 0.05);
+        .intro-text h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .intro-text p {
+            margin-bottom: 15px;
+            color: var(--gray);
+            font-size: 1rem;
+        }
+
+        .intro-text strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .intro-info-box {
+            background: rgba(0, 120, 200, 0.05);
+            border-left: 4px solid #0078c8;
             padding: 20px;
-            border-radius: 8px;
-            margin: 25px 0;
-            border-left: 4px solid var(--text);
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .intro-info-box strong {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text);
         }
 
         .intro-btn {
@@ -65,19 +93,32 @@
             font-weight: 600;
             font-size: 1.05rem;
             transition: 0.3s;
-            margin-top: 30px;
+            width: 100%;
+            max-width: 400px;
+            display: block;
+            margin: 40px auto 0;
         }
 
         .intro-btn:hover {
-            transform: scale(1.05);
+            opacity: 0.9;
+        }
+
+        .questionnaire-container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+
+        .questionnaire-container.hidden {
+            display: none;
         }
 
         .question-card {
             background: var(--card);
             border: 1px solid var(--border);
-            padding: 30px;
+            padding: 40px;
             border-radius: 12px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             transition: 0.3s;
         }
 
@@ -86,17 +127,19 @@
         }
 
         .question-number {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--gray);
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
         .question-text {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 600;
-            margin-bottom: 20px;
-            line-height: 1.5;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            color: var(--text);
         }
 
         .options {
@@ -106,7 +149,7 @@
         }
 
         .option-btn {
-            padding: 12px 16px;
+            padding: 16px 18px;
             border: 2px solid var(--border);
             background: transparent;
             color: var(--text);
@@ -120,7 +163,7 @@
 
         .option-btn:hover {
             border-color: var(--text);
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.03);
         }
 
         .option-btn.selected {
@@ -131,10 +174,10 @@
 
         .progress-bar {
             width: 100%;
-            height: 6px;
+            height: 4px;
             background: var(--border);
-            border-radius: 3px;
-            margin-bottom: 30px;
+            border-radius: 2px;
+            margin-bottom: 40px;
             overflow: hidden;
         }
 
@@ -147,12 +190,12 @@
         .navigation-buttons {
             display: flex;
             gap: 15px;
-            margin-top: 30px;
-            justify-content: center;
+            margin-top: 40px;
+            justify-content: space-between;
         }
 
         .btn-nav {
-            padding: 12px 30px;
+            padding: 14px 35px;
             border: 2px solid var(--text);
             background: transparent;
             color: var(--text);
@@ -160,6 +203,7 @@
             cursor: pointer;
             font-weight: 600;
             transition: 0.3s;
+            flex: 1;
         }
 
         .btn-nav:hover:not(:disabled) {
@@ -168,15 +212,13 @@
         }
 
         .btn-nav:disabled {
-            opacity: 0.5;
+            opacity: 0.4;
             cursor: not-allowed;
         }
 
         .results-section {
             display: none;
-            text-align: center;
-            padding: 40px 20px;
-            animation: fadeIn 0.5s ease;
+            padding: 60px 20px;
         }
 
         .results-section.active {
@@ -190,66 +232,77 @@
 
         .result-card {
             background: var(--card);
-            border: 2px solid var(--border);
+            border: 1px solid var(--border);
             border-radius: 12px;
             padding: 40px;
-            margin-bottom: 30px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .result-indicator {
+            font-size: 3rem;
+            margin: 25px 0;
+            text-align: center;
         }
 
         .result-title {
             font-size: 1.8rem;
             font-weight: 800;
-            margin-bottom: 15px;
-        }
-
-        .result-indicator {
-            font-size: 4rem;
-            margin: 30px 0;
-        }
-
-        .result-indicator.positive {
-            color: #00c864;
-        }
-
-        .result-indicator.negative {
-            color: #ff4444;
+            margin-bottom: 25px;
+            text-align: center;
+            color: var(--text);
         }
 
         .result-description {
             font-size: 1rem;
             line-height: 1.8;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             color: var(--gray);
         }
 
         .result-warning {
-            background: rgba(255, 0, 0, 0.1);
+            background: rgba(255, 0, 0, 0.08);
             border-left: 4px solid #ff4444;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-            text-align: left;
+            padding: 20px;
+            border-radius: 4px;
+            margin: 25px 0;
+        }
+
+        .result-warning strong {
+            color: #ff4444;
+            display: block;
+            margin-bottom: 10px;
         }
 
         .result-suggestion {
-            background: rgba(0, 200, 100, 0.1);
+            background: rgba(0, 150, 100, 0.08);
             border-left: 4px solid #00c864;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-            text-align: left;
+            padding: 20px;
+            border-radius: 4px;
+            margin: 25px 0;
+        }
+
+        .result-suggestion strong {
+            color: #00c864;
+            display: block;
+            margin-bottom: 10px;
         }
 
         .result-suggestion ul {
-            margin-left: 20px;
-            margin-top: 10px;
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .result-suggestion li {
+            margin-bottom: 8px;
+            color: var(--gray);
         }
 
         .action-buttons {
             display: flex;
             flex-direction: column;
             gap: 15px;
-            margin-top: 25px;
+            margin-top: 35px;
         }
 
         .action-btn {
@@ -262,7 +315,8 @@
             font-weight: 600;
             transition: 0.3s;
             text-decoration: none;
-            display: inline-block;
+            display: block;
+            text-align: center;
         }
 
         .action-btn:hover {
@@ -307,24 +361,45 @@
 
     <div class="menu-overlay"></div>
 
+    <!-- EN-TÊTE DE PAGE -->
+    <div class="page-header">
+        <h1>Questionnaire de détection</h1>
+        <p>Outil d'autoévaluation pour identifier une situation de harcèlement</p>
+    </div>
+
     <div class="page-content">
         <!-- PAGE D'INTRODUCTION -->
         <div id="introSection" class="intro-section active">
-            <div class="intro-card">
-                <div class="intro-title">Est-ce que je suis victime de harcèlement ?</div>
-                
-                <div class="intro-info">
-                    Bienvenue ! Ce questionnaire est conçu pour t'aider à identifier si tu es confronté à du harcèlement.
-                </div>
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h2>À propos de ce questionnaire</h2>
+                    
+                    <p>
+                        Ce questionnaire vous permet d'évaluer si vous êtes confronté à une situation de harcèlement. 
+                        Il s'agit d'un outil d'autoévaluation confidentiel et bienveillant.
+                    </p>
 
-                <div class="intro-highlight">
-                    <div style="font-weight: 600; margin-bottom: 10px;">⏱️ Durée : environ 2 minutes</div>
-                    <div style="font-weight: 600; margin-bottom: 10px;">📋 Ce questionnaire n'est pas noté</div>
-                    <div style="font-weight: 600;">🔒 Tes réponses sont confidentielles</div>
-                </div>
+                    <div class="intro-info-box">
+                        <strong>Important</strong>
+                        Ce questionnaire n'est pas un diagnostic médical ou psychologique. Il s'agit d'un outil informatif pour vous aider à identifier les signes d'une situation de harcèlement.
+                    </div>
 
-                <div class="intro-info">
-                    Réponds honnêtement à chaque question. À la fin, tu recevras des informations adaptées à ta situation.
+                    <p>
+                        <strong>Durée estimée :</strong> 2-3 minutes
+                    </p>
+
+                    <p>
+                        <strong>Confidentialité :</strong> Vos réponses restent privées. Aucune donnée n'est enregistrée ou transmise.
+                    </p>
+
+                    <p style="margin-top: 25px; padding-top: 25px; border-top: 1px solid var(--border);">
+                        Le harcèlement peut prendre plusieurs formes : insultes, exclusion, violence physique, cyberharcèlement, ou atteinte à la dignité. 
+                        Si vous reconnaissez une ou plusieurs de ces situations, ce questionnaire peut vous aider à clarifier votre expérience.
+                    </p>
+
+                    <p style="margin-top: 20px;">
+                        <strong>Sachez que :</strong> Le harcèlement n'est jamais de votre faute. Vous méritez du soutien et il est normal de chercher de l'aide.
+                    </p>
                 </div>
 
                 <button class="intro-btn" onclick="startQuiz()">Commencer le questionnaire</button>
@@ -333,8 +408,6 @@
 
         <!-- QUESTIONNAIRE -->
         <div id="questionnaire" class="questionnaire-container hidden">
-            <h1>Est-ce que je suis victime de harcèlement ?</h1>
-
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill"></div>
             </div>
@@ -342,43 +415,43 @@
             <!-- Question 1 -->
             <div class="question-card" id="q1">
                 <div class="question-number">Question 1 / 10</div>
-                <div class="question-text">Es-tu confronté à des moqueries ou des insultes régulièrement ?</div>
+                <div class="question-text">Subissez-vous régulièrement des moqueries, des insultes ou des critiques personnelles ?</div>
                 <div class="options">
-                    <button class="option-btn" onclick="selectAnswer(1, 'yes', 2)">Oui, c'est très fréquent</button>
-                    <button class="option-btn" onclick="selectAnswer(1, 'sometimes', 1)">Parfois, de temps en temps</button>
-                    <button class="option-btn" onclick="selectAnswer(1, 'no', 0)">Non, pas du tout</button>
+                    <button class="option-btn" onclick="selectAnswer(1, 'yes', 2)">Oui, très régulièrement</button>
+                    <button class="option-btn" onclick="selectAnswer(1, 'sometimes', 1)">Occasionnellement</button>
+                    <button class="option-btn" onclick="selectAnswer(1, 'no', 0)">Non</button>
                 </div>
             </div>
 
             <!-- Question 2 -->
             <div class="question-card hidden" id="q2">
                 <div class="question-number">Question 2 / 10</div>
-                <div class="question-text">Certains camarades te mettent-ils volontairement à l'écart ou t'excluent du groupe ?</div>
+                <div class="question-text">Êtes-vous intentionnellement exclu ou isolé par vos camarades ?</div>
                 <div class="options">
                     <button class="option-btn" onclick="selectAnswer(2, 'yes', 2)">Oui, systématiquement</button>
-                    <button class="option-btn" onclick="selectAnswer(2, 'sometimes', 1)">Oui, assez souvent</button>
-                    <button class="option-btn" onclick="selectAnswer(2, 'no', 0)">Non, je suis intégré</button>
+                    <button class="option-btn" onclick="selectAnswer(2, 'sometimes', 1)">Parfois</button>
+                    <button class="option-btn" onclick="selectAnswer(2, 'no', 0)">Non</button>
                 </div>
             </div>
 
             <!-- Question 3 -->
             <div class="question-card hidden" id="q3">
                 <div class="question-number">Question 3 / 10</div>
-                <div class="question-text">Subis-tu de la violence physique (coups, bousculades, vol d'affaires) ?</div>
+                <div class="question-text">Avez-vous subi de la violence physique (coups, bousculades, agression) ?</div>
                 <div class="options">
                     <button class="option-btn" onclick="selectAnswer(3, 'yes', 2)">Oui, régulièrement</button>
-                    <button class="option-btn" onclick="selectAnswer(3, 'sometimes', 1)">Oui, mais rarement</button>
-                    <button class="option-btn" onclick="selectAnswer(3, 'no', 0)">Non, jamais</button>
+                    <button class="option-btn" onclick="selectAnswer(3, 'sometimes', 1)">Occasionnellement</button>
+                    <button class="option-btn" onclick="selectAnswer(3, 'no', 0)">Non</button>
                 </div>
             </div>
 
             <!-- Question 4 -->
             <div class="question-card hidden" id="q4">
                 <div class="question-number">Question 4 / 10</div>
-                <div class="question-text">Es-tu victime de moqueries liées à ton physique, ton origine ou tes différences ?</div>
+                <div class="question-text">Êtes-vous victime de moqueries liées à votre apparence, votre origine, votre sexe ou d'autres caractéristiques personnelles ?</div>
                 <div class="options">
-                    <button class="option-btn" onclick="selectAnswer(4, 'yes', 2)">Oui, c'est constant</button>
-                    <button class="option-btn" onclick="selectAnswer(4, 'sometimes', 1)">Quelques fois</button>
+                    <button class="option-btn" onclick="selectAnswer(4, 'yes', 2)">Oui, régulièrement</button>
+                    <button class="option-btn" onclick="selectAnswer(4, 'sometimes', 1)">Occasionnellement</button>
                     <button class="option-btn" onclick="selectAnswer(4, 'no', 0)">Non</button>
                 </div>
             </div>
@@ -386,66 +459,66 @@
             <!-- Question 5 -->
             <div class="question-card hidden" id="q5">
                 <div class="question-number">Question 5 / 10</div>
-                <div class="question-text">As-tu peur d'aller à l'école ou dans les lieux où tu rencontres tes pairs ?</div>
+                <div class="question-text">Avez-vous peur d'aller à l'école ou dans les lieux où vous rencontrez vos camarades ?</div>
                 <div class="options">
-                    <button class="option-btn" onclick="selectAnswer(5, 'yes', 2)">Oui, j'ai vraiment peur</button>
-                    <button class="option-btn" onclick="selectAnswer(5, 'sometimes', 1)">Un peu anxieux parfois</button>
-                    <button class="option-btn" onclick="selectAnswer(5, 'no', 0)">Non, pas de peur</button>
+                    <button class="option-btn" onclick="selectAnswer(5, 'yes', 2)">Oui, j'ai peur</button>
+                    <button class="option-btn" onclick="selectAnswer(5, 'sometimes', 1)">Parfois anxieux</button>
+                    <button class="option-btn" onclick="selectAnswer(5, 'no', 0)">Non</button>
                 </div>
             </div>
 
             <!-- Question 6 -->
             <div class="question-card hidden" id="q6">
                 <div class="question-number">Question 6 / 10</div>
-                <div class="question-text">Reçois-tu des messages méchants, menaces ou rumeurs sur internet ou les réseaux sociaux ?</div>
+                <div class="question-text">Recevez-vous des messages méchants, menaces ou rumeurs via internet ou les réseaux sociaux ?</div>
                 <div class="options">
-                    <button class="option-btn" onclick="selectAnswer(6, 'yes', 2)">Oui, c'est fréquent</button>
-                    <button class="option-btn" onclick="selectAnswer(6, 'sometimes', 1)">Quelques messages méchants</button>
-                    <button class="option-btn" onclick="selectAnswer(6, 'no', 0)">Non, rien de tout ça</button>
+                    <button class="option-btn" onclick="selectAnswer(6, 'yes', 2)">Oui, régulièrement</button>
+                    <button class="option-btn" onclick="selectAnswer(6, 'sometimes', 1)">Occasionnellement</button>
+                    <button class="option-btn" onclick="selectAnswer(6, 'no', 0)">Non</button>
                 </div>
             </div>
 
             <!-- Question 7 -->
             <div class="question-card hidden" id="q7">
                 <div class="question-number">Question 7 / 10</div>
-                <div class="question-text">Sais-tu qui fait du harcèlement à ton encontre ?</div>
+                <div class="question-text">Connaissez-vous l'identité de la ou des personnes qui vous harcèlent ?</div>
                 <div class="options">
-                    <button class="option-btn" onclick="selectAnswer(7, 'yes', 0)">Oui, je les connais</button>
-                    <button class="option-btn" onclick="selectAnswer(7, 'sometimes', 1)">Je le soupçonne mais pas sûr</button>
-                    <button class="option-btn" onclick="selectAnswer(7, 'no', 0)">Pas vraiment ou anonyme</button>
+                    <button class="option-btn" onclick="selectAnswer(7, 'yes', 0)">Oui</button>
+                    <button class="option-btn" onclick="selectAnswer(7, 'sometimes', 1)">Je le soupçonne</button>
+                    <button class="option-btn" onclick="selectAnswer(7, 'no', 0)">Non, c'est anonyme</button>
                 </div>
             </div>
 
             <!-- Question 8 -->
             <div class="question-card hidden" id="q8">
                 <div class="question-number">Question 8 / 10</div>
-                <div class="question-text">En as-tu parlé à quelqu'un (parents, professeur, ami) ?</div>
+                <div class="question-text">Avez-vous parlé de cette situation à quelqu'un (parent, professeur, ami, professionnel) ?</div>
                 <div class="options">
-                    <button class="option-btn" onclick="selectAnswer(8, 'yes', 0)">Oui, j'en ai parlé</button>
-                    <button class="option-btn" onclick="selectAnswer(8, 'sometimes', 1)">Oui, mais partiellement</button>
-                    <button class="option-btn" onclick="selectAnswer(8, 'no', 2)">Non, je le garde pour moi</button>
+                    <button class="option-btn" onclick="selectAnswer(8, 'yes', 0)">Oui</button>
+                    <button class="option-btn" onclick="selectAnswer(8, 'sometimes', 1)">Partiellement</button>
+                    <button class="option-btn" onclick="selectAnswer(8, 'no', 2)">Non, je garde pour moi</button>
                 </div>
             </div>
 
             <!-- Question 9 -->
             <div class="question-card hidden" id="q9">
                 <div class="question-number">Question 9 / 10</div>
-                <div class="question-text">Cela affecte-t-il ton sommeil, ton appétit, tes résultats scolaires ou ton bien-être ?</div>
+                <div class="question-text">Cette situation affecte-t-elle votre sommeil, votre appétit, vos résultats scolaires ou votre bien-être général ?</div>
                 <div class="options">
-                    <button class="option-btn" onclick="selectAnswer(9, 'yes', 2)">Oui, beaucoup</button>
-                    <button class="option-btn" onclick="selectAnswer(9, 'sometimes', 1)">Un peu</button>
-                    <button class="option-btn" onclick="selectAnswer(9, 'no', 0)">Non, ça va</button>
+                    <button class="option-btn" onclick="selectAnswer(9, 'yes', 2)">Oui, significativement</button>
+                    <button class="option-btn" onclick="selectAnswer(9, 'sometimes', 1)">Modérément</button>
+                    <button class="option-btn" onclick="selectAnswer(9, 'no', 0)">Non</button>
                 </div>
             </div>
 
             <!-- Question 10 -->
             <div class="question-card hidden" id="q10">
                 <div class="question-number">Question 10 / 10</div>
-                <div class="question-text">Depuis combien de temps cela dure-t-il ?</div>
+                <div class="question-text">Depuis combien de temps cette situation perdure-t-elle ?</div>
                 <div class="options">
-                    <button class="option-btn" onclick="selectAnswer(10, 'long', 2)">Plusieurs mois ou plus</button>
-                    <button class="option-btn" onclick="selectAnswer(10, 'medium', 1)">Quelques semaines</button>
-                    <button class="option-btn" onclick="selectAnswer(10, 'short', 0)">Récent (quelques jours)</button>
+                    <button class="option-btn" onclick="selectAnswer(10, 'long', 2)">Plus de 2 mois</button>
+                    <button class="option-btn" onclick="selectAnswer(10, 'medium', 1)">Entre 2 semaines et 2 mois</button>
+                    <button class="option-btn" onclick="selectAnswer(10, 'short', 0)">Moins de 2 semaines</button>
                 </div>
             </div>
 
@@ -459,16 +532,16 @@
         <!-- RÉSULTATS -->
         <div id="results" class="results-section">
             <div class="result-card">
-                <div class="result-title" id="resultTitle"></div>
                 <div class="result-indicator" id="resultIndicator"></div>
+                <div class="result-title" id="resultTitle"></div>
                 <div class="result-description" id="resultText"></div>
                 <div id="resultWarning"></div>
                 <div id="resultSuggestion"></div>
                 <div class="action-buttons">
-                    <button onclick="location.href='urgence.html'" class="action-btn primary">Voir les ressources d'urgence</button>
-                    <button onclick="location.href='tchat.html'" class="action-btn">Accéder au tchat</button>
-                    <button onclick="location.href='mailto:les.voix.claires.92@gmail.com'" class="action-btn">Nous envoyer un email</button>
-                    <button onclick="retakeQuiz()" class="action-btn">Refaire le questionnaire</button>
+                    <button onclick="location.href='urgence.html'" class="action-btn primary">Ressources et soutien</button>
+                    <button onclick="location.href='tchat.html'" class="action-btn">Parler à quelqu'un</button>
+                    <button onclick="location.href='mailto:les.voix.claires.92@gmail.com'" class="action-btn">Nous contacter</button>
+                    <button onclick="retakeQuiz()" class="action-btn">Recommencer</button>
                 </div>
             </div>
         </div>
@@ -491,7 +564,6 @@
         const answers = {};
 
         function startQuiz() {
-            // Cacher l'intro et afficher le questionnaire
             document.getElementById('introSection').classList.remove('active');
             document.getElementById('questionnaire').classList.remove('hidden');
             showQuestion(1);
@@ -499,16 +571,13 @@
         }
 
         function selectAnswer(questionNum, value, points) {
-            // Marquer la réponse
             answers[questionNum] = { value, points };
             score += points;
             
-            // Marquer le bouton comme sélectionné
             const buttons = document.querySelectorAll(`#q${questionNum} .option-btn`);
             buttons.forEach(btn => btn.classList.remove('selected'));
             event.target.classList.add('selected');
 
-            // Activer le bouton Suivant (PAS d'auto-passage)
             document.getElementById('nextBtn').disabled = false;
         }
 
@@ -518,14 +587,11 @@
         }
 
         function showQuestion(num) {
-            // Cacher toutes les questions
             for (let i = 1; i <= totalQuestions; i++) {
                 document.getElementById(`q${i}`).classList.add('hidden');
             }
-            // Afficher la question courante
             document.getElementById(`q${num}`).classList.remove('hidden');
             
-            // Mettre à jour les boutons de navigation
             document.getElementById('prevBtn').disabled = num === 1;
             document.getElementById('nextBtn').disabled = true;
             document.getElementById('nextBtn').textContent = num === totalQuestions ? 'Voir les résultats' : 'Suivant →';
@@ -555,31 +621,27 @@
             document.getElementById('questionnaire').classList.add('hidden');
             document.getElementById('results').classList.add('active');
 
-            // Recalculer le score
             let totalScore = 0;
             for (let key in answers) {
                 totalScore += answers[key].points;
             }
 
-            // Déterminer le résultat basé sur le score
             let resultTitle, resultDescription, resultIndicator, warningHTML, suggestionHTML;
 
             if (totalScore <= 5) {
-                // Pas de harcèlement détecté
-                resultTitle = 'Non, pas de situation de harcèlement détectée';
-                resultIndicator = '✅';
-                resultDescription = 'Selon tes réponses, tu ne montres pas les signes d\'un harcèlement significatif. C\'est une bonne nouvelle ! Cependant, si tu as des préoccupations ou si la situation change, n\'hésite pas à nous contacter. Nous sommes là pour t\'écouter.';
+                resultTitle = 'Pas de situation de harcèlement détectée';
+                resultIndicator = '✓';
+                resultDescription = 'Selon vos réponses, vous ne présentez pas les signes d\'une situation de harcèlement. Cependant, si vous avez des préoccupations ou si la situation change, n\'hésitez pas à nous contacter ou à parler à quelqu\'un de confiance.';
                 warningHTML = '';
-                suggestionHTML = '<div class="result-suggestion"><strong>💡 Conseil :</strong> Continue à t\'entourer de personnes de confiance et n\'hésite pas à nous contacter si la situation change.</div>';
-                document.getElementById('resultIndicator').classList.add('positive');
+                suggestionHTML = '<div class="result-suggestion"><strong>Conseil</strong>Continuez à vous entourer de personnes de confiance. Si vous observez du harcèlement chez d\'autres, vous pouvez aussi nous signaler.</div>';
+                document.getElementById('resultIndicator').style.color = '#00c864';
             } else {
-                // Harcèlement détecté
-                resultTitle = 'Oui, une situation de harcèlement a été détectée';
-                resultIndicator = '⚠️';
-                resultDescription = 'Selon tes réponses, tu montres les signes d\'une situation de harcèlement. Cela n\'est pas normal et tu mérites de l\'aide. Sache que le harcèlement n\'est jamais de ta faute. Tu es courageux d\'avoir répondu à ce questionnaire, et nous sommes là pour t\'aider.';
-                warningHTML = '<div class="result-warning"><strong>⚠️ Important :</strong> Le harcèlement n\'est jamais la faute de la victime. Tu mérites du soutien et il est normal de demander de l\'aide. Parle à quelqu\'un de confiance !</div>';
-                suggestionHTML = '<div class="result-suggestion"><strong>💡 Nos suggestions :</strong><ul><li>Parle à un parent, un professeur ou un conseiller scolaire</li><li>Documente les incidents (dates, lieux, témoins)</li><li>Accède à notre tchat pour parler à quelqu\'un de confiance</li><li>En cas de danger immédiat, appelle le 17 (police) ou le 112 (urgence)</li></ul></div>';
-                document.getElementById('resultIndicator').classList.add('negative');
+                resultTitle = 'Situation de harcèlement détectée';
+                resultIndicator = '⚠';
+                resultDescription = 'Selon vos réponses, vous montrez les signes d\'une situation de harcèlement. Cela n\'est pas normal et vous méritez du soutien. Sachez que le harcèlement n\'est jamais de votre faute, quelles que soient les circonstances.';
+                warningHTML = '<div class="result-warning"><strong>Important</strong>Vous n\'êtes pas seul(e). Il est normal et courageux de chercher de l\'aide. Parlez à une personne de confiance dès que possible.</div>';
+                suggestionHTML = '<div class="result-suggestion"><strong>Prochaines étapes</strong><ul><li>Parlez à un parent, un professeur ou un conseiller scolaire</li><li>Documentez les incidents (dates, lieux, témoins)</li><li>Utilisez nos services de soutien (tchat, email)</li><li>En cas de danger immédiat : appelez le 17 (police) ou le 112</li></ul></div>';
+                document.getElementById('resultIndicator').style.color = '#ff4444';
             }
 
             document.getElementById('resultTitle').textContent = resultTitle;
@@ -592,20 +654,15 @@
         }
 
         function retakeQuiz() {
-            // Réinitialiser tout
             currentQuestion = 1;
             score = 0;
             Object.keys(answers).forEach(key => delete answers[key]);
             
-            // Afficher l'intro et cacher les résultats
             document.getElementById('introSection').classList.add('active');
             document.getElementById('questionnaire').classList.add('hidden');
             document.getElementById('results').classList.remove('active');
             
-            // Réinitialiser les boutons
             document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
-            document.getElementById('resultIndicator').classList.remove('positive');
-            document.getElementById('resultIndicator').classList.remove('negative');
             
             window.scrollTo(0, 0);
         }
