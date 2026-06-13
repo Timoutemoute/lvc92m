@@ -14,6 +14,64 @@
             margin: 0 auto;
         }
 
+        .intro-section {
+            display: none;
+            text-align: center;
+            padding: 60px 20px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .intro-section.active {
+            display: block;
+        }
+
+        .intro-card {
+            background: var(--card);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 60px 40px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .intro-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+        }
+
+        .intro-info {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: var(--gray);
+        }
+
+        .intro-highlight {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+            border-left: 4px solid var(--text);
+        }
+
+        .intro-btn {
+            padding: 16px 50px;
+            border: 2px solid var(--text);
+            background: var(--text);
+            color: var(--bg);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: 0.3s;
+            margin-top: 30px;
+        }
+
+        .intro-btn:hover {
+            transform: scale(1.05);
+        }
+
         .question-card {
             background: var(--card);
             border: 1px solid var(--border);
@@ -104,7 +162,7 @@
             transition: 0.3s;
         }
 
-        .btn-nav:hover {
+        .btn-nav:hover:not(:disabled) {
             background: var(--text);
             color: var(--bg);
         }
@@ -144,6 +202,19 @@
             margin-bottom: 15px;
         }
 
+        .result-indicator {
+            font-size: 4rem;
+            margin: 30px 0;
+        }
+
+        .result-indicator.positive {
+            color: #00c864;
+        }
+
+        .result-indicator.negative {
+            color: #ff4444;
+        }
+
         .result-description {
             font-size: 1rem;
             line-height: 1.8;
@@ -167,6 +238,11 @@
             border-radius: 8px;
             margin: 20px 0;
             text-align: left;
+        }
+
+        .result-suggestion ul {
+            margin-left: 20px;
+            margin-top: 10px;
         }
 
         .action-buttons {
@@ -207,24 +283,6 @@
         .hidden {
             display: none;
         }
-
-        .score-indicator {
-            font-size: 3rem;
-            font-weight: 800;
-            margin: 20px 0;
-        }
-
-        .score-low {
-            color: #00c864;
-        }
-
-        .score-medium {
-            color: #ff9500;
-        }
-
-        .score-high {
-            color: #ff4444;
-        }
     </style>
 </head>
 <body>
@@ -250,14 +308,33 @@
     <div class="menu-overlay"></div>
 
     <div class="page-content">
-        <h1>Est-ce que je suis victime de harcèlement ?</h1>
-        <p style="text-align: center; color: var(--gray); margin-bottom: 30px;">
-            Ce questionnaire est conçu pour t'aider à identifier si tu es confronté à du harcèlement. 
-            Réponds honnêtement à chaque question.
-        </p>
+        <!-- PAGE D'INTRODUCTION -->
+        <div id="introSection" class="intro-section active">
+            <div class="intro-card">
+                <div class="intro-title">Est-ce que je suis victime de harcèlement ?</div>
+                
+                <div class="intro-info">
+                    Bienvenue ! Ce questionnaire est conçu pour t'aider à identifier si tu es confronté à du harcèlement.
+                </div>
 
-        <!-- Questionnaire -->
-        <div id="questionnaire" class="questionnaire-container">
+                <div class="intro-highlight">
+                    <div style="font-weight: 600; margin-bottom: 10px;">⏱️ Durée : environ 2 minutes</div>
+                    <div style="font-weight: 600; margin-bottom: 10px;">📋 Ce questionnaire n'est pas noté</div>
+                    <div style="font-weight: 600;">🔒 Tes réponses sont confidentielles</div>
+                </div>
+
+                <div class="intro-info">
+                    Réponds honnêtement à chaque question. À la fin, tu recevras des informations adaptées à ta situation.
+                </div>
+
+                <button class="intro-btn" onclick="startQuiz()">Commencer le questionnaire</button>
+            </div>
+        </div>
+
+        <!-- QUESTIONNAIRE -->
+        <div id="questionnaire" class="questionnaire-container hidden">
+            <h1>Est-ce que je suis victime de harcèlement ?</h1>
+
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill"></div>
             </div>
@@ -298,7 +375,7 @@
             <!-- Question 4 -->
             <div class="question-card hidden" id="q4">
                 <div class="question-number">Question 4 / 10</div>
-                <div class="question-text">Es-tu victime de moqueries liées à ton physique, ton orientation sexuelle, ton origine ou tes différences ?</div>
+                <div class="question-text">Es-tu victime de moqueries liées à ton physique, ton origine ou tes différences ?</div>
                 <div class="options">
                     <button class="option-btn" onclick="selectAnswer(4, 'yes', 2)">Oui, c'est constant</button>
                     <button class="option-btn" onclick="selectAnswer(4, 'sometimes', 1)">Quelques fois</button>
@@ -375,15 +452,15 @@
             <!-- Navigation -->
             <div class="navigation-buttons">
                 <button class="btn-nav" id="prevBtn" onclick="previousQuestion()" disabled>← Précédent</button>
-                <button class="btn-nav" id="nextBtn" onclick="nextQuestion()">Suivant →</button>
+                <button class="btn-nav" id="nextBtn" onclick="nextQuestion()" disabled>Suivant →</button>
             </div>
         </div>
 
-        <!-- Résultats -->
+        <!-- RÉSULTATS -->
         <div id="results" class="results-section">
             <div class="result-card">
-                <div class="result-title">Vos résultats</div>
-                <div class="score-indicator" id="scoreDisplay"></div>
+                <div class="result-title" id="resultTitle"></div>
+                <div class="result-indicator" id="resultIndicator"></div>
                 <div class="result-description" id="resultText"></div>
                 <div id="resultWarning"></div>
                 <div id="resultSuggestion"></div>
@@ -413,6 +490,14 @@
         let score = 0;
         const answers = {};
 
+        function startQuiz() {
+            // Cacher l'intro et afficher le questionnaire
+            document.getElementById('introSection').classList.remove('active');
+            document.getElementById('questionnaire').classList.remove('hidden');
+            showQuestion(1);
+            window.scrollTo(0, 0);
+        }
+
         function selectAnswer(questionNum, value, points) {
             // Marquer la réponse
             answers[questionNum] = { value, points };
@@ -423,12 +508,8 @@
             buttons.forEach(btn => btn.classList.remove('selected'));
             event.target.classList.add('selected');
 
-            // Passer à la question suivante après un court délai
-            setTimeout(() => {
-                if (currentQuestion < totalQuestions) {
-                    nextQuestion();
-                }
-            }, 500);
+            // Activer le bouton Suivant (PAS d'auto-passage)
+            document.getElementById('nextBtn').disabled = false;
         }
 
         function updateProgress() {
@@ -446,6 +527,7 @@
             
             // Mettre à jour les boutons de navigation
             document.getElementById('prevBtn').disabled = num === 1;
+            document.getElementById('nextBtn').disabled = true;
             document.getElementById('nextBtn').textContent = num === totalQuestions ? 'Voir les résultats' : 'Suivant →';
             
             updateProgress();
@@ -470,55 +552,39 @@
         }
 
         function showResults() {
-            document.getElementById('questionnaire').style.display = 'none';
+            document.getElementById('questionnaire').classList.add('hidden');
             document.getElementById('results').classList.add('active');
 
-            // Recalculer le score (les réponses additionnées)
+            // Recalculer le score
             let totalScore = 0;
             for (let key in answers) {
                 totalScore += answers[key].points;
             }
 
             // Déterminer le résultat basé sur le score
-            let resultLevel, resultTitle, resultDescription, colorClass;
+            let resultTitle, resultDescription, resultIndicator, warningHTML, suggestionHTML;
 
             if (totalScore <= 5) {
-                resultLevel = 'low';
-                resultTitle = 'Vous ne semblez pas être victime de harcèlement';
-                resultDescription = 'Selon vos réponses, vous ne montrez pas les signes évidents d\'un harcèlement significatif. Cependant, si vous avez des préoccupations même mineures, n\'hésitez pas à en parler à quelqu\'un de confiance.';
-                colorClass = 'score-low';
-            } else if (totalScore <= 12) {
-                resultLevel = 'medium';
-                resultTitle = 'Vous pourriez être confronté à du harcèlement';
-                resultDescription = 'Selon vos réponses, vous avez probablement expérimenté du harcèlement de manière modérée. Il est important d\'en parler à un adulte de confiance ou de contacter nos services pour obtenir du soutien.';
-                colorClass = 'score-medium';
+                // Pas de harcèlement détecté
+                resultTitle = 'Non, pas de situation de harcèlement détectée';
+                resultIndicator = '✅';
+                resultDescription = 'Selon tes réponses, tu ne montres pas les signes d\'un harcèlement significatif. C\'est une bonne nouvelle ! Cependant, si tu as des préoccupations ou si la situation change, n\'hésite pas à nous contacter. Nous sommes là pour t\'écouter.';
+                warningHTML = '';
+                suggestionHTML = '<div class="result-suggestion"><strong>💡 Conseil :</strong> Continue à t\'entourer de personnes de confiance et n\'hésite pas à nous contacter si la situation change.</div>';
+                document.getElementById('resultIndicator').classList.add('positive');
             } else {
-                resultLevel = 'high';
-                resultTitle = 'Vous êtes probablement victime de harcèlement';
-                resultDescription = 'Selon vos réponses, vous montrez les signes clairs d\'un harcèlement sévère. Cela n\'est pas normal et vous méritez de l\'aide. Veuillez contacter immédiatement l\'un de nos services ou parler à un adulte de confiance.';
-                colorClass = 'score-high';
+                // Harcèlement détecté
+                resultTitle = 'Oui, une situation de harcèlement a été détectée';
+                resultIndicator = '⚠️';
+                resultDescription = 'Selon tes réponses, tu montres les signes d\'une situation de harcèlement. Cela n\'est pas normal et tu mérites de l\'aide. Sache que le harcèlement n\'est jamais de ta faute. Tu es courageux d\'avoir répondu à ce questionnaire, et nous sommes là pour t\'aider.';
+                warningHTML = '<div class="result-warning"><strong>⚠️ Important :</strong> Le harcèlement n\'est jamais la faute de la victime. Tu mérites du soutien et il est normal de demander de l\'aide. Parle à quelqu\'un de confiance !</div>';
+                suggestionHTML = '<div class="result-suggestion"><strong>💡 Nos suggestions :</strong><ul><li>Parle à un parent, un professeur ou un conseiller scolaire</li><li>Documente les incidents (dates, lieux, témoins)</li><li>Accède à notre tchat pour parler à quelqu\'un de confiance</li><li>En cas de danger immédiat, appelle le 17 (police) ou le 112 (urgence)</li></ul></div>';
+                document.getElementById('resultIndicator').classList.add('negative');
             }
 
-            document.getElementById('scoreDisplay').textContent = totalScore + '/20';
-            document.getElementById('scoreDisplay').className = colorClass;
+            document.getElementById('resultTitle').textContent = resultTitle;
+            document.getElementById('resultIndicator').textContent = resultIndicator;
             document.getElementById('resultText').textContent = resultDescription;
-
-            // Ajouter des conseils spécifiques
-            let warningHTML = '';
-            let suggestionHTML = '';
-
-            if (resultLevel === 'high' || resultLevel === 'medium') {
-                warningHTML = '<div class="result-warning"><strong>⚠️ Important :</strong> Le harcèlement n\'est jamais la faute de la victime. Vous méritez du soutien et il est normal de demander de l\'aide.</div>';
-            }
-
-            if (resultLevel === 'high') {
-                suggestionHTML = '<div class="result-suggestion"><strong>💡 Nos suggestions :</strong><ul style="margin-left: 20px; margin-top: 10px;"><li>Parlez à un parent, un professeur ou un conseiller scolaire</li><li>Documentez les incidents (dates, lieux, témoins)</li><li>Accédez à notre tchat pour parler à quelqu\'un de confiance</li><li>En cas de danger immédiat, appelez le 17 (police) ou le 112 (urgence)</li></ul></div>';
-            } else if (resultLevel === 'medium') {
-                suggestionHTML = '<div class="result-suggestion"><strong>💡 Nos suggestions :</strong><ul style="margin-left: 20px; margin-top: 10px;"><li>Parlez de ce que vous ressentez à quelqu\'un de confiance</li><li>Contactez-nous pour une discussion privée</li><li>Apprenez des techniques pour gérer les situations difficiles</li></ul></div>';
-            } else {
-                suggestionHTML = '<div class="result-suggestion"><strong>💡 Conseil :</strong> Continuez à vous entourer de personnes de confiance et n\'hésitez pas à nous contacter si la situation change.</div>';
-            }
-
             document.getElementById('resultWarning').innerHTML = warningHTML;
             document.getElementById('resultSuggestion').innerHTML = suggestionHTML;
 
@@ -531,19 +597,18 @@
             score = 0;
             Object.keys(answers).forEach(key => delete answers[key]);
             
-            // Afficher le questionnaire et cacher les résultats
-            document.getElementById('questionnaire').style.display = 'block';
+            // Afficher l'intro et cacher les résultats
+            document.getElementById('introSection').classList.add('active');
+            document.getElementById('questionnaire').classList.add('hidden');
             document.getElementById('results').classList.remove('active');
             
             // Réinitialiser les boutons
             document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+            document.getElementById('resultIndicator').classList.remove('positive');
+            document.getElementById('resultIndicator').classList.remove('negative');
             
-            showQuestion(1);
             window.scrollTo(0, 0);
         }
-
-        // Initialisation
-        showQuestion(1);
     </script>
 </body>
 </html>
