@@ -3,54 +3,140 @@
 <head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Questionnaire Harcèlement Scolaire</title>
+    <title>Est-ce que je suis victime de harcèlement - Les Voix Claires 92</title>
     <style>
-        /* Style global du formulaire - RECTIFIÉ EN CLAIR */
-        .quiz-container {
-            background-color: #ffffff; /* Fond blanc comme sur ta photo */
-            color: #1a1a1a;            /* Texte sombre */
-            padding: 30px;
-            border-radius: 12px;
-            max-width: 650px;
-            margin: 20px auto;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.05); /* Ombre plus douce */
-            border: 1px solid #e0e0e0; /* Bordure grise claire comme ton site */
+        /* --- STYLE GLOBAL (Inspiré de ton site) --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .quiz-container h2 {
-            color: #000000; /* Titre noir */
-            margin-bottom: 10px;
-            font-size: 24px;
+        body {
+            background-color: #f8f9fa; /* Fond clair de ton site */
+            color: #1a1a1a;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            padding-bottom: 40px;
         }
 
-        .quiz-container .subtitle {
-            color: #626262; /* Sous-titre gris */
-            margin-bottom: 25px;
-            font-size: 14px;
+        /* --- EN-TÊTE (Header de ta capture) --- */
+        .site-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 24px;
+            background-color: #ffffff;
+            border-bottom: 1px solid #eeeeee;
         }
 
-        /* Style des lignes de questions */
+        .header-logo {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .header-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .burger-menu {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 24px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .burger-menu span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: #1a1a1a;
+            border-radius: 2px;
+        }
+
+        /* --- SECTION TITRE (HERO) --- */
+        .hero-section {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: #ffffff;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .hero-section h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #000000;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-section .subtitle {
+            color: #666666;
+            font-size: 16px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* --- CONTENEUR ET CARTES (Classes de ton historique) --- */
+        .questionnaire-container {
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .question-card {
+            background-color: #ffffff;
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.02);
+            border: 1px solid #eaeaea;
+        }
+
+        .question-card h2 {
+            font-size: 22px;
+            color: #000000;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .question-card p {
+            color: #555555;
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+
+        /* --- OPTIONS DU QUIZ --- */
         .quiz-option {
             display: flex;
             align-items: flex-start;
-            background-color: #f7f7f9; /* Fond des cases légèrement grisé */
-            padding: 15px;
-            border-radius: 8px;
+            background-color: #f8f9fa;
+            padding: 16px;
+            border-radius: 12px;
             margin-bottom: 12px;
             cursor: pointer;
-            transition: background 0.2s ease;
-            border: 1px solid transparent;
+            transition: all 0.2s ease;
+            border: 1px solid #f0f0f2;
         }
 
         .quiz-option:hover {
-            background-color: #eeeeee;
+            background-color: #f1f3f5;
             border-color: #4a90e2;
         }
 
         .quiz-option input[type="checkbox"] {
-            margin-top: 4px;
-            margin-right: 15px;
+            margin-top: 3px;
+            margin-right: 14px;
             transform: scale(1.2);
             cursor: pointer;
             accent-color: #4a90e2;
@@ -59,123 +145,161 @@
         .quiz-option label {
             cursor: pointer;
             font-size: 15px;
-            line-height: 1.4;
+            line-height: 1.5;
+            color: #222222;
             flex: 1;
-            color: #1a1a1a;
         }
 
-        /* Bouton de validation */
+        /* --- BOUTON BLEU --- */
         .quiz-btn {
-            background-color: #4a90e2; /* Bleu clair assorti */
-            color: white;
+            background-color: #4a90e2;
+            color: #ffffff;
             border: none;
-            padding: 12px 24px;
+            padding: 14px 24px;
             font-size: 16px;
             font-weight: bold;
-            border-radius: 8px;
+            border-radius: 12px;
             cursor: pointer;
             width: 100%;
-            margin-top: 15px;
+            margin-top: 10px;
             transition: background 0.2s ease;
+            box-shadow: 0 4px 12px rgba(74, 144, 226, 0.15);
         }
 
         .quiz-btn:hover {
             background-color: #357abd;
         }
 
-        /* Boîte de résultat */
+        /* --- BOÎTE DE RÉSULTAT CLAIRE --- */
         .result-box {
             margin-top: 25px;
-            padding: 20px;
-            border-radius: 8px;
+            padding: 24px;
+            border-radius: 12px;
             display: none;
-            animation: fadeIn 0.5s ease forwards;
+            animation: fadeIn 0.4s ease forwards;
         }
 
         .result-attention {
-            background-color: #fde8e8; /* Alerte rouge claire */
+            background-color: #fff5f5;
             color: #9b1c1c;
             border: 1px solid #f8b4b4;
         }
 
         .result-ras {
-            background-color: #def7ec; /* Alerte verte claire */
+            background-color: #f3faf7;
             color: #03543f;
             border: 1px solid #bcf0da;
         }
 
+        .result-box h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
-<div class="quiz-container">
-    <h2>Te sens-tu bien a/au primaire / collège / lycée ?</h2>
-    <p class="subtitle">Coche les cases si tu as déjà vécu ou si tu vis ces situations régulièrement.</p>
-    
-    <form id="quizForm">
-        <div class="quiz-option">
-            <input type="checkbox" id="q1" name="harcelement">
-            <label for="q1">On se moque de moi, on m'insulte ou on me donne des surnoms méchants régulièrement.</label>
+    <!-- En-tête (Navbar) -->
+    <header class="site-header">
+        <div class="header-logo">
+            <img src="Logo.png" alt="Les Voix Claires 92">
         </div>
-        
-        <div class="quiz-option">
-            <input type="checkbox" id="q2" name="harcelement">
-            <label for="q2">J'ai l'impression qu'on me met exprès à l'écart pendant la récréation ou sur les réseaux.</label>
+        <div class="burger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
-        
-        <div class="quiz-option">
-            <input type="checkbox" id="q3" name="harcelement">
-            <label for="q3">On m'a déjà bousculé, frappé, ou on a fait exprès d'abîmer ou de voler mes affaires.</label>
-        </div>
-        
-        <div class="quiz-option">
-            <input type="checkbox" id="q4" name="harcelement">
-            <label for="q4">Je reçois des messages méchants ou je vois des rumeurs sur moi sur internet ou par téléphone.</label>
-        </div>
-        
-        <div class="quiz-option">
-            <input type="checkbox" id="q5" name="harcelement">
-            <label for="q5">On m'oblige parfois à faire des choses que je n'ai pas du tout envie de faire.</label>
-        </div>
-        
-        <div class="quiz-option">
-            <input type="checkbox" id="q6" name="harcelement">
-            <label for="q6">J'ai souvent la boule au ventre, envie de pleurer ou du mal à dormir avant d'aller en cours.</label>
-        </div>
-        
-        <button type="button" class="quiz-btn" onclick="verifierQuiz()">Voir le résultat</button>
-    </form>
+    </header>
 
-    <div id="resultBox" class="result-box">
-        <h3 id="resultTitle"></h3>
-        <p id="resultText"></p>
+    <!-- Zone de titre "détection" -->
+    <div class="hero-section">
+        <h1>détection</h1>
+        <p class="subtitle">Outil d'autoévaluation pour identifier une situation de harcèlement</p>
     </div>
-</div>
 
-<script>
-function verifierQuiz() {
-    const checkboxes = document.querySelectorAll('input[name="harcelement"]:checked');
-    const resultBox = document.getElementById('resultBox');
-    const resultTitle = document.getElementById('resultTitle');
-    const resultText = document.getElementById('resultText');
-    
-    resultBox.style.display = "block";
-    
-    if (checkboxes.length > 0) {
-        resultBox.className = "result-box result-attention";
-        resultTitle.innerText = "Prends ça au sérieux";
-        resultText.innerHTML = "Tu as coché au moins une situation répétée. Ce n'est pas une simple blague et <strong>ce n'est pas de ta faute</strong>. Ne reste pas seul avec ça. Parles-en à tes parents, à l'infirmerie de ton établissement ou contacte directement <strong>Les Voix Claires 92</strong>. On est là pour t'aider !";
-    } else {
-        resultBox.className = "result-box result-ras";
-        resultTitle.innerText = "Tout semble aller pour le mieux";
-        resultText.innerText = "Tu n'as coché aucune case. Si jamais la situation change ou si tu t'inquiètes pour un ami, n'hésite pas à revenir vers nous ou à en parler autour de toi !";
+    <!-- Conteneur principal -->
+    <div class="questionnaire-container">
+        
+        <!-- Carte de présentation -->
+        <div class="question-card">
+            <h2>À propos de ce questionnaire</h2>
+            <p>Ce questionnaire vous permet d'évaluer si vous êtes confronté à une situation de harcèlement. Il s'agit d'un outil d'autoévaluation confidentiel et bienveillant.</p>
+        </div>
+
+        <!-- Carte interactive du Questionnaire -->
+        <div class="question-card">
+            <form id="quizForm">
+                <div class="quiz-option">
+                    <input type="checkbox" id="q1" name="harcelement">
+                    <label for="q1">On se moque de moi, on m'insulte ou on me donne des surnoms méchants régulièrement.</label>
+                </div>
+                
+                <div class="quiz-option">
+                    <input type="checkbox" id="q2" name="harcelement">
+                    <label for="q2">J'ai l'impression qu'on me met exprès à l'écart pendant la récréation ou sur les réseaux sociaux.</label>
+                </div>
+                
+                <div class="quiz-option">
+                    <input type="checkbox" id="q3" name="harcelement">
+                    <label for="q3">On m'a déjà bousculé, frappé, ou on a fait exprès d'abîmer ou de voler mes affaires.</label>
+                </div>
+                
+                <div class="quiz-option">
+                    <input type="checkbox" id="q4" name="harcelement">
+                    <label for="q4">Je reçois des messages méchants ou je vois des rumeurs sur moi sur internet ou par téléphone.</label>
+                </div>
+                
+                <div class="quiz-option">
+                    <input type="checkbox" id="q5" name="harcelement">
+                    <label for="q5">On m'oblige parfois à faire des choses que je n'ai pas du tout envie de faire.</label>
+                </div>
+                
+                <div class="quiz-option">
+                    <input type="checkbox" id="q6" name="harcelement">
+                    <label for="q6">J'ai souvent la boule au ventre, envie de pleurer ou du mal à dormir avant d'aller en cours.</label>
+                </div>
+                
+                <button type="button" class="quiz-btn" onclick="verifierQuiz()">Voir le résultat</button>
+            </form>
+
+            <!-- Zone d'affichage du résultat dynamique -->
+            <div id="resultBox" class="result-box">
+                <h3 id="resultTitle"></h3>
+                <p id="resultText"></p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+    function verifierQuiz() {
+        const checkboxes = document.querySelectorAll('input[name="harcelement"]:checked');
+        const resultBox = document.getElementById('resultBox');
+        const resultTitle = document.getElementById('resultTitle');
+        const resultText = document.getElementById('resultText');
+        
+        resultBox.style.display = "block";
+        
+        if (checkboxes.length > 0) {
+            resultBox.className = "result-box result-attention";
+            resultTitle.innerText = "⚠️ Prends ça au sérieux";
+            resultText.innerHTML = "Tu as coché au moins une situation répétée. Ce n'est pas une simple blague et <strong>ce n'est pas de ta faute</strong>. Ne reste pas seul avec ça. Parles-en à tes parents, à l'infirmerie de ton établissement ou contacte directement <strong>Les Voix Claires 92</strong>. On est là pour t'aider !";
+        } else {
+            resultBox.className = "result-box result-ras";
+            resultTitle.innerText = "💚 Tout semble aller pour le mieux";
+            resultText.innerText = "Tu n'as coché aucune case. Si jamais la situation change ou si tu t'inquiètes pour un ami, n'hésite pas à revenir vers nous ou à en parler autour de toi !";
+        }
+        
+        // Fait défiler doucement l'écran vers la boîte de résultat sur mobile
+        resultBox.scrollIntoView({ behavior: 'smooth' });
     }
-}
-</script>
+    </script>
 
 </body>
 </html>
