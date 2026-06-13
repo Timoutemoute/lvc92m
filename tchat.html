@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="fr"> 
 <head>
     <meta charset="UTF-8">
@@ -7,39 +7,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="Logo.png">
-    
-    <style>
-        /* Correctif de sécurité pour forcer Safari à rendre le bouton cliquable au premier plan */
-        call-us-selector {
-            position: fixed !important;
-            z-index: 99999 !important;
-            cursor: pointer !important;
-            -webkit-tap-highlight-color: transparent;
-        }
-    </style>
 </head>
 <body>
-    <nav>
+    <!-- SCRIPT DE MÉMOIRE (Évite le clignotement de l'écran) -->
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light');
+        }
+    </script>
+
+    <nav> 
         <img src="Logo.png" alt="Les Voix Claires">
-        <!-- Le bouton des trois barres avec l'événement au clic -->
-        <button class="menu-toggle" aria-label="Menu" onclick="toggleMenu()">
+        <button class="menu-toggle" aria-label="Menu">
             <span class="hamburger"></span>
         </button>
-        <div class="nav-links" id="navLinks">
+        <div class="nav-links">
             <a href="index.html">Accueil</a>
             <a href="urgence.html">Urgences</a>
             <a href="equipe.html">Notre équipe</a>
             <a href="recrutement.html">Recrutement</a>
             <a href="temoignages.html">Témoignages</a>
-            <a href="encoursdecréation.html">TCHAT</a>
+            <a href="pasencoreenligne.html">TCHAT</a>
             <div class="theme-switch" onclick="toggleTheme()">
                 <span id="themeIcon">🌙</span>
             </div>
         </div>
     </nav>
 
-    <!-- Le fond sombre quand le menu mobile est ouvert -->
-    <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+    <div class="menu-overlay"></div>
 
     <section class="page-content" style="padding-top: 120px;">
         <h1>TCHAT et Assistance</h1>
@@ -68,60 +63,21 @@
             <a href="confidentialite.html">Politique de confidentialité</a>
             <a href="cgu.html">CGU</a>
         </div>
-        <p>© 2026 Les Voix Claires 92 – Association contre le harcèlement</p>
+        <p>© 2026 Les Voix Claires 92 – Association contre le harcèlement scolaire</p>
     </footer>
 
-<!-- Script pour faire fonctionner le menu hamburger (les trois barres) -->
-<script>
-    function toggleMenu() {
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navLinks = document.getElementById('navLinks');
-        const menuOverlay = document.getElementById('menuOverlay');
-        
-        // On ajoute ou on enlève la classe "active" pour déclencher les animations CSS
-        menuToggle.classList.toggle('active');
-        navLinks.classList.toggle('active');
-        menuOverlay.classList.toggle('active');
-    }
+    <!-- Script 3CX Live Chat -->
+    <script
+        defer
+        src="https://downloads-global.3cx.com/downloads/livechatandtalk/v1/callus.js"
+        id="tcx-callus-js">
+    </script>
+    <call-us-selector
+        phonesystem-url="https://1761.3cx.cloud"
+        party="LiveChat459960">
+    </call-us-selector>
 
-    // Sécurité si la fonction toggleTheme n'existe pas encore ailleurs
-    function toggleTheme() {
-        document.body.classList.toggle('light');
-        const icon = document.getElementById('themeIcon');
-        if (document.body.classList.contains('light')) {
-            icon.textContent = '☀️';
-        } else {
-            icon.textContent = '🌙';
-        }
-    }
-</script>
-
-<!-- Script 3CX Live Chat -->
-<script
-    defer
-    src="https://downloads-global.3cx.com/downloads/livechatandtalk/v1/callus.js"
-    id="tcx-callus-js">
-</script>
-
-<call-us-selector
-    phonesystem-url="https://1761.3cx.cloud"
-    party="LiveChat459960">
-</call-us-selector>
-
-<!-- Fallback en cas de blocage persistant par Safari -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        setTimeout(function() {
-            var selector = document.querySelector('call-us-selector');
-            if (selector && !selector.shadowRoot) {
-                console.warn("Widget 3CX non chargé");
-                var fallback = document.createElement('div');
-                fallback.style.cssText = 'background:rgba(255,255,255,0.05);padding:20px;border-radius:12px;text-align:center;margin:20px 0;border:1px dashed var(--border);';
-                fallback.innerHTML = '<p>💬 Le tchat est bloqué par les réglages de confidentialité de votre navigateur (ex: Empêcher le suivi intersite sur Safari).<br>Veuillez autoriser les scripts ou utiliser un autre navigateur pour lancer la discussion.</p>';
-                selector.parentNode.insertBefore(fallback, selector.nextSibling);
-            }
-        }, 5000);
-    });
-</script>
+    <!-- Ton script externe qui gère le menu et le thème -->
+    <script src="script.js"></script>
 </body>
 </html>
