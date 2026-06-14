@@ -410,7 +410,7 @@
                 
                 <!-- Message de disclaimer IA & invitation à parler -->
                 <div class="ai-disclaimer">
-                    🤖 <strong>Note de l'association :</strong> Ce bilan automatique est analysé et généré par une intelligence artificielle, ce qui signifie qu'elle peut parfois se tromper ou mal interpréter les choses. <br><br>
+                    <strong>Note de l'association :</strong> Ce bilan automatique est analysé et généré par une intelligence artificielle, ce qui signifie qu'elle peut parfois se tromper ou mal interpréter les choses. <br><br>
                     Peu importe ce qui s'affiche au-dessus, <strong>mieux vaut nous contacter quand même</strong>. Que ce soit pour faire le point sur ta situation, trouver des solutions ensemble ou <strong>juste pour parler si ça ne va pas</strong>, notre équipe est là pour t'écouter sans le moindre jugement.
                 </div>
 
@@ -529,15 +529,15 @@
             let suggestionHTML = '';
 
             if (resultLevel === 'high' || resultLevel === 'medium') {
-                warningHTML = '<div class="result-warning"><strong>⚠️ Rappel essentiel :</strong> Le harcèlement n\'est jamais la faute de la victime. Demander de l\'aide est un acte de courage, pas de faiblesse.</div>';
+                warningHTML = '<div class="result-warning"><strong>Rappel essentiel :</strong> Le harcèlement n\'est jamais la faute de la victime. Demander de l\'aide est un acte de courage, pas de faiblesse.</div>';
             }
 
             if (resultLevel === 'high') {
-                suggestionHTML = '<div class="result-suggestion"><strong>💡 Actions recommandées :</strong><ul style="margin-left: 20px; margin-top: 10px; line-height: 1.6;"><li>Informe immédiatement un parent ou un membre de confiance de ton établissement (professeur, CPE, infirmerie)</li><li>Conserve précieusement les preuves si cela se passe en ligne (captures d\'écran des messages, des rumeurs, etc.)</li><li>Utilise notre espace de tchat pour être écouté et guidé en direct</li><li>En cas de danger immédiat ou de détresse absolue, compose le 17 (Police) ou le 3020 (Numéro vert national)</li></ul></div>';
+                suggestionHTML = '<div class="result-suggestion"><strong>Actions recommandées :</strong><ul style="margin-left: 20px; margin-top: 10px; line-height: 1.6;"><li>Informe immédiatement un parent ou un membre de confiance de ton établissement (professeur, CPE, infirmerie)</li><li>Conserve précieusement les preuves si cela se passe en ligne (captures d\'écran des messages, des rumeurs, etc.)</li><li>Utilise notre espace de tchat pour être écouté et guidé en direct</li><li>En cas de danger immédiat ou de détresse absolue, compose le 17 (Police) ou le 3020 (Numéro vert national)</li></ul></div>';
             } else if (resultLevel === 'medium') {
-                suggestionHTML = '<div class="result-suggestion"><strong>💡 Actions recommandées :</strong><ul style="margin-left: 20px; margin-top: 10px; line-height: 1.6;"><li>Confie ce que tu ressens à quelqu\'un en qui tu as une totale confiance</li><li>Prends contact avec notre équipe pour faire le point calmement lors d\'une discussion privée</li><li>Ne tente pas de régler la situation tout seul face au groupe</li></ul></div>';
+                suggestionHTML = '<div class="result-suggestion"><strong>Actions recommandées :</strong><ul style="margin-left: 20px; margin-top: 10px; line-height: 1.6;"><li>Confie ce que tu ressens à quelqu\'un en qui tu as une totale confiance</li><li>Prends contact avec notre équipe pour faire le point calmement lors d\'une discussion privée</li><li>Ne tente pas de régler la situation tout seul face au groupe</li></ul></div>';
             } else {
-                suggestionHTML = '<div class="result-suggestion"><strong>💡 Conseil :</strong> Continue à t\'entourer de personnes positives et bienveillantes. Notre association reste à ta disposition si jamais la situation évolue.</div>';
+                suggestionHTML = '<div class="result-suggestion"><strong>Conseil :</strong> Continue à t\'entourer de personnes positives et bienveillantes. Notre association reste à ta disposition si jamais la situation évolue.</div>';
             }
 
             document.getElementById('resultWarning').innerHTML = warningHTML;
