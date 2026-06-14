@@ -145,10 +145,10 @@
         }
 
         .result-description {
-            font-size: 1rem;
+            font-size: 1.1rem;
             line-height: 1.8;
             margin-bottom: 20px;
-            color: var(--gray);
+            color: var(--text);
         }
 
         .result-warning {
@@ -256,8 +256,10 @@
             Réponds honnêtement à chaque question.
         </p>
 
+        <!-- Questionnaire -->
         <div id="questionnaire" class="questionnaire-container">
             
+            <!-- Écran d'information avant de commencer -->
             <div class="question-card" id="introCard">
                 <div class="question-text" style="text-align: center; font-size: 1.3rem;">Avant de commencer</div>
                 <p style="text-align: center; color: var(--gray); line-height: 1.6; margin-bottom: 25px;">
@@ -270,11 +272,13 @@
                 </div>
             </div>
 
+            <!-- Conteneur global du quiz (masqué au début) -->
             <div id="quizContent" class="hidden">
                 <div class="progress-bar">
                     <div class="progress-fill" id="progressFill"></div>
                 </div>
 
+                <!-- Question 1 -->
                 <div class="question-card" id="q1">
                     <div class="question-number">Question 1 / 10</div>
                     <div class="question-text">Es-tu confronté à des moqueries ou des insultes régulièrement ?</div>
@@ -285,6 +289,7 @@
                     </div>
                 </div>
 
+                <!-- Question 2 -->
                 <div class="question-card hidden" id="q2">
                     <div class="question-number">Question 2 / 10</div>
                     <div class="question-text">Certains camarades te mettent-ils volontairement à l'écart ou t'excluent du groupe ?</div>
@@ -295,6 +300,7 @@
                     </div>
                 </div>
 
+                <!-- Question 3 -->
                 <div class="question-card hidden" id="q3">
                     <div class="question-number">Question 3 / 10</div>
                     <div class="question-text">Subis-tu de la violence physique (coups, bousculades, vol d'affaires) ?</div>
@@ -305,6 +311,7 @@
                     </div>
                 </div>
 
+                <!-- Question 4 -->
                 <div class="question-card hidden" id="q4">
                     <div class="question-number">Question 4 / 10</div>
                     <div class="question-text">Es-tu victime de moqueries liées à ton physique, ton origine ou tes différences ?</div>
@@ -315,6 +322,7 @@
                     </div>
                 </div>
 
+                <!-- Question 5 -->
                 <div class="question-card hidden" id="q5">
                     <div class="question-number">Question 5 / 10</div>
                     <div class="question-text">As-tu peur d'aller à l'école ou dans les lieux où tu rencontres tes pairs ?</div>
@@ -325,6 +333,7 @@
                     </div>
                 </div>
 
+                <!-- Question 6 -->
                 <div class="question-card hidden" id="q6">
                     <div class="question-number">Question 6 / 10</div>
                     <div class="question-text">Reçois-tu des messages méchants, menaces ou rumeurs sur internet ou les réseaux sociaux ?</div>
@@ -335,6 +344,7 @@
                     </div>
                 </div>
 
+                <!-- Question 7 -->
                 <div class="question-card hidden" id="q7">
                     <div class="question-number">Question 7 / 10</div>
                     <div class="question-text">Sais-tu qui fait du harcèlement à ton encontre ?</div>
@@ -345,6 +355,7 @@
                     </div>
                 </div>
 
+                <!-- Question 8 -->
                 <div class="question-card hidden" id="q8">
                     <div class="question-number">Question 8 / 10</div>
                     <div class="question-text">En as-tu parlé à quelqu'un (parents, professeur, ami) ?</div>
@@ -355,6 +366,7 @@
                     </div>
                 </div>
 
+                <!-- Question 9 -->
                 <div class="question-card hidden" id="q9">
                     <div class="question-number">Question 9 / 10</div>
                     <div class="question-text">Cela affecte-t-il ton sommeil, ton appétit, tes résultats scolaires ou ton bien-être ?</div>
@@ -365,6 +377,7 @@
                     </div>
                 </div>
 
+                <!-- Question 10 -->
                 <div class="question-card hidden" id="q10">
                     <div class="question-number">Question 10 / 10</div>
                     <div class="question-text">Depuis combien de temps cela dure-t-il ?</div>
@@ -375,6 +388,7 @@
                     </div>
                 </div>
 
+                <!-- Navigation -->
                 <div class="navigation-buttons">
                     <button class="btn-nav" id="prevBtn" onclick="previousQuestion()" disabled>← Précédent</button>
                     <button class="btn-nav" id="nextBtn" onclick="nextQuestion()">Suivant →</button>
@@ -382,6 +396,7 @@
             </div>
         </div>
 
+        <!-- Résultats -->
         <div id="results" class="results-section">
             <div class="result-card">
                 <div class="result-title">Vos résultats</div>
@@ -421,15 +436,11 @@
         }
 
         function selectAnswer(questionNum, value, points) {
-            // Marquer la réponse dans l'objet des résultats
             answers[questionNum] = { value, points };
             
-            // Marquer uniquement le bouton cliqué comme sélectionné
             const buttons = document.querySelectorAll(`#q${questionNum} .option-btn`);
             buttons.forEach(btn => btn.classList.remove('selected'));
             event.target.classList.add('selected');
-
-            // Suppression du setTimeout pour laisser l'utilisateur appuyer lui-même sur "Suivant"
         }
 
         function updateProgress() {
@@ -438,14 +449,11 @@
         }
 
         function showQuestion(num) {
-            // Cacher toutes les questions
             for (let i = 1; i <= totalQuestions; i++) {
                 document.getElementById(`q${i}`).classList.add('hidden');
             }
-            // Afficher la question courante
             document.getElementById(`q${num}`).classList.remove('hidden');
             
-            // Mettre à jour les boutons de navigation
             document.getElementById('prevBtn').disabled = num === 1;
             document.getElementById('nextBtn').textContent = num === totalQuestions ? 'Voir les résultats' : 'Suivant →';
             
@@ -474,50 +482,50 @@
             document.getElementById('questionnaire').style.display = 'none';
             document.getElementById('results').classList.add('active');
 
-            // Recalculer le score (les réponses additionnées)
             let totalScore = 0;
             for (let key in answers) {
                 totalScore += answers[key].points;
             }
 
-            // Déterminer le résultat basé sur le score
             let resultLevel, resultTitle, resultDescription, colorClass;
 
+            // Textes retravaillés pour être plus professionnels et rassurants
             if (totalScore <= 5) {
                 resultLevel = 'low';
-                resultTitle = 'Vous ne semblez pas être victime de harcèlement';
-                resultDescription = 'Selon vos réponses, vous ne montrez pas les signes évidents d\'un harcèlement significatif. Cependant, si vous avez des préoccupations même mineures, n\'hésitez pas à en parler à quelqu\'un de confiance.';
+                resultTitle = "Aucune situation de harcèlement n'est manifestement détectée";
+                resultDescription = "D'après vos réponses, les signaux actuels ne correspondent pas à une situation de harcèlement établi. Toutefois, si vous traversez une période difficile, si vous ressentez un malaise ou des tensions à l'école ou sur les réseaux sociaux, ne restez pas seul(e). L'écoute de vos proches ou de notre équipe reste toujours disponible pour vous soutenir.";
                 colorClass = 'score-low';
             } else if (totalScore <= 12) {
                 resultLevel = 'medium';
-                resultTitle = 'Vous pourriez être confronté à du harcèlement';
-                resultDescription = 'Selon vos réponses, vous avez probablement expérimenté du harcèlement de manière modérée. Il est important d\'en parler à un adulte de confiance ou de contacter nos services pour obtenir du soutien.';
+                resultTitle = "Vigilance : Risque de harcèlement ou de tensions préoccupantes";
+                resultDescription = "Vos réponses indiquent la présence de comportements répétés, de moqueries ou de situations de mise à l'écart qui méritent une attention particulière. Il est important d'agir avant que cela ne devienne plus difficile à vivre. Nous vous conseillons vivement de vous tourner vers un adulte de confiance ou de venir échanger avec notre équipe en toute confidentialité.";
                 colorClass = 'score-medium';
             } else {
                 resultLevel = 'high';
-                resultTitle = 'Vous êtes probablement victime de harcèlement';
-                resultDescription = 'Selon vos réponses, vous montrez les signes clairs d\'un harcèlement sévère. Cela n\'est pas normal et vous méritez de l\'aide. Veuillez contacter immédiatement l\'un de nos services ou parler à un adulte de confiance.';
+                resultTitle = "Alerte : Situation de harcèlement fortement probable";
+                resultDescription = "Les éléments que vous décrivez signalent une situation de harcèlement avérée et sévère qui impacte votre quotidien et votre bien-être. Sachez que vous n'êtes absolument pas responsable de ce que vous subissez et que cela doit cesser. Il est crucial de briser le silence pour vous protéger. Utilisez immédiatement nos ressources d'urgence ou contactez notre équipe pour que nous puissions vous accompagner pas à pas.";
                 colorClass = 'score-high';
             }
 
             document.getElementById('scoreDisplay').textContent = totalScore + '/20';
             document.getElementById('scoreDisplay').className = colorClass;
-            document.getElementById('resultText').textContent = resultDescription;
+            
+            // On affiche le titre stylisé et la description ensemble
+            document.getElementById('resultText').innerHTML = `<strong style="font-size: 1.4rem; display: block; margin-bottom: 15px;">${resultTitle}</strong>${resultDescription}`;
 
-            // Ajouter des conseils spécifiques
             let warningHTML = '';
             let suggestionHTML = '';
 
             if (resultLevel === 'high' || resultLevel === 'medium') {
-                warningHTML = '<div class="result-warning"><strong>⚠️ Important :</strong> Le harcèlement n\'est jamais la faute de la victime. Vous méritez du soutien et il est normal de demander de l\'aide.</div>';
+                warningHTML = '<div class="result-warning"><strong>⚠️ Rappel essentiel :</strong> Le harcèlement n\'est jamais la faute de la victime. Demander de l\'aide est un acte de courage, pas de faiblesse.</div>';
             }
 
             if (resultLevel === 'high') {
-                suggestionHTML = '<div class="result-suggestion"><strong>💡 Nos suggestions :</strong><ul style="margin-left: 20px; margin-top: 10px;"><li>Parlez à un parent, un professeur ou un conseiller scolaire</li><li>Documentez les incidents (dates, lieux, témoins)</li><li>Accédez à notre tchat pour parler à quelqu\'un de confiance</li><li>En cas de danger immédiat, appelez le 17 (police) ou le 112 (urgence)</li></ul></div>';
+                suggestionHTML = '<div class="result-suggestion"><strong>💡 Actions recommandées :</strong><ul style="margin-left: 20px; margin-top: 10px; line-height: 1.6;"><li>Informez immédiatement un parent, un membre de la direction de votre établissement ou un conseiller scolaire</li><li>Conservez précieusement les preuves si cela se passe en ligne (captures d\'écran des messages, dates, heures)</li><li>Utilisez notre espace de tchat pour être écouté et guidé en direct</li><li>En cas de danger immédiat ou de détresse absolue, composez le 17 (Police) ou le 3020 (Numéro vert national)</li></ul></div>';
             } else if (resultLevel === 'medium') {
-                suggestionHTML = '<div class="result-suggestion"><strong>💡 Nos suggestions :</strong><ul style="margin-left: 20px; margin-top: 10px;"><li>Parlez de ce que vous ressentez à quelqu\'un de confiance</li><li>Contactez-nous pour une discussion privée</li><li>Apprenez des techniques pour gérer les situations difficiles</li></ul></div>';
+                suggestionHTML = '<div class="result-suggestion"><strong>💡 Actions recommandées :</strong><ul style="margin-left: 20px; margin-top: 10px; line-height: 1.6;"><li>Confiez ce que vous ressentez à quelqu\'un en qui vous avez une totale confiance</li><li>Prenez contact avec nous pour faire le point calmement lors d\'une discussion privée</li><li>Ne tentez pas de régler la situation seul(e) face au groupe</li></ul></div>';
             } else {
-                suggestionHTML = '<div class="result-suggestion"><strong>💡 Conseil :</strong> Continuez à vous entourer de personnes de confiance et n\'hésitez pas à nous contacter si la situation change.</div>';
+                suggestionHTML = '<div class="result-suggestion"><strong>💡 Conseil :</strong> Continuez à vous entourer de personnes positives et bienveillantes. Notre association reste à votre entière disposition si la situation évolue.</div>';
             }
 
             document.getElementById('resultWarning').innerHTML = warningHTML;
@@ -527,27 +535,22 @@
         }
 
         function retakeQuiz() {
-            // Réinitialiser tout
             currentQuestion = 1;
             score = 0;
             Object.keys(answers).forEach(key => delete answers[key]);
             
-            // Afficher le questionnaire et cacher les résultats
             document.getElementById('questionnaire').style.display = 'block';
             document.getElementById('results').classList.remove('active');
             
-            // Masquer l'intro et afficher directement le contenu du questionnaire
             document.getElementById('introCard').classList.add('hidden');
             document.getElementById('quizContent').classList.remove('hidden');
             
-            // Réinitialiser les boutons
             document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
             
             showQuestion(1);
             window.scrollTo(0, 0);
         }
 
-        // Initialisation du premier élément au chargement
         showQuestion(1);
     </script>
 </body>
