@@ -1,7 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="fr">
-<head>
+<head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Est-ce que je suis victime de harcèlement ? – Les Voix Claires 92</title>
@@ -257,130 +256,132 @@
             Réponds honnêtement à chaque question.
         </p>
 
-        <!-- Questionnaire -->
         <div id="questionnaire" class="questionnaire-container">
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
-            </div>
-
-            <!-- Question 1 -->
-            <div class="question-card" id="q1">
-                <div class="question-number">Question 1 / 10</div>
-                <div class="question-text">Es-tu confronté à des moqueries ou des insultes régulièrement ?</div>
-                <div class="options">
-                    <button class="option-btn" onclick="selectAnswer(1, 'yes', 2)">Oui, c'est très fréquent</button>
-                    <button class="option-btn" onclick="selectAnswer(1, 'sometimes', 1)">Parfois, de temps en temps</button>
-                    <button class="option-btn" onclick="selectAnswer(1, 'no', 0)">Non, pas du tout</button>
+            
+            <div class="question-card" id="introCard">
+                <div class="question-text" style="text-align: center; font-size: 1.3rem;">Avant de commencer</div>
+                <p style="text-align: center; color: var(--gray); line-height: 1.6; margin-bottom: 25px;">
+                    Ce questionnaire d'auto-évaluation comprend 10 questions courtes. <br><br>
+                    ⏱️ <strong>Durée estimée :</strong> Moins de 2 minutes. <br>
+                    🔒 <strong>Confidentialité :</strong> Tes réponses sont strictement anonymes et restent privées.
+                </p>
+                <div style="display: flex; justify-content: center;">
+                    <button class="action-btn primary" onclick="startQuiz()">Commencer le questionnaire</button>
                 </div>
             </div>
 
-            <!-- Question 2 -->
-            <div class="question-card hidden" id="q2">
-                <div class="question-number">Question 2 / 10</div>
-                <div class="question-text">Certains camarades te mettent-ils volontairement à l'écart ou t'excluent du groupe ?</div>
-                <div class="options">
-                    <button class="option-btn" onclick="selectAnswer(2, 'yes', 2)">Oui, systématiquement</button>
-                    <button class="option-btn" onclick="selectAnswer(2, 'sometimes', 1)">Oui, assez souvent</button>
-                    <button class="option-btn" onclick="selectAnswer(2, 'no', 0)">Non, je suis intégré</button>
+            <div id="quizContent" class="hidden">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
                 </div>
-            </div>
 
-            <!-- Question 3 -->
-            <div class="question-card hidden" id="q3">
-                <div class="question-number">Question 3 / 10</div>
-                <div class="question-text">Subis-tu de la violence physique (coups, bousculades, vol d'affaires) ?</div>
-                <div class="options">
-                    <button class="option-btn" onclick="selectAnswer(3, 'yes', 2)">Oui, régulièrement</button>
-                    <button class="option-btn" onclick="selectAnswer(3, 'sometimes', 1)">Oui, mais rarement</button>
-                    <button class="option-btn" onclick="selectAnswer(3, 'no', 0)">Non, jamais</button>
+                <div class="question-card" id="q1">
+                    <div class="question-number">Question 1 / 10</div>
+                    <div class="question-text">Es-tu confronté à des moqueries ou des insultes régulièrement ?</div>
+                    <div class="options">
+                        <button class="option-btn" onclick="selectAnswer(1, 'yes', 2)">Oui, c'est très fréquent</button>
+                        <button class="option-btn" onclick="selectAnswer(1, 'sometimes', 1)">Parfois, de temps en temps</button>
+                        <button class="option-btn" onclick="selectAnswer(1, 'no', 0)">Non, pas du tout</button>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Question 4 -->
-            <div class="question-card hidden" id="q4">
-                <div class="question-number">Question 4 / 10</div>
-                <div class="question-text">Es-tu victime de moqueries liées à ton physique, ton origine ou tes différences ?</div>
-                <div class="options">
-                    <button class="option-btn" onclick="selectAnswer(4, 'yes', 2)">Oui, c'est constant</button>
-                    <button class="option-btn" onclick="selectAnswer(4, 'sometimes', 1)">Quelques fois</button>
-                    <button class="option-btn" onclick="selectAnswer(4, 'no', 0)">Non</button>
+                <div class="question-card hidden" id="q2">
+                    <div class="question-number">Question 2 / 10</div>
+                    <div class="question-text">Certains camarades te mettent-ils volontairement à l'écart ou t'excluent du groupe ?</div>
+                    <div class="options">
+                        <button class="option-btn" onclick="selectAnswer(2, 'yes', 2)">Oui, systématiquement</button>
+                        <button class="option-btn" onclick="selectAnswer(2, 'sometimes', 1)">Oui, assez souvent</button>
+                        <button class="option-btn" onclick="selectAnswer(2, 'no', 0)">Non, je suis intégré</button>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Question 5 -->
-            <div class="question-card hidden" id="q5">
-                <div class="question-number">Question 5 / 10</div>
-                <div class="question-text">As-tu peur d'aller à l'école ou dans les lieux où tu rencontres tes pairs ?</div>
-                <div class="options">
-                    <button class="option-btn" onclick="selectAnswer(5, 'yes', 2)">Oui, j'ai vraiment peur</button>
-                    <button class="option-btn" onclick="selectAnswer(5, 'sometimes', 1)">Un peu anxieux parfois</button>
-                    <button class="option-btn" onclick="selectAnswer(5, 'no', 0)">Non, pas de peur</button>
+                <div class="question-card hidden" id="q3">
+                    <div class="question-number">Question 3 / 10</div>
+                    <div class="question-text">Subis-tu de la violence physique (coups, bousculades, vol d'affaires) ?</div>
+                    <div class="options">
+                        <button class="option-btn" onclick="selectAnswer(3, 'yes', 2)">Oui, régulièrement</button>
+                        <button class="option-btn" onclick="selectAnswer(3, 'sometimes', 1)">Oui, mais rarement</button>
+                        <button class="option-btn" onclick="selectAnswer(3, 'no', 0)">Non, jamais</button>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Question 6 -->
-            <div class="question-card hidden" id="q6">
-                <div class="question-number">Question 6 / 10</div>
-                <div class="question-text">Reçois-tu des messages méchants, menaces ou rumeurs sur internet ou les réseaux sociaux ?</div>
-                <div class="options">
-                    <button class="option-btn" onclick="selectAnswer(6, 'yes', 2)">Oui, c'est fréquent</button>
-                    <button class="option-btn" onclick="selectAnswer(6, 'sometimes', 1)">Quelques messages méchants</button>
-                    <button class="option-btn" onclick="selectAnswer(6, 'no', 0)">Non, rien de tout ça</button>
+                <div class="question-card hidden" id="q4">
+                    <div class="question-number">Question 4 / 10</div>
+                    <div class="question-text">Es-tu victime de moqueries liées à ton physique, ton origine ou tes différences ?</div>
+                    <div class="options">
+                        <button class="option-btn" onclick="selectAnswer(4, 'yes', 2)">Oui, c'est constant</button>
+                        <button class="option-btn" onclick="selectAnswer(4, 'sometimes', 1)">Quelques fois</button>
+                        <button class="option-btn" onclick="selectAnswer(4, 'no', 0)">Non</button>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Question 7 -->
-            <div class="question-card hidden" id="q7">
-                <div class="question-number">Question 7 / 10</div>
-                <div class="question-text">Sais-tu qui fait du harcèlement à ton encontre ?</div>
-                <div class="options">
-                    <button class="option-btn" onclick="selectAnswer(7, 'yes', 0)">Oui, je les connais</button>
-                    <button class="option-btn" onclick="selectAnswer(7, 'sometimes', 1)">Je le soupçonne mais pas sûr</button>
-                    <button class="option-btn" onclick="selectAnswer(7, 'no', 0)">Pas vraiment ou anonyme</button>
+                <div class="question-card hidden" id="q5">
+                    <div class="question-number">Question 5 / 10</div>
+                    <div class="question-text">As-tu peur d'aller à l'école ou dans les lieux où tu rencontres tes pairs ?</div>
+                    <div class="options">
+                        <button class="option-btn" onclick="selectAnswer(5, 'yes', 2)">Oui, j'ai vraiment peur</button>
+                        <button class="option-btn" onclick="selectAnswer(5, 'sometimes', 1)">Un peu anxieux parfois</button>
+                        <button class="option-btn" onclick="selectAnswer(5, 'no', 0)">Non, pas de peur</button>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Question 8 -->
-            <div class="question-card hidden" id="q8">
-                <div class="question-number">Question 8 / 10</div>
-                <div class="question-text">En as-tu parlé à quelqu'un (parents, professeur, ami) ?</div>
-                <div class="options">
-                    <button class="option-btn" onclick="selectAnswer(8, 'yes', 0)">Oui, j'en ai parlé</button>
-                    <button class="option-btn" onclick="selectAnswer(8, 'sometimes', 1)">Oui, mais partiellement</button>
-                    <button class="option-btn" onclick="selectAnswer(8, 'no', 2)">Non, je le garde pour moi</button>
+                <div class="question-card hidden" id="q6">
+                    <div class="question-number">Question 6 / 10</div>
+                    <div class="question-text">Reçois-tu des messages méchants, menaces ou rumeurs sur internet ou les réseaux sociaux ?</div>
+                    <div class="options">
+                        <button class="option-btn" onclick="selectAnswer(6, 'yes', 2)">Oui, c'est fréquent</button>
+                        <button class="option-btn" onclick="selectAnswer(6, 'sometimes', 1)">Quelques messages méchants</button>
+                        <button class="option-btn" onclick="selectAnswer(6, 'no', 0)">Non, rien de tout ça</button>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Question 9 -->
-            <div class="question-card hidden" id="q9">
-                <div class="question-number">Question 9 / 10</div>
-                <div class="question-text">Cela affecte-t-il ton sommeil, ton appétit, tes résultats scolaires ou ton bien-être ?</div>
-                <div class="options">
-                    <button class="option-btn" onclick="selectAnswer(9, 'yes', 2)">Oui, beaucoup</button>
-                    <button class="option-btn" onclick="selectAnswer(9, 'sometimes', 1)">Un peu</button>
-                    <button class="option-btn" onclick="selectAnswer(9, 'no', 0)">Non, ça va</button>
+                <div class="question-card hidden" id="q7">
+                    <div class="question-number">Question 7 / 10</div>
+                    <div class="question-text">Sais-tu qui fait du harcèlement à ton encontre ?</div>
+                    <div class="options">
+                        <button class="option-btn" onclick="selectAnswer(7, 'yes', 0)">Oui, je les connais</button>
+                        <button class="option-btn" onclick="selectAnswer(7, 'sometimes', 1)">Je le soupçonne mais pas sûr</button>
+                        <button class="option-btn" onclick="selectAnswer(7, 'no', 0)">Pas vraiment ou anonyme</button>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Question 10 -->
-            <div class="question-card hidden" id="q10">
-                <div class="question-number">Question 10 / 10</div>
-                <div class="question-text">Depuis combien de temps cela dure-t-il ?</div>
-                <div class="options">
-                    <button class="option-btn" onclick="selectAnswer(10, 'long', 2)">Plusieurs mois ou plus</button>
-                    <button class="option-btn" onclick="selectAnswer(10, 'medium', 1)">Quelques semaines</button>
-                    <button class="option-btn" onclick="selectAnswer(10, 'short', 0)">Récent (quelques jours)</button>
+                <div class="question-card hidden" id="q8">
+                    <div class="question-number">Question 8 / 10</div>
+                    <div class="question-text">En as-tu parlé à quelqu'un (parents, professeur, ami) ?</div>
+                    <div class="options">
+                        <button class="option-btn" onclick="selectAnswer(8, 'yes', 0)">Oui, j'en ai parlé</button>
+                        <button class="option-btn" onclick="selectAnswer(8, 'sometimes', 1)">Oui, mais partiellement</button>
+                        <button class="option-btn" onclick="selectAnswer(8, 'no', 2)">Non, je le garde pour moi</button>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Navigation -->
-            <div class="navigation-buttons">
-                <button class="btn-nav" id="prevBtn" onclick="previousQuestion()" disabled>← Précédent</button>
-                <button class="btn-nav" id="nextBtn" onclick="nextQuestion()">Suivant →</button>
+                <div class="question-card hidden" id="q9">
+                    <div class="question-number">Question 9 / 10</div>
+                    <div class="question-text">Cela affecte-t-il ton sommeil, ton appétit, tes résultats scolaires ou ton bien-être ?</div>
+                    <div class="options">
+                        <button class="option-btn" onclick="selectAnswer(9, 'yes', 2)">Oui, beaucoup</button>
+                        <button class="option-btn" onclick="selectAnswer(9, 'sometimes', 1)">Un peu</button>
+                        <button class="option-btn" onclick="selectAnswer(9, 'no', 0)">Non, ça va</button>
+                    </div>
+                </div>
+
+                <div class="question-card hidden" id="q10">
+                    <div class="question-number">Question 10 / 10</div>
+                    <div class="question-text">Depuis combien de temps cela dure-t-il ?</div>
+                    <div class="options">
+                        <button class="option-btn" onclick="selectAnswer(10, 'long', 2)">Plusieurs mois ou plus</button>
+                        <button class="option-btn" onclick="selectAnswer(10, 'medium', 1)">Quelques semaines</button>
+                        <button class="option-btn" onclick="selectAnswer(10, 'short', 0)">Récent (quelques jours)</button>
+                    </div>
+                </div>
+
+                <div class="navigation-buttons">
+                    <button class="btn-nav" id="prevBtn" onclick="previousQuestion()" disabled>← Précédent</button>
+                    <button class="btn-nav" id="nextBtn" onclick="nextQuestion()">Suivant →</button>
+                </div>
             </div>
         </div>
 
-        <!-- Résultats -->
         <div id="results" class="results-section">
             <div class="result-card">
                 <div class="result-title">Vos résultats</div>
@@ -414,22 +415,21 @@
         let score = 0;
         const answers = {};
 
+        function startQuiz() {
+            document.getElementById('introCard').classList.add('hidden');
+            document.getElementById('quizContent').classList.remove('hidden');
+        }
+
         function selectAnswer(questionNum, value, points) {
-            // Marquer la réponse
+            // Marquer la réponse dans l'objet des résultats
             answers[questionNum] = { value, points };
-            score += points;
             
-            // Marquer le bouton comme sélectionné
+            // Marquer uniquement le bouton cliqué comme sélectionné
             const buttons = document.querySelectorAll(`#q${questionNum} .option-btn`);
             buttons.forEach(btn => btn.classList.remove('selected'));
             event.target.classList.add('selected');
 
-            // Passer à la question suivante après un court délai
-            setTimeout(() => {
-                if (currentQuestion < totalQuestions) {
-                    nextQuestion();
-                }
-            }, 500);
+            // Suppression du setTimeout pour laisser l'utilisateur appuyer lui-même sur "Suivant"
         }
 
         function updateProgress() {
@@ -536,6 +536,10 @@
             document.getElementById('questionnaire').style.display = 'block';
             document.getElementById('results').classList.remove('active');
             
+            // Masquer l'intro et afficher directement le contenu du questionnaire
+            document.getElementById('introCard').classList.add('hidden');
+            document.getElementById('quizContent').classList.remove('hidden');
+            
             // Réinitialiser les boutons
             document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
             
@@ -543,7 +547,7 @@
             window.scrollTo(0, 0);
         }
 
-        // Initialisation
+        // Initialisation du premier élément au chargement
         showQuestion(1);
     </script>
 </body>
