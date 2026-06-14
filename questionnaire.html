@@ -440,7 +440,12 @@
             
             const buttons = document.querySelectorAll(`#q${questionNum} .option-btn`);
             buttons.forEach(btn => btn.classList.remove('selected'));
-            event.target.classList.add('selected');
+            
+            // Sécurité cross-browser pour récupérer le bouton cliqué via l'événement global
+            const currentEvent = window.event || event;
+            if (currentEvent && currentEvent.target) {
+                currentEvent.target.classList.add('selected');
+            }
         }
 
         function updateProgress() {
@@ -489,7 +494,6 @@
 
             let resultLevel, resultTitle, resultDescription, colorClass;
 
-            // Textes retravaillés pour être plus professionnels et rassurants
             if (totalScore <= 5) {
                 resultLevel = 'low';
                 resultTitle = "Aucune situation de harcèlement n'est manifestement détectée";
@@ -507,10 +511,10 @@
                 colorClass = 'score-high';
             }
 
-            document.getElementById('scoreDisplay').textContent = totalScore + '/20';
+            // Affichage propre sous forme de points d'auto-évaluation
+            document.getElementById('scoreDisplay').textContent = totalScore + ' points';
             document.getElementById('scoreDisplay').className = colorClass;
             
-            // On affiche le titre stylisé et la description ensemble
             document.getElementById('resultText').innerHTML = `<strong style="font-size: 1.4rem; display: block; margin-bottom: 15px;">${resultTitle}</strong>${resultDescription}`;
 
             let warningHTML = '';
@@ -521,7 +525,7 @@
             }
 
             if (resultLevel === 'high') {
-                suggestionHTML = '<div class="result-suggestion"><strong>💡 Actions recommandées :</strong><ul style="margin-left: 20px; margin-top: 10px; line-height: 1.6;"><li>Informez immédiatement un parent, un membre de la direction de votre établissement ou un conseiller scolaire</li><li>Conservez précieusement les preuves si cela se passe en ligne (captures d\'écran des messages, dates, heures)</li><li>Utilisez notre espace de tchat pour être écouté et guidé en direct</li><li>En cas de danger immédiat ou de détresse absolue, composez le 17 (Police) ou le 3020 (Numéro vert national)</li></ul></div>';
+                suggestionHTML = '<div class="result-suggestion"><strong>💡 Actions recommandées :</strong><ul style="margin-left: 20px; margin-top: 10px; line-height: 1.6;"><li>Informez immédiatement un parent, un membre de la direction de votre établissement ou un conseiller scolaire</li><li>Conservez précieusement les preuves si cela se passe en ligne (captures d\'écran des messages, dates, heures)</li><li>Utilisez notre espace de tchat pour être écouté et guided en direct</li><li>En cas de danger immédiat ou de détresse absolue, composez le 17 (Police) ou le 3020 (Numéro vert national)</li></ul></div>';
             } else if (resultLevel === 'medium') {
                 suggestionHTML = '<div class="result-suggestion"><strong>💡 Actions recommandées :</strong><ul style="margin-left: 20px; margin-top: 10px; line-height: 1.6;"><li>Confiez ce que vous ressentez à quelqu\'un en qui vous avez une totale confiance</li><li>Prenez contact avec nous pour faire le point calmement lors d\'une discussion privée</li><li>Ne tentez pas de régler la situation seul(e) face au groupe</li></ul></div>';
             } else {
