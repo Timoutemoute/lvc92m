@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="Logo.png">
     <style>
-        /* Styles harmonisés avec le reste du site */
         .recrutement-container {
             max-width: 700px;
             margin: 0 auto;
@@ -63,6 +62,25 @@
         .form-group textarea {
             resize: vertical;
             min-height: 120px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 25px;
+            text-align: left;
+            font-size: 0.9rem;
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .checkbox-group input {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            cursor: pointer;
+            accent-color: var(--text);
         }
 
         .rgpd-notice {
@@ -132,7 +150,7 @@
             <div class="form-card">
                 <form action="https://formsubmit.co/les.voix.claires.92@gmail.com" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_next" value="https://profilojules92.netlify.app/merci.html">
+                    <input type="hidden" name="_next" value="merci.html">
                     <input type="hidden" name="_subject" value="Nouvelle candidature - Les Voix Claires 92">
                     
                     <div class="form-group">
@@ -174,8 +192,13 @@
                     </div>
 
                     <div class="rgpd-notice">
-                        <strong>Protection des données (RGPD) :</strong> Les données collectées ici sont placées sous la responsabilité de <strong>Laure Assemat-Tessandier</strong>. L'âge est demandé afin de vérifier l'éligibilité au bénévolat et d'anticiper la nécessité d'un accord parental. Elles sont accessibles par les bénévoles en charge du recrutement avant d'être transmises à la direction. Si la candidature n'est pas retenue, les données sont immédiatement supprimées (ou conservées 2 ans maximum en cas de vivier avec accord).
+                        <strong>Protection des données (RGPD) :</strong> Données sous la responsabilité de <strong>Laure Assemat-Tessandier</strong>. L'âge sert à vérifier l'éligibilité au bénévolat et d'éventuels accords parentaux. Accès réservé aux bénévoles du recrutement puis à la direction. Suppression immédiate si non retenu (ou 2 ans max sur accord).
                     </div>
+
+                    <label class="checkbox-group">
+                        <input type="checkbox" name="Acceptation_Politique" required>
+                        <span>J'accepte que mes données soient traitées dans le cadre de ma candidature conformément à la politique de confidentialité. *</span>
+                    </label>
 
                     <button type="submit" class="btn-submit">Envoyer ma candidature</button>
                 </form>
