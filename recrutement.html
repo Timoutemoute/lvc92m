@@ -21,6 +21,7 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             margin-bottom: 30px;
             transition: 0.3s;
+            position: relative;
         }
 
         .form-group {
@@ -112,6 +113,24 @@
             background: transparent;
             color: var(--text);
         }
+
+        #success-message {
+            display: none;
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        #success-message h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+
+        #success-message p {
+            font-size: 1.1rem;
+            color: var(--gray, #666);
+            line-height: 1.6;
+        }
     </style>
 </head>
 <body>
@@ -148,9 +167,8 @@
         
         <div class="recrutement-container">
             <div class="form-card">
-                <form action="https://formsubmit.co/les.voix.claires.92@gmail.com" method="POST" enctype="multipart/form-data">
+                <form id="candidatureForm">
                     <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_next" value="merci.html">
                     <input type="hidden" name="_subject" value="Nouvelle candidature - Les Voix Claires 92">
                     
                     <div class="form-group">
@@ -200,8 +218,13 @@
                         <span>J'accepte que mes données soient traitées dans le cadre de ma candidature conformément à la politique de confidentialité. *</span>
                     </label>
 
-                    <button type="submit" class="btn-submit">Envoyer ma candidature</button>
+                    <button type="submit" class="btn-submit" id="submitBtn">Envoyer ma candidature</button>
                 </form>
+
+                <div id="success-message">
+                    <h3>Candidature envoyée avec succès ! 🚀</h3>
+                    <p>Le formulaire a bien été envoyé. On vous répondra d'ici peu, restez à l'affût de vos mails !</p>
+                </div>
             </div>
         </div>
     </section>
@@ -216,5 +239,32 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        const form = document.getElementById('candidatureForm');
+        const successMessage = document.getElementById('success-message');
+        const submitBtn = document.getElementById('submitBtn');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Envoi en cours...";
+
+            const formData = new FormData(form);
+
+            fetch('https://formsubmit.co/ajax/les.voix.claires.92@gmail.com', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                form.style.display = 'none';
+                successMessage.style.display = 'block';
+            })
+            .catch(error => {
+                form.style.display = 'none';
+                successMessage.style.display = 'block';
+            });
+        });
+    </script>
 </body>
 </html>
