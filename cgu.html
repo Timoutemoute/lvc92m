@@ -3,12 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CGU - Les Voix Claires 92</title>
+    <title>Conditions Générales d'Utilisation - Les Voix Claires 92</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="Logo.png">
+    <style>
+        .legal-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .legal-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        .legal-card h2 {
+            font-size: 1.4rem;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+        .legal-card h2:first-child {
+            margin-top: 0;
+        }
+        .legal-card p, .legal-card ul {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--gray, #666);
+            margin-bottom: 15px;
+        }
+        .legal-card ul {
+            padding-left: 20px;
+        }
+        .alert-box {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+    </style>
 </head>
 <body>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light');
+        }
+    </script>
+
     <nav>
         <img src="Logo.png" alt="Les Voix Claires">
         <button class="menu-toggle" aria-label="Menu">
@@ -30,37 +76,38 @@
 
     <div class="menu-overlay"></div>
 
-    <section class="page-content">
+    <section class="page-content" style="padding-top: 120px;">
         <h1>Conditions Générales d'Utilisation</h1>
+        <p class="intro-text" style="text-align: center; margin-bottom: 30px;">Modalités et règles d'utilisation des services du site Les Voix Claires 92.</p>
         
-        <div class="card-section">
-            <h2>1. Acceptation</h2>
-            <p>L'utilisation du site implique l'acceptation pleine des CGU.</p>
-        </div>
+        <div class="legal-container">
+            <div class="legal-card">
+                <h2>1. Objet des CGU</h2>
+                <p>Les présentes Conditions Générales d'Utilisation ont pour objet de définir les règles d'accès et d'utilisation du site de l'association <strong>Les Voix Claires 92</strong>. En naviguant sur ce site, l'utilisateur accepte sans réserve les présentes conditions.</p>
 
-        <div class="card-section">
-            <h2>2. Objet</h2>
-            <p>Ce site fournit des informations sur l'association et ses actions contre le harcèlement.</p>
-        </div>
+                <h2>2. Accès aux services</h2>
+                <p>Le site permet d'accéder à des contenus d'information, des ressources de sensibilisation (QCM), un formulaire de recrutement et un module de Tchat d'écoute. L'accès au site est gratuit et ouvert à tous.</p>
 
-        <div class="card-section">
-            <h2>3. Accès</h2>
-            <p>L'accès est gratuit. L'association peut le suspendre à tout moment.</p>
-        </div>
+                <h2>3. Avertissement et Urgences</h2>
+                <div class="alert-box">
+                    <p style="margin: 0; color: var(--text);"><strong>Important :</strong> Le Tchat et les formulaires de ce site ne sont pas des services de secours d'urgence à réponse immédiate. En cas de danger imminent ou de crise grave, vous devez contacter immédiatement les numéros nationaux d'urgence : <strong>3018</strong> (Harcèlement), <strong>119</strong> (Enfance en danger), <strong>17</strong> (Police) ou <strong>112</strong> (Urgences européennes).</p>
+                </div>
 
-        <div class="card-section">
-            <h2>4. Responsabilités</h2>
-            <p>Les informations sont fournies à titre indicatif.</p>
-        </div>
+                <h2>4. Règles de conduite sur le Tchat et les formulaires</h2>
+                <p>Afin de garantir un espace d'écoute sain et bienveillant, l'utilisateur s'engage à :</p>
+                <ul>
+                    <li>Adopter un comportement respectueux envers les bénévoles et l'équipe.</li>
+                    <li>Ne publier aucun propos injurieux, diffamatoire, haineux, raciste ou menaçant.</li>
+                    <li>Ne pas communiquer de fausses informations ou tenter de perturber le fonctionnement des services.</li>
+                </ul>
+                <p>L'association se réserve le droit d'interrompre tout échange et de bloquer l'accès aux utilisateurs ne respectant pas ces règles.</p>
 
-        <div class="card-section">
-            <h2>5. Propriété intellectuelle</h2>
-            <p>Toute reproduction sans autorisation est interdite.</p>
-        </div>
+                <h2>5. Propriété intellectuelle</h2>
+                <p>Les logos, textes, visuels et éléments graphiques présents sur ce site sont la propriété exclusive de l'association Les Voix Claires 92. Toute reproduction sans autorisation préalable est interdite.</p>
 
-        <div class="card-section">
-            <h2>6. Modification</h2>
-            <p>Les CGU peuvent être modifiées à tout moment.</p>
+                <h2>6. Modification des conditions</h2>
+                <p>L'association se réserve le droit de modifier les présentes CGU à tout moment afin de les adapter aux évolutions du site et de la législation.</p>
+            </div>
         </div>
     </section>
 
