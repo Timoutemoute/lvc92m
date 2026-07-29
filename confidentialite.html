@@ -3,12 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Politique de confidentialité - Les Voix Claires 92</title>
+    <title>Politique de Confidentialité - Les Voix Claires 92</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="Logo.png">
+    <style>
+        .legal-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .legal-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        .legal-card h2 {
+            font-size: 1.4rem;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+        .legal-card h2:first-child {
+            margin-top: 0;
+        }
+        .legal-card p, .legal-card ul {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--gray, #666);
+            margin-bottom: 15px;
+        }
+        .legal-card ul {
+            padding-left: 20px;
+        }
+    </style>
 </head>
 <body>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light');
+        }
+    </script>
+
     <nav>
         <img src="Logo.png" alt="Les Voix Claires">
         <button class="menu-toggle" aria-label="Menu">
@@ -30,28 +69,40 @@
 
     <div class="menu-overlay"></div>
 
-    <section class="page-content">
-        <h1>Politique de confidentialité</h1>
+    <section class="page-content" style="padding-top: 120px;">
+        <h1>Politique de Confidentialité</h1>
+        <p class="intro-text" style="text-align: center; margin-bottom: 30px;">Parce que la protection de vos données est une priorité pour notre association.</p>
         
-        <div class="card-section">
-            <h2>Collecte des données</h2>
-            <p>Nous collectons uniquement les données nécessaires : nom, email et message.</p>
-        </div>
+        <div class="legal-container">
+            <div class="legal-card">
+                <h2>1. Responsable du traitement</h2>
+                <p>Le traitement des données personnelles collectées sur le site est sous la responsabilité de <strong>Laure Assemat-Tessandier</strong>, agissant pour le compte de l'association Les Voix Claires 92.</p>
 
-        <div class="card-section">
-            <h2>Utilisation des données</h2>
-            <p>Les données sont utilisées pour répondre à vos demandes et améliorer nos services.</p>
-        </div>
+                <h2>2. Données collectées et finalités</h2>
+                <p>Nous collectons vos données uniquement lorsque cela est strictement nécessaire :</p>
+                <ul>
+                    <li><strong>Formulaire de recrutement :</strong> Nom, prénom, e-mail, âge (pour vérifier la nécessité d'un accord parental), motivations et éventuel CV. Ces données servent à traiter votre candidature pour devenir bénévole.</li>
+                    <li><strong>Contact et Tchat :</strong> Les informations fournies lors de nos échanges servent à vous accompagner et à répondre à vos demandes d'aide ou d'information de manière confidentielle.</li>
+                </ul>
 
-        <div class="card-section">
-            <h2>Vos droits (RGPD)</h2>
-            <p>Vous disposez d'un droit d'accès, de rectification et d'effacement.</p>
-            <p>Contact : les.voix.claires.92@gmail.com</p>
-        </div>
+                <h2>3. Destinataires des données</h2>
+                <p>Les données récoltées via le recrutement sont d'abord consultées par les bénévoles en charge des ressources humaines, puis transmises à la direction de l'association. Aucune de vos données n'est vendue, louée ou cédée à des tiers extérieurs.</p>
 
-        <div class="card-section">
-            <h2>Sécurité</h2>
-            <p>Nous protégeons vos données contre tout accès non autorisé.</p>
+                <h2>4. Durée de conservation</h2>
+                <p>Conformément à nos engagements :</p>
+                <ul>
+                    <li><strong>Candidatures non retenues :</strong> Les données sont immédiatement supprimées.</li>
+                    <li><strong>Candidatures en attente (vivier) :</strong> Conservées pour une durée maximale de <strong>2 ans</strong>, sauf avis contraire de votre part.</li>
+                    <li><strong>Bénévoles actifs :</strong> Conservées pendant toute la durée de votre engagement au sein de l'association.</li>
+                </ul>
+
+                <h2>5. Sécurité de vos données</h2>
+                <p>L'association met en œuvre toutes les mesures techniques et organisationnelles nécessaires pour protéger vos données contre toute perte, accès non autorisé ou divulgation.</p>
+
+                <h2>6. Vos droits (RGPD)</h2>
+                <p>Vous disposez d'un droit d'accès, de rectification, d'effacement, d'opposition et de limitation du traitement de vos données. Pour exercer ces droits, vous pouvez nous contacter à tout moment par e-mail à l'adresse suivante : <strong>les.voix.claires.92@gmail.com</strong>.</p>
+                <p>Si vous estimez, après nous avoir contactés, que vos droits ne sont pas respectés, vous pouvez adresser une réclamation à la CNIL (www.cnil.fr).</p>
+            </div>
         </div>
     </section>
 
