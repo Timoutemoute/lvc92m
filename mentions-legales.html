@@ -3,12 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mentions légales - Les Voix Claires 92</title>
+    <title>Mentions Légales - Les Voix Claires 92</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="Logo.png">
+    <style>
+        .legal-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .legal-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        .legal-card h2 {
+            font-size: 1.4rem;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+        .legal-card h2:first-child {
+            margin-top: 0;
+        }
+        .legal-card p, .legal-card ul {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--gray, #666);
+            margin-bottom: 15px;
+        }
+        .legal-card ul {
+            padding-left: 20px;
+        }
+    </style>
 </head>
 <body>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light');
+        }
+    </script>
+
     <nav>
         <img src="Logo.png" alt="Les Voix Claires">
         <button class="menu-toggle" aria-label="Menu">
@@ -30,31 +69,30 @@
 
     <div class="menu-overlay"></div>
 
-    <section class="page-content">
-        <h1>Mentions légales</h1>
+    <section class="page-content" style="padding-top: 120px;">
+        <h1>Mentions Légales</h1>
+        <p class="intro-text" style="text-align: center; margin-bottom: 30px;">Informations légales obligatoires concernant le site des Voix Claires 92.</p>
         
-        <div class="card-section">
-            <h2>Éditeur du site</h2>
-            <p><strong>Les Voix Claires 92</strong><br>
-            Association Loi 1901<br>
-            RNA : W923012288<br>
-            Adresse : Boulogne-Billancourt (92100)<br>
-            Email : les.voix.claires.92@gmail.com</p>
-        </div>
+        <div class="legal-container">
+            <div class="legal-card">
+                <h2>1. Éditeur du site</h2>
+                <p>Le site <strong>Les Voix Claires 92</strong> est édité par l'association Les Voix Claires 92.<br>
+                <strong>Siège social :</strong> 44 rue du Chemin Vert, 92100 Boulogne-Billancourt.<br>
+                <strong>E-mail de contact :</strong> les.voix.claires.92@gmail.com</p>
 
-        <div class="card-section">
-            <h2>Hébergement</h2>
-            <p>OVH - 2 rue Kellermann, 59100 Roubaix, France</p>
-        </div>
+                <h2>2. Responsable de la publication</h2>
+                <p>La directrice de la publication et responsable légale est <strong>Laure Assemat-Tessandier</strong>.</p>
 
-        <div class="card-section">
-            <h2>Propriété intellectuelle</h2>
-            <p>Tous les éléments du site sont la propriété exclusive de l'association.</p>
-        </div>
+                <h2>3. Hébergement</h2>
+                <p>Le site est hébergé par la société <strong>OVH</strong>.<br>
+                Siège social de l'hébergeur : 2 rue Kellermann, 59100 Roubaix, France.</p>
 
-        <div class="card-section">
-            <h2>Protection des données</h2>
-            <p>Conformément au RGPD, vous disposez d'un droit d'accès et de rectification.</p>
+                <h2>4. Propriété intellectuelle</h2>
+                <p>L'ensemble de ce site relève de la législation française et internationale sur le droit d'auteur et la propriété intellectuelle. Tous les droits de reproduction sont réservés, y compris pour les documents téléchargeables et les représentations iconographiques et photographiques.</p>
+
+                <h2>5. Protection des données personnelles</h2>
+                <p>Conformément au Règlement Général sur la Protection des Données (RGPD), les informations recueillies via les formulaires de ce site font l'objet d'un traitement informatique destiné exclusivement à l'association Les Voix Claires 92. Aucune donnée n'est cédée à des tiers. Pour plus de détails, consultez notre <a href="confidentialite.html" style="color: var(--text); text-decoration: underline;">Politique de confidentialité</a>.</p>
+            </div>
         </div>
     </section>
 
