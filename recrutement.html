@@ -114,6 +114,11 @@
             color: var(--text);
         }
 
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
         #success-message {
             display: none;
             text-align: center;
@@ -167,7 +172,7 @@
         
         <div class="recrutement-container">
             <div class="form-card">
-                <form id="candidatureForm">
+                <form id="candidatureForm" enctype="multipart/form-data">
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_subject" value="Nouvelle candidature - Les Voix Claires 92">
                     
@@ -251,18 +256,28 @@
 
             const formData = new FormData(form);
 
-            fetch('https://formsubmit.co/ajax/les.voix.claires.92@gmail.com', {
+            fetch('https://formsubmit.co/ajax/contact@les-voix-claires-92.fr', {
                 method: 'POST',
                 body: formData
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erreur lors de la réponse du serveur');
+                }
+                return response.json();
+            })
             .then(data => {
-                form.style.display = 'none';
-                successMessage.style.display = 'block';
+                if (data.success === "true" || data.success === true) {
+                    form.style.display = 'none';
+                    successMessage.style.display = 'block';
+                } else {
+                    throw new Error(data.message || 'Erreur d\'envoi');
+                }
             })
             .catch(error => {
-                form.style.display = 'none';
-                successMessage.style.display = 'block';
+                alert("Une erreur est survenue lors de l'envoi de votre candidature. Veuillez réessayer.");
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Envoyer ma candidature";
             });
         });
     </script>
