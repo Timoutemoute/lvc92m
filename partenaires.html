@@ -1,1 +1,342 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Partenaires - Les Voix Claires 92</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Couleurs plus sérieuses et institutionnelles */
+            --primary-color: #2563EB; /* Bleu confiance */
+            --primary-hover: #1D4ED8;
+            --secondary-color: #0F172A; /* Bleu nuit très sombre */
+            --bg-color: #F8FAFC; /* Gris très clair pour le fond */
+            --card-bg: #FFFFFF;
+            --text-main: #334155;
+            --text-muted: #64748B;
+            --border-color: #E2E8F0;
+            --radius: 8px;
+            --transition: all 0.3s ease-in-out;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif; /* Police sérieuse et lisible pour le texte */
+            line-height: 1.7;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: 'Poppins', sans-serif; /* Police avec plus de caractère pour les titres */
+        }
+
+        /* ----- NAVIGATION ----- */
+        nav {
+            background-color: var(--card-bg);
+            padding: 16px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--secondary-color);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        .theme-toggle {
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            color: var(--primary-color);
+        }
+
+        /* ----- EN-TÊTE (HERO) ----- */
+        .hero {
+            background-color: var(--secondary-color);
+            color: #ffffff;
+            text-align: center;
+            padding: 80px 20px;
+            border-bottom: 4px solid var(--primary-color);
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            color: #94A3B8;
+            max-width: 650px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        /* ----- SECTION PARTENAIRES ----- */
+        .partners-section {
+            flex: 1;
+            padding: 60px 5%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .partner-card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 40px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .partner-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: #CBD5E1;
+        }
+
+        .partner-icon-wrapper {
+            width: 64px;
+            height: 64px;
+            background-color: #EFF6FF;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            color: var(--primary-color);
+        }
+
+        .partner-card h3 {
+            font-size: 1.3rem;
+            color: var(--secondary-color);
+            margin-bottom: 12px;
+        }
+
+        .partner-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+            flex-grow: 1;
+        }
+
+        .partner-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .partner-link:hover {
+            color: var(--primary-hover);
+            gap: 12px; /* Petit effet d'animation sur la flèche */
+        }
+
+        /* ----- FOOTER ----- */
+        footer {
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .footer-links {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            font-size: 0.8rem;
+            color: #94A3B8;
+        }
+
+        /* ----- RESPONSIVE ----- */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hero {
+                padding: 60px 20px;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .partners-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="/" class="logo">Les Voix <span>Claires 92</span></a>
+        <div class="nav-links">
+            <a href="/">Accueil</a>
+            <a href="/urgences">Urgences</a>
+            <a href="/equipe">Notre équipe</a>
+            <a href="/temoignages">Témoignages</a>
+            <a href="/qcm">QCM Harcèlement</a>
+            <a href="/partenaires" class="active">Partenaires</a>
+            
+            <!-- Bouton thème (Icône SVG au lieu de l'emoji) -->
+            <button class="theme-toggle" aria-label="Changer le thème">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- En-tête de page -->
+    <header class="hero">
+        <h1>Nos Partenaires</h1>
+        <p>Découvrez les associations et acteurs institutionnels qui s'engagent à nos côtés pour accompagner et protéger les victimes de harcèlement.</p>
+    </header>
+
+    <!-- Contenu Principal -->
+    <main class="partners-section">
+        <div class="partners-grid">
+            
+            <!-- Partenaire 1 : SOS Harcèlement 57 -->
+            <article class="partner-card">
+                <!-- Icône SVG Bouclier (Protection/Soutien) -->
+                <div class="partner-icon-wrapper">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                </div>
+                <h3>SOS Harcèlement 57</h3>
+                <p>
+                    Un partenaire fondamental dans notre lutte. Sans leur expertise et leur soutien indéfectible, notre action ne serait pas la même. Ils constituent un pilier essentiel pour orienter et accompagner les familles en détresse.
+                </p>
+                <a href="#" class="partner-link">
+                    Découvrir l'association
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </a>
+            </article>
+
+            <!-- Partenaire 2 : Libère Toi De Cet Harcèlement -->
+            <article class="partner-card">
+                <!-- Icône SVG Soleil/Espoir (Libération/Renouveau) -->
+                <div class="partner-icon-wrapper">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </div>
+                <h3>Libère Toi De Cet Harcèlement</h3>
+                <p>
+                    Une structure profondément engagée avec laquelle nous partageons une vision commune : libérer la parole et garantir un espace sécurisé pour la reconstruction psychologique de chaque victime.
+                </p>
+                <a href="#" class="partner-link">
+                    Découvrir l'association
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </a>
+            </article>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="/mentions-legales">Mentions légales</a>
+            <a href="/confidentialite">Politique de confidentialité</a>
+            <a href="/cgu">CGU</a>
+            <a href="/contact">Nous contacter</a>
+        </div>
+        <p class="copyright">© 2026 Les Voix Claires 92 – Association contre le harcèlement scolaire</p>
+    </footer>
+
+</body>
+</html>
 
