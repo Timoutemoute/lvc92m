@@ -9,77 +9,117 @@
     <link rel="icon" href="Logo.png">
     
     <style>
-        /* Ajustements légers intégrés au design natif */
-        .contact-section {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem 20px;
+        /* Section principale du formulaire */
+        .contact-container {
+            max-width: 650px;
+            margin: 0 auto 3rem auto;
+            padding: 2.5rem 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
         }
 
         .contact-form {
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 1.25rem;
             text-align: left;
         }
 
         .form-group {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+            gap: 0.4rem;
         }
 
         .form-group label {
+            font-size: 0.9rem;
             font-weight: 600;
-            font-size: 0.95rem;
+            color: #e0e0e0;
+            letter-spacing: 0.3px;
         }
 
         .form-group input, 
         .form-group textarea {
             width: 100%;
-            padding: 12px 16px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.05);
-            color: inherit;
+            padding: 14px 16px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(0, 0, 0, 0.25);
+            color: #ffffff;
             font-family: 'Inter', sans-serif;
-            font-size: 1rem;
+            font-size: 0.95rem;
             box-sizing: border-box;
+            transition: all 0.25s ease;
         }
 
-        /* Support pour le mode clair si activé par styles.css */
-        body:not(.dark-mode) .form-group input,
-        body:not(.dark-mode) .form-group textarea {
-            border: 1px solid #ccc;
-            background: #fff;
-            color: #000;
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #777;
         }
 
         .form-group input:focus, 
         .form-group textarea:focus {
             outline: none;
-            border-color: #3b82f6;
+            border-color: #ffffff;
+            background: rgba(0, 0, 0, 0.4);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
         }
 
-        #formStatus {
-            margin-top: 1rem;
-            padding: 1rem;
-            border-radius: 8px;
-            text-align: center;
+        /* Système de notification Toast (sans emoji) */
+        #toast-container {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .toast {
+            min-width: 280px;
+            padding: 14px 20px;
+            border-radius: 10px;
+            font-size: 0.9rem;
             font-weight: 600;
-            display: none;
+            color: #ffffff;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
         }
 
-        .status-success {
-            background-color: rgba(40, 167, 69, 0.2);
-            border: 1px solid #28a745;
-            color: #28a745;
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .status-error {
-            background-color: rgba(220, 53, 69, 0.2);
-            border: 1px solid #dc3545;
-            color: #dc3545;
+        .toast-success {
+            background-color: #1e4620;
+            border: 1px solid #2e7d32;
+        }
+
+        .toast-error {
+            background-color: #4a151b;
+            border: 1px solid #c62828;
+        }
+
+        @media (max-width: 600px) {
+            .contact-container {
+                margin: 0 15px 2rem 15px;
+                padding: 1.5rem;
+            }
+            #toast-container {
+                bottom: 15px;
+                right: 15px;
+                left: 15px;
+            }
+            .toast {
+                min-width: auto;
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -111,34 +151,36 @@
         <p>Tu n'es pas seul(e). Notre équipe est là pour t'écouter et t'aider en toute confidentialité.</p>
     </div>
 
-    <section class="contact-section">
-        <!-- REMPLACE VOTRE_ID_FORMSPREE PAR TON LIEN FORMSPREE -->
-        <form id="contactForm" action="https://formspree.io/f/VOTRE_ID_FORMSPREE" method="POST" class="contact-form">
-            
-            <div class="form-group">
-                <label for="name">Prénom / Pseudo</label>
-                <input type="text" id="name" name="name" required placeholder="Comment devons-nous t'appeler ?">
-            </div>
+    <section style="padding: 0 10px;">
+        <div class="contact-container">
+            <!-- N'oublie pas de remplacer VOTRE_ID_FORMSPREE par ton ID Formspree -->
+            <form id="contactForm" action="https://formspree.io/f/VOTRE_ID_FORMSPREE" method="POST" class="contact-form">
+                
+                <div class="form-group">
+                    <label for="name">Prénom / Pseudo</label>
+                    <input type="text" id="name" name="name" required placeholder="Comment devons-nous t'appeler ?">
+                </div>
 
-            <div class="form-group">
-                <label for="email">Adresse e-mail</label>
-                <input type="email" id="email" name="email" required placeholder="Ton email pour qu'on puisse te répondre">
-            </div>
+                <div class="form-group">
+                    <label for="email">Adresse e-mail</label>
+                    <input type="email" id="email" name="email" required placeholder="Ton adresse email">
+                </div>
 
-            <div class="form-group">
-                <label for="subject">Sujet</label>
-                <input type="text" id="subject" name="subject" required placeholder="De quoi souhaites-tu parler ?">
-            </div>
+                <div class="form-group">
+                    <label for="subject">Sujet</label>
+                    <input type="text" id="subject" name="subject" required placeholder="De quoi souhaites-tu parler ?">
+                </div>
 
-            <div class="form-group">
-                <label for="message">Ton message</label>
-                <textarea id="message" name="message" rows="5" required placeholder="Explique-nous ta situation en toute sécurité..."></textarea>
-            </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required placeholder="Explique-nous ta situation..."></textarea>
+                </div>
 
-            <button type="submit" class="btn" id="submitBtn" style="cursor: pointer; width: 100%;">Envoyer le message</button>
-
-            <div id="formStatus"></div>
-        </form>
+                <div style="text-align: center; margin-top: 1rem;">
+                    <button type="submit" class="btn" id="submitBtn" style="cursor: pointer; width: 100%;">Envoyer le message</button>
+                </div>
+            </form>
+        </div>
     </section>
 
     <div class="discord">
@@ -147,7 +189,6 @@
         Nos bénévoles sont formés pour t'écouter et t'épauler concrètement. Briser le silence, c'est reprendre le pouvoir sur ta vie. 
         N'attends plus : parler, c'est agir. Viens trouver l'oreille attentive dont tu as besoin.</p>
         <a href="https://discord.gg/AcRcndYhNv" target="_blank" class="btn">Rejoindre le Discord</a>
-        <a href="mailto:contact@les-voix-claires-92.fr" target="_blank" class="btn">Envoyez-nous un mail</a>
     </div>
     
     <footer>
@@ -158,13 +199,35 @@
         </div>
         <p>© 2026 Les Voix Claires 92 – Association contre le harcèlement scolaire</p>
     </footer>
-    
+
+    <!-- Conteneur pour les notifications Toast -->
+    <div id="toast-container"></div>
+
     <script src="script.js"></script>
 
     <script>
         const form = document.getElementById('contactForm');
-        const statusDiv = document.getElementById('formStatus');
         const submitBtn = document.getElementById('submitBtn');
+        const toastContainer = document.getElementById('toast-container');
+
+        function showToast(message, type) {
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.innerText = message;
+
+            toastContainer.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.add('show');
+            }, 50);
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 5000);
+        }
 
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -185,19 +248,13 @@
                 });
 
                 if (response.ok) {
-                    statusDiv.className = "status-success";
-                    statusDiv.innerHTML = "Mail envoyé avec succès ! Notre équipe te répondra rapidement.";
-                    statusDiv.style.display = "block";
+                    showToast("Message envoyé avec succès. Notre équipe vous répondra rapidement.", "success");
                     form.reset();
                 } else {
-                    statusDiv.className = "status-error";
-                    statusDiv.innerHTML = "Une erreur s'est produite lors de l'envoi. Reessaie ou passe par Discord.";
-                    statusDiv.style.display = "block";
+                    showToast("Une erreur est survenue lors de l'envoi du message.", "error");
                 }
             } catch (error) {
-                statusDiv.className = "status-error";
-                statusDiv.innerHTML = "Erreur de réseau. Vérifie ta connexion internet.";
-                statusDiv.style.display = "block";
+                showToast("Erreur de connexion. Veuillez vérifier votre réseau.", "error");
             } finally {
                 submitBtn.innerText = originalBtnText;
                 submitBtn.disabled = false;
