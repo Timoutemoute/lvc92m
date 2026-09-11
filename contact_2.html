@@ -8,112 +8,78 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="Logo.png">
     
-    <!-- CSS SPÉCIFIQUE AU FORMULAIRE ET AUX MESSAGES DE SUCCÈS -->
     <style>
-        /* Conteneur du formulaire */
-        .form-container {
-            max-width: 600px;
+        /* Ajustements légers intégrés au design natif */
+        .contact-section {
+            max-width: 800px;
             margin: 0 auto;
-            background: #ffffff; 
-            padding: 2.5rem;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-            border: 1px solid #eee;
+            padding: 2rem 20px;
         }
 
-        /* Mode sombre pour le formulaire (s'adapte à ton site) */
-        body.dark-mode .form-container {
-            background: #1e1e1e;
-            border: 1px solid #333;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-        }
-
-        .input-group {
-            margin-bottom: 1.5rem;
+        .contact-form {
             display: flex;
             flex-direction: column;
+            gap: 1.5rem;
             text-align: left;
         }
 
-        .input-group label {
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: inherit;
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
         }
 
-        .input-group input, 
-        .input-group textarea {
-            padding: 1rem;
-            border: 2px solid #e1e1e1;
+        .form-group label {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
             border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            color: inherit;
             font-family: 'Inter', sans-serif;
             font-size: 1rem;
-            transition: border-color 0.3s ease;
-            background-color: #fafafa;
+            box-sizing: border-box;
         }
 
-        body.dark-mode .input-group input,
-        body.dark-mode .input-group textarea {
-            background-color: #2a2a2a;
-            border-color: #444;
-            color: #fff;
+        /* Support pour le mode clair si activé par styles.css */
+        body:not(.dark-mode) .form-group input,
+        body:not(.dark-mode) .form-group textarea {
+            border: 1px solid #ccc;
+            background: #fff;
+            color: #000;
         }
 
-        .input-group input:focus, 
-        .input-group textarea:focus {
+        .form-group input:focus, 
+        .form-group textarea:focus {
             outline: none;
-            border-color: #0056b3; /* Couleur de focus */
-            background-color: transparent;
+            border-color: #3b82f6;
         }
 
-        /* Bouton d'envoi */
-        .submit-btn {
-            width: 100%;
+        #formStatus {
+            margin-top: 1rem;
             padding: 1rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
             border-radius: 8px;
-            background-color: #0056b3;
-            color: white;
-            transition: background 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            background-color: #004494;
-        }
-
-        /* Messages de statut (Succès / Erreur) */
-        #formMessage {
-            margin-top: 1.5rem;
             text-align: center;
             font-weight: 600;
-            border-radius: 8px;
-            display: none; /* Caché par défaut */
+            display: none;
         }
 
-        .success-msg {
-            background-color: #d4edda;
-            color: #155724;
-            padding: 1rem;
-            border: 1px solid #c3e6cb;
-            border-radius: 8px;
-            animation: fadeIn 0.5s ease;
+        .status-success {
+            background-color: rgba(40, 167, 69, 0.2);
+            border: 1px solid #28a745;
+            color: #28a745;
         }
 
-        .error-msg {
-            background-color: #f8d7da;
-            color: #721c24;
-            padding: 1rem;
-            border: 1px solid #f5c6cb;
-            border-radius: 8px;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .status-error {
+            background-color: rgba(220, 53, 69, 0.2);
+            border: 1px solid #dc3545;
+            color: #dc3545;
         }
     </style>
 </head>
@@ -131,7 +97,7 @@
             <a href="temoignages.html">Témoignages</a>
             <a href="questionnaire.html">QCM Harcèlement</a>
             <a href="tchat.html">TCHAT</a>
-            <a href="contact.html" style="font-weight: 800; border-bottom: 2px solid currentColor;">Contact</a>
+            <a href="contact.html">Contact</a>
             <div class="theme-switch" onclick="toggleTheme()">
                 <span id="themeIcon">🌙</span>
             </div>
@@ -140,50 +106,48 @@
 
     <div class="menu-overlay"></div>
 
-    <div class="hero" style="padding-bottom: 2rem;">
+    <div class="hero">
         <h1>Nous <span>Contacter</span></h1>
-        <p>Tu n'es pas seul(e). Notre équipe est là pour t'écouter en toute confidentialité.</p>
+        <p>Tu n'es pas seul(e). Notre équipe est là pour t'écouter et t'aider en toute confidentialité.</p>
     </div>
 
-    <section id="contact-form-section" style="text-align: center; padding: 2rem 5%;">
-        
-        <!-- LE FORMULAIRE -->
-        <!-- REMPLACE "VOTRE_ID_FORMSPREE" PAR TON VRAI ID (Voir explication plus bas) -->
-        <form id="contactForm" action="https://formspree.io/f/VOTRE_ID_FORMSPREE" method="POST" class="form-container">
+    <section class="contact-section">
+        <!-- REMPLACE VOTRE_ID_FORMSPREE PAR TON LIEN FORMSPREE -->
+        <form id="contactForm" action="https://formspree.io/f/VOTRE_ID_FORMSPREE" method="POST" class="contact-form">
             
-            <div class="input-group">
+            <div class="form-group">
                 <label for="name">Prénom / Pseudo</label>
-                <input type="text" id="name" name="Nom" required placeholder="Comment devons-nous t'appeler ?">
+                <input type="text" id="name" name="name" required placeholder="Comment devons-nous t'appeler ?">
             </div>
-            
-            <div class="input-group">
+
+            <div class="form-group">
                 <label for="email">Adresse e-mail</label>
-                <input type="email" id="email" name="Email" required placeholder="Ton email pour te répondre">
+                <input type="email" id="email" name="email" required placeholder="Ton email pour qu'on puisse te répondre">
             </div>
-            
-            <div class="input-group">
+
+            <div class="form-group">
                 <label for="subject">Sujet</label>
-                <input type="text" id="subject" name="Sujet" required placeholder="De quoi souhaites-tu parler ?">
+                <input type="text" id="subject" name="subject" required placeholder="De quoi souhaites-tu parler ?">
             </div>
-            
-            <div class="input-group">
+
+            <div class="form-group">
                 <label for="message">Ton message</label>
-                <textarea id="message" name="Message" rows="5" required placeholder="Explique-nous ta situation en toute sécurité..."></textarea>
+                <textarea id="message" name="message" rows="5" required placeholder="Explique-nous ta situation en toute sécurité..."></textarea>
             </div>
-            
-            <button type="submit" class="submit-btn" id="btnSubmit">Envoyer le message</button>
 
-            <!-- C'est ici que le message "Mail envoyé" apparaîtra -->
-            <div id="formMessage"></div>
+            <button type="submit" class="btn" id="submitBtn" style="cursor: pointer; width: 100%;">Envoyer le message</button>
+
+            <div id="formStatus"></div>
         </form>
-
     </section>
 
     <div class="discord">
         <h2>Besoin d'une écoute immédiate ?</h2>
-        <p>Notre communauté Discord est un espace sécurisé, modéré et bienveillant. 
-        Nos bénévoles y sont présents pour t'épauler concrètement.</p>
-        <a href="https://discord.gg/AcRcndYhNv" target="_blank" class="btn">Rejoindre le serveur Discord</a>
+        <p>L'école ne devrait jamais être un combat. Si tu vis l'intimidation, l'exclusion ou la peur au quotidien, sache que tu n'as pas à le subir en silence. 
+        Nos bénévoles sont formés pour t'écouter et t'épauler concrètement. Briser le silence, c'est reprendre le pouvoir sur ta vie. 
+        N'attends plus : parler, c'est agir. Viens trouver l'oreille attentive dont tu as besoin.</p>
+        <a href="https://discord.gg/AcRcndYhNv" target="_blank" class="btn">Rejoindre le Discord</a>
+        <a href="mailto:contact@les-voix-claires-92.fr" target="_blank" class="btn">Envoyez-nous un mail</a>
     </div>
     
     <footer>
@@ -197,26 +161,22 @@
     
     <script src="script.js"></script>
 
-    <!-- SCRIPT POUR GÉRER L'ENVOI SANS RECHARGER LA PAGE -->
     <script>
         const form = document.getElementById('contactForm');
-        const formMessage = document.getElementById('formMessage');
-        const btnSubmit = document.getElementById('btnSubmit');
+        const statusDiv = document.getElementById('formStatus');
+        const submitBtn = document.getElementById('submitBtn');
 
-        form.addEventListener('submit', async function(event) {
-            event.preventDefault(); // Empêche la page de recharger
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
 
-            // Changer le texte du bouton pendant l'envoi
-            const originalBtnText = btnSubmit.innerText;
-            btnSubmit.innerText = "Envoi en cours...";
-            btnSubmit.style.opacity = "0.7";
-            btnSubmit.disabled = true;
+            const originalBtnText = submitBtn.innerText;
+            submitBtn.innerText = "Envoi en cours...";
+            submitBtn.disabled = true;
 
             const formData = new FormData(form);
-            const actionUrl = form.getAttribute('action');
 
             try {
-                const response = await fetch(actionUrl, {
+                const response = await fetch(form.action, {
                     method: 'POST',
                     body: formData,
                     headers: {
@@ -225,27 +185,24 @@
                 });
 
                 if (response.ok) {
-                    // SUCCÈS : Affiche le message de confirmation
-                    formMessage.style.display = "block";
-                    formMessage.innerHTML = "<div class='success-msg'>✅ Ton message a bien été envoyé ! L'équipe des Voix Claires 92 te répondra très vite sur ton adresse e-mail.</div>";
-                    form.reset(); // Vide les champs du formulaire
+                    statusDiv.className = "status-success";
+                    statusDiv.innerHTML = "Mail envoyé avec succès ! Notre équipe te répondra rapidement.";
+                    statusDiv.style.display = "block";
+                    form.reset();
                 } else {
-                    // ERREUR SERVEUR
-                    formMessage.style.display = "block";
-                    formMessage.innerHTML = "<div class='error-msg'>❌ Oups ! Une erreur s'est produite. Vérifie les informations saisies ou utilise notre serveur Discord.</div>";
+                    statusDiv.className = "status-error";
+                    statusDiv.innerHTML = "Une erreur s'est produite lors de l'envoi. Reessaie ou passe par Discord.";
+                    statusDiv.style.display = "block";
                 }
             } catch (error) {
-                // ERREUR DE CONNEXION (ex: pas de wifi)
-                formMessage.style.display = "block";
-                formMessage.innerHTML = "<div class='error-msg'>❌ Impossible de se connecter au serveur. Vérifie ta connexion internet.</div>";
+                statusDiv.className = "status-error";
+                statusDiv.innerHTML = "Erreur de réseau. Vérifie ta connexion internet.";
+                statusDiv.style.display = "block";
             } finally {
-                // Remettre le bouton à son état normal
-                btnSubmit.innerText = originalBtnText;
-                btnSubmit.style.opacity = "1";
-                btnSubmit.disabled = false;
+                submitBtn.innerText = originalBtnText;
+                submitBtn.disabled = false;
             }
         });
     </script>
 </body>
 </html>
-
