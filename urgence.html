@@ -3,10 +3,82 @@
 <head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Urgences - Les Voix Claires 92</title>
+    <title>Numéros d'Urgence - Les Voix Claires 92</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="Logo.png">
+    <style>
+        /* Améliorations de mise en page pour la lisibilité et l'espacement */
+        .page-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .intro-text {
+            text-align: center;
+            font-size: 1.05rem;
+            color: #4a5568;
+            margin-bottom: 35px;
+            line-height: 1.6;
+        }
+        .card-section {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 28px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+            border-left: 5px solid #2b6cb0;
+        }
+        .card-section h2 {
+            font-size: 1.2rem;
+            color: #1a202c;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .emergency-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .emergency-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px;
+            background: #f8fafc;
+            border-radius: 8px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .emergency-item .num-badge {
+            background-color: #2b6cb0;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 1.05rem;
+            padding: 5px 12px;
+            border-radius: 6px;
+            min-width: 75px;
+            text-align: center;
+            display: inline-block;
+        }
+        .emergency-item .info {
+            flex: 1;
+            font-size: 0.98rem;
+            color: #2d3748;
+        }
+        .emergency-item .hours {
+            font-size: 0.85rem;
+            color: #718096;
+            background: #edf2f7;
+            padding: 3px 8px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+    </style>
 </head>
 <body>
     <nav>
@@ -32,52 +104,142 @@
     <div class="menu-overlay"></div>
 
     <section class="page-content">
-        <h1>Numéros d'urgence & aide immédiate</h1>
-        <p class="intro-text" style="text-align: center; margin-bottom: 30px;">En situation de crise, n'attendez pas. Ces lignes sont gratuites, confidentielles et accessibles depuis la France.</p>
+        <h1>Numéros d'Urgence & Aide Immédiate</h1>
+        <p class="intro-text">
+            En situation de crise ou de besoin d'écoute, n'attendez pas.<br>
+            Ces services sont <strong>gratuits, confidentiels</strong> et accessibles depuis la France.
+        </p>
 
+        <!-- HARCÈLEMENT, SANTÉ MENTALE & ÉCOUTE -->
         <div class="card-section">
-            <h2>URGENCES VITALES (24h/24)</h2>
-            <ul>
-                <li><strong>112</strong> – Numéro d'urgence européen</li>
-                <li><strong>15</strong> – SAMU (Urgences médicales)</li>
-                <li><strong>17</strong> – Police Secours / Gendarmerie</li>
-                <li><strong>18</strong> – Sapeurs-Pompiers</li>
-                <li><strong>114</strong> – Urgences par SMS/Fax (personnes sourdes et malentendantes)</li>
-                <li><strong>196</strong> – Secours en mer et sauvetage côtier</li>
+            <h2>Harcèlement, Santé Mentale & Écoute</h2>
+            <ul class="emergency-list">
+                <li class="emergency-item">
+                    <span class="num-badge">3018</span>
+                    <span class="info"><strong>Harcèlement scolaire & Cyberharcèlement</strong></span>
+                    <span class="hours">7j/7 • 9h-23h</span>
+                </li>
+                <li class="emergency-item">
+                    <span class="num-badge">3114</span>
+                    <span class="info"><strong>Numéro national de prévention du suicide</strong></span>
+                    <span class="hours">24h/24 • 7j/7</span>
+                </li>
+                <li class="emergency-item">
+                    <span class="num-badge">0 800 235 236</span>
+                    <span class="info"><strong>Fil Santé Jeunes</strong> (Mal-être, écoute & conseils)</span>
+                    <span class="hours">7j/7 • 9h-23h</span>
+                </li>
+                <li class="emergency-item">
+                    <span class="num-badge">09 72 39 40 50</span>
+                    <span class="info"><strong>SOS Amitié</strong> (Écoute et soutien psychologique)</span>
+                    <span class="hours">24h/24 • 7j/7</span>
+                </li>
+                <li class="emergency-item">
+                    <span class="num-badge">116 117</span>
+                    <span class="info"><strong>Médecin de garde</strong> (Permanence des soins)</span>
+                    <span class="hours">24h/24 • 7j/7</span>
+                </li>
+                <li class="emergency-item">
+                    <span class="num-badge">0 800 23 13 13</span>
+                    <span class="info"><strong>Drogues Info Service</strong></span>
+                    <span class="hours">7j/7 • 8h-2h</span>
+                </li>
+                <li class="emergency-item">
+                    <span class="num-badge">0 980 980 930</span>
+                    <span class="info"><strong>Alcool Info Service</strong></span>
+                    <span class="hours">7j/7 • 8h-2h</span>
+                </li>
             </ul>
         </div>
 
+        <!-- URGENCES VITALES -->
         <div class="card-section">
-            <h2>SANTÉ, PSYCHOLOGIE & ADDICTIONS</h2>
-            <ul>
-                <li><strong>3018</strong> – Harcèlement scolaire et cyberharcèlement (7j/7, 9h-23h)</li>
-                <li><strong>3114</strong> – Numéro national de prévention du suicide (24h/24)</li>
-                <li><strong>09 72 39 40 50</strong> – SOS Amitié (Écoute et soutien psychologique 24h/24)</li>
-                <li><strong>0 800 130 000</strong> – Écoute info santé / Cellule psychologique</li>
-                <li><strong>116 117</strong> – Médecin de garde (Permanence des soins ambulatoires)</li>
-                <li><strong>0 800 23 13 13</strong> – Drogues Info Service (7j/7, de 8h à 2h)</li>
-                <li><strong>0 980 980 930</strong> – Alcool Info Service (7j/7, de 8h à 2h)</li>
+            <h2>Urgences Vitales & Secours</h2>
+            <ul class="emergency-list">
+                <li class="emergency-item">
+                    <span class="num-badge">112</span>
+                    <span class="info"><strong>Numéro d'urgence européen</strong></span>
+                    <span class="hours">24h/24 • 7j/7</span>
+                </li>
+                <li class="emergency-item">
+                    <span class="num-badge">15</span>
+                    <span class="info"><strong>SAMU</strong> (Urgences médicales graves)</span>
+                    <span class="hours">24h/24 • 7j/7</span>
+                </li>
+                <li class="emergency-item">
+                    <span class="num-badge">17</span>
+                    <span class="info"><strong>Police Secours / Gendarmerie</strong></span>
+                    <span class="hours">24h/24 • 7j/7</span>
+                </li>
+                <li class="emergency-item">
+                    <span class="num-badge">18</span>
+                    <span class="info"><strong>Sapeurs-Pompiers</strong></span>
+                    <span class="hours">24h/24 • 7j/7</span>
+                </li>
+                <li class="emergency-item">
+                    <span class="num-badge">114</span>
+                    <span class="info"><strong>Urgences par SMS / Fax</strong> (Sourds & malentendants)</span>
+                    <span class="hours">24h/24 • 7j/7</span>
+                </li>
+                <li class="emergency-item">
+                    <span class="num-badge">196</span>
+                    <span class="info"><strong>Secours en mer & sauvetage côtier</strong></span>
+                    <span class="hours">24h/24 • 7j/7</span>
+                </li>
             </ul>
         </div>
 
+        <!-- ENFANTS, JEUNES & VIOLENCES -->
         <div class="card-section">
-            <h2>ENFANTS, JEUNES & VIOLENCES</h2>
-            <ul>
-                <li><strong>119</strong> – Allô Enfance en Danger (24h/24)</li>
-                <li><strong>3919</strong> – Violences Femmes Info (Violences conjugales - 24h/24)</li>
-                <li><strong>116 000</strong> – Enfants disparus (Numéro européen)</li>
-                <li><strong>0 805 802 804</strong> – Violences sexuelles (Viols Femmes Informations)</li>
-                <li><strong>0 800 05 41 41</strong> – SOS Enfants Disparus / Aide aux familles</li>
+            <h2>Protection, Enfants & Violences</h2>
+            <ul class="emergency-list">
+                <li class="emergency-item">
+                    <span class="num-badge">119</span>
+                    <span class="info"><strong>Allô Enfance en Danger</strong></span>
+                    <span class="hours">24h/24 • 7j/7</span>
+                </li>
+                <li class="emergency-item">
+                    <span class="num-badge">3919</span>
+                    <span class="info"><strong>Violences Femmes Info</strong> (Violences conjugales & sexistes)</span>
+                    <span class="hours">24h/24 • 7j/7</span>
+                </li>
+                <li class="emergency-item">
+                    <span class="num-badge">0 805 802 804</span>
+                    <span class="info"><strong>Viols Femmes Informations</strong> (Violences sexuelles)</span>
+                    <span class="hours">Du lun. au ven.</span>
+                </li>
+                <li class="emergency-item">
+                    <span class="num-badge">116 000</span>
+                    <span class="info"><strong>Enfants Disparus</strong> (Numéro européen)</span>
+                    <span class="hours">24h/24 • 7j/7</span>
+                </li>
             </ul>
         </div>
 
+        <!-- AIDE SOCIALE & DROITS -->
         <div class="card-section">
-            <h2>AIDE SOCIALE & DROITS</h2>
-            <ul>
-                <li><strong>115</strong> – Samu Social (Hébergement d'urgence - 24h/24)</li>
-                <li><strong>116 006</strong> – Aide aux victimes (7j/7)</li>
-                <li><strong>3928</strong> – Anti-discriminations (Défenseur des droits)</li>
-                <li><strong>3939</strong> – Allô Service Public (Informations administratives)</li>
+            <h2>Aide Sociale & Droits</h2>
+            <ul class="emergency-list">
+                <li class="emergency-item">
+                    <span class="num-badge">115</span>
+                    <span class="info"><strong>Samu Social</strong> (Hébergement d'urgence)</span>
+                    <span class="hours">24h/24 • 7j/7</span>
+                </li>
+                <li class="emergency-item">
+                    <span class="num-badge">116 006</span>
+                    <span class="info"><strong>France Victimes</strong> (Aide & accompagnement aux victimes)</span>
+                    <span class="hours">7j/7 • 9h-19h</span>
+                </li>
+                <li class="emergency-item">
+                    <span class="num-badge">3928</span>
+                    <span class="info"><strong>Anti-discriminations</strong> (Défenseur des Droits)</span>
+                    <span class="hours">Du lun. au ven.</span>
+                </li>
+                <li class="emergency-item">
+                    <span class="num-badge">3939</span>
+                    <span class="info"><strong>Allô Service Public</strong> (Renseignements administratifs)</span>
+                    <span class="hours">Horaires de bureau</span>
+                </li>
             </ul>
         </div>
     </section>
