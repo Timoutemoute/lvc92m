@@ -3,122 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TCHAT et Assistance - Les Voix Claires 92</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>TCHAT et Assistance – Les Voix Claires 92</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="Logo.png">
     <style>
-        .chat-section {
-            max-width: 650px;
+        /* Ajustements spécifiques TCHAT - Sobres & Professionnels */
+        .chat-wrapper {
+            max-width: 520px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 15px;
         }
 
+        .chat-card {
+            background-color: var(--card-bg, #ffffff);
+            border-radius: 16px;
+            padding: 32px 24px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            text-align: center;
+        }
+
+        /* Badge de statut moderne */
         .status-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.85rem;
             font-weight: 600;
-            margin-bottom: 1.5rem;
+            margin-bottom: 20px;
         }
 
         .status-badge.open {
-            background-color: rgba(40, 167, 69, 0.1);
-            color: #28a745;
+            background-color: #E6F4EA;
+            color: #137333;
         }
 
         .status-badge.closed {
-            background-color: rgba(217, 83, 79, 0.1);
-            color: #d9534f;
+            background-color: #FCE8E6;
+            color: #C5221F;
         }
 
         .status-dot {
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            display: inline-block;
         }
 
-        .status-badge.open .status-dot { background-color: #28a745; }
-        .status-badge.closed .status-dot { background-color: #d9534f; }
+        .status-badge.open .status-dot { background-color: #137333; }
+        .status-badge.closed .status-dot { background-color: #C5221F; }
 
-        .clean-card {
-            background-color: var(--card-bg, #ffffff);
-            border-radius: 16px;
-            padding: 2.5rem 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-            border: 1px solid rgba(0,0,0,0.05);
-            text-align: center;
+        .chat-card h2 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-color, #222);
+            margin-bottom: 8px;
         }
 
-        .emergency-list-simple {
+        .chat-card p.description {
+            font-size: 0.92rem;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+
+        /* Bloc CGU parfaitement aligné sur mobile */
+        .cgu-box {
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            padding-top: 20px;
+            display: flex;
+            align-items: flex-start; /* Alignement propre en haut */
+            gap: 12px;
+            text-align: left;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .cgu-box input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            flex-shrink: 0;
+            cursor: pointer;
+            accent-color: #0056b3;
+        }
+
+        .cgu-box label {
+            font-size: 0.88rem;
+            line-height: 1.45;
+            color: #444;
+            cursor: pointer;
+        }
+
+        .cgu-box a {
+            color: #0056b3;
+            text-decoration: underline;
+            font-weight: 500;
+        }
+
+        /* Message ou bouton d'activation */
+        .chat-status-msg {
+            margin-top: 20px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: #777;
+            transition: all 0.3s ease;
+        }
+
+        .chat-status-msg.active {
+            color: #137333;
+            font-weight: 600;
+        }
+
+        .emergency-list {
             list-style: none;
             padding: 0;
-            margin: 1.5rem 0 0 0;
+            margin: 20px 0 0 0;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
         }
 
         .emergency-item {
-            background-color: var(--bg-color, #f8f9fa);
-            padding: 12px;
+            background-color: rgba(0, 0, 0, 0.03);
+            padding: 12px 16px;
             border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        /* Case à cocher élégante et sobre */
-        .cgu-consent-container {
-            margin-top: 1.8rem;
-            padding-top: 1.2rem;
-            border-top: 1px solid rgba(0, 0, 0, 0.08);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
             font-size: 0.9rem;
-            color: #555;
-        }
-
-        .cgu-consent-container input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
-            accent-color: var(--primary-color, #0056b3);
-        }
-
-        .cgu-consent-container label {
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .cgu-consent-container a {
-            color: var(--primary-color, #0056b3);
-            text-decoration: underline;
-        }
-
-        .chat-instruction {
             font-weight: 600;
-            margin-top: 1.2rem;
-            color: var(--primary-color, #0056b3);
-            transition: opacity 0.3s;
         }
 
-        /* Mode sombre */
-        body:not(.light) .clean-card {
-            background-color: #1a1a1a;
-            border-color: rgba(255,255,255,0.05);
+        /* Compatibilité Mode Sombre */
+        body:not(.light) .chat-card {
+            background-color: #1e1e1e;
+            border-color: rgba(255, 255, 255, 0.08);
         }
-        body:not(.light) .emergency-item {
-            background-color: #252525;
+
+        body:not(.light) .chat-card h2 {
+            color: #fff;
         }
-        body:not(.light) .cgu-consent-container {
+
+        body:not(.light) .chat-card p.description,
+        body:not(.light) .cgu-box label {
+            color: #bbb;
+        }
+
+        body:not(.light) .cgu-box {
             border-top-color: rgba(255, 255, 255, 0.1);
-            color: #ccc;
+        }
+
+        body:not(.light) .emergency-item {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #eee;
         }
     </style>
 </head>
@@ -151,10 +188,10 @@
 
     <div class="menu-overlay"></div>
 
-    <section class="page-content" style="padding-top: 120px;">
-        <div class="chat-section">
-            <h1 style="text-align: center;">TCHAT et Assistance</h1>
-            <p class="intro-text" style="text-align: center; margin-bottom: 2rem;">Une oreille attentive pour briser le silence.</p>
+    <section class="page-content" style="padding-top: 110px; padding-bottom: 60px;">
+        <div class="chat-wrapper">
+            <h1 style="text-align: center; font-size: 1.8rem; margin-bottom: 6px;">TCHAT et Assistance</h1>
+            <p style="text-align: center; color: #777; margin-bottom: 28px; font-size: 0.95rem;">Une oreille attentive pour briser le silence.</p>
 
             <div id="dynamic-chat-container"></div>
         </div>
@@ -170,17 +207,16 @@
     </footer>
 
     <script>
-        // Fonction pour activer le module de tchat quand la case est cochée
         function handleCguConsent(checkbox) {
-            const instruction = document.getElementById('chatInstruction');
+            const statusMsg = document.getElementById('chatStatusMsg');
             
             if (checkbox.checked) {
-                if (instruction) {
-                    instruction.innerHTML = "La bulle de tchat est activée en bas à droite.";
-                    instruction.style.color = "#28a745";
+                if (statusMsg) {
+                    statusMsg.innerHTML = "✓ Tchat disponible via le bouton en bas à droite";
+                    statusMsg.className = "chat-status-msg active";
                 }
                 
-                // Injecte le script 3CX uniquement après acceptation
+                // Injection du script 3CX
                 if (!document.getElementById('tcx-callus-js')) {
                     const tcxScript = document.createElement('script');
                     tcxScript.defer = true;
@@ -194,9 +230,9 @@
                     document.body.appendChild(tcxSelector);
                 }
             } else {
-                if (instruction) {
-                    instruction.innerHTML = "Veuillez accepter les conditions ci-dessus pour ouvrir le tchat.";
-                    instruction.style.color = "var(--primary-color, #0056b3)";
+                if (statusMsg) {
+                    statusMsg.innerHTML = "Cochez la case ci-dessus pour accéder au tchat";
+                    statusMsg.className = "chat-status-msg";
                 }
             }
         }
@@ -205,39 +241,40 @@
             const container = document.getElementById('dynamic-chat-container');
             const currentHour = new Date().getHours();
             
-            // Horaires : Fermé de 21h à 7h
+            // Horaires : Fermé entre 21h et 7h
             const isNight = currentHour >= 21 || currentHour < 7;
 
             if (isNight) {
                 container.innerHTML = `
-                    <div class="clean-card">
+                    <div class="chat-card">
                         <div class="status-badge closed">
-                            <span class="status-dot"></span> Tchat actuellement fermé
+                            <span class="status-dot"></span> Service fermé
                         </div>
-                        <p style="margin-bottom: 0.5rem;">Nos bénévoles sont indisponibles pour le moment.</p>
-                        <p style="font-size: 0.9rem; color: #777;">Horaires d'écoute : <strong>7h00 – 21h00</strong></p>
+                        <h2>Le tchat est actuellement indisponible</h2>
+                        <p class="description">Nos bénévoles sont à votre écoute tous les jours de <strong>7h00 à 21h00</strong>.</p>
 
-                        <ul class="emergency-list-simple">
-                            <li class="emergency-item">3114 — Prévention du suicide (Gratuit 24h/24)</li>
+                        <ul class="emergency-list">
+                            <li class="emergency-item">3114 — Prévention du suicide (24h/24)</li>
                             <li class="emergency-item">112, 15 ou 17 — Urgences vitales</li>
                         </ul>
                     </div>
                 `;
             } else {
                 container.innerHTML = `
-                    <div class="clean-card">
+                    <div class="chat-card">
                         <div class="status-badge open">
                             <span class="status-dot"></span> Écoute ouverte (7h – 21h)
                         </div>
-                        <p>Discutez en direct et de manière confidentielle avec l'un de nos bénévoles.</p>
+                        <h2>Échanger avec un bénévole</h2>
+                        <p class="description">Un espace d'écoute confidentiel et sécurisé pour vous accompagner au quotidien.</p>
 
-                        <div class="cgu-consent-container">
+                        <div class="cgu-box">
                             <input type="checkbox" id="cguConsent" onchange="handleCguConsent(this)">
                             <label for="cguConsent">J'accepte les <a href="cgu.html" target="_blank">conditions générales d'utilisation</a></label>
                         </div>
 
-                        <p id="chatInstruction" class="chat-instruction">
-                            Veuillez accepter les conditions ci-dessus pour ouvrir le tchat.
+                        <p id="chatStatusMsg" class="chat-status-msg">
+                            Cochez la case ci-dessus pour accéder au tchat
                         </p>
                     </div>
                 `;
