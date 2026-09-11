@@ -7,6 +7,30 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="Logo.png">
+    <style>
+        /* Correction pour que le titre ne soit plus caché sous le menu du haut */
+        .page-content {
+            padding-top: 110px !important; 
+        }
+        
+        /* Stylisation propre des liens téléphoniques cliquables */
+        .phone-link {
+            color: inherit;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 2px;
+            font-weight: bold;
+        }
+        .phone-link:hover {
+            color: #0056b3;
+        }
+
+        /* Espacement aéré et lisible */
+        .card-section ul li {
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+    </style>
 </head>
 <body>
     <nav>
@@ -34,51 +58,54 @@
     <section class="page-content">
         <h1>Numéros d'urgence & aide immédiate</h1>
         <p class="intro-text" style="text-align: center; margin-bottom: 30px;">
-            En situation de crise, n'attendez pas. Ces lignes sont gratuites, anonymes, confidentielles et accessibles depuis la France.
+            En situation de crise, n'attendez pas. Ces lignes sont gratuites, confidentielles et accessibles depuis la France.
         </p>
-
-        <div class="card-section">
-            <h2>HARCÈLEMENT, SANTÉ MENTALE & ADDICTIONS</h2>
-            <ul>
-                <li><strong>3018</strong> – Harcèlement scolaire et cyberharcèlement (7j/7, de 9h à 23h)</li>
-                <li><strong>3114</strong> – Numéro national de prévention du suicide (24h/24, 7j/7)</li>
-                <li><strong>0 800 235 236</strong> – Fil Santé Jeunes (Santé, mal-être & écoute - 7j/7, de 9h à 23h)</li>
-                <li><strong>09 72 39 40 50</strong> – SOS Amitié (Écoute et soutien psychologique 24h/24)</li>
-                <li><strong>116 117</strong> – Médecin de garde (Permanence des soins ambulatoires)</li>
-                <li><strong>0 800 23 13 13</strong> – Drogues Info Service (7j/7, de 8h à 2h)</li>
-                <li><strong>0 980 980 930</strong> – Alcool Info Service (7j/7, de 8h à 2h)</li>
-            </ul>
-        </div>
 
         <div class="card-section">
             <h2>URGENCES VITALES (24h/24)</h2>
             <ul>
-                <li><strong>112</strong> – Numéro d'urgence européen</li>
-                <li><strong>15</strong> – SAMU (Urgences médicales)</li>
-                <li><strong>17</strong> – Police Secours / Gendarmerie</li>
-                <li><strong>18</strong> – Sapeurs-Pompiers</li>
-                <li><strong>114</strong> – Urgences par SMS/Fax (personnes sourdes et malentendantes)</li>
-                <li><strong>196</strong> – Secours en mer et sauvetage côtier</li>
+                <li><strong><a href="tel:112" class="phone-link">112</a></strong> – Numéro d'urgence européen</li>
+                <li><strong><a href="tel:15" class="phone-link">15</a></strong> – SAMU (Urgences médicales)</li>
+                <li><strong><a href="tel:17" class="phone-link">17</a></strong> – Police Secours / Gendarmerie</li>
+                <li><strong><a href="tel:18" class="phone-link">18</a></strong> – Sapeurs-Pompiers</li>
+                <li><strong><a href="tel:114" class="phone-link">114</a></strong> – Urgences par SMS/Fax (personnes sourdes et malentendantes)</li>
+                <li><strong><a href="tel:196" class="phone-link">196</a></strong> – Secours en mer et sauvetage côtier</li>
+            </ul>
+        </div>
+
+        <div class="card-section">
+            <h2>SANTÉ, PSYCHOLOGIE & ADDICTIONS</h2>
+            <ul>
+                <li><strong><a href="tel:3018" class="phone-link">3018</a></strong> – Harcèlement scolaire et cyberharcèlement (7j/7, 9h-23h)</li>
+                <li><strong><a href="tel:3114" class="phone-link">3114</a></strong> – Numéro national de prévention du suicide (24h/24)</li>
+                <li><strong><a href="tel:0800235236" class="phone-link">0 800 235 236</a></strong> – Fil Santé Jeunes (Écoute & conseils entre ados/jeunes - 7j/7, 9h-23h)</li>
+                <li><strong><a href="tel:0140091522" class="phone-link">01 40 09 15 22</a></strong> – Nightline (Écoute et soutien par et pour les étudiants/jeunes)</li>
+                <li><strong><a href="tel:0972394050" class="phone-link">09 72 39 40 50</a></strong> – SOS Amitié (Écoute et soutien psychologique 24h/24)</li>
+                <li><strong><a href="tel:0800130000" class="phone-link">0 800 130 000</a></strong> – Écoute info santé / Cellule psychologique</li>
+                <li><strong><a href="tel:116117" class="phone-link">116 117</a></strong> – Médecin de garde (Permanence des soins ambulatoires)</li>
+                <li><strong><a href="tel:0800231313" class="phone-link">0 800 23 13 13</a></strong> – Drogues Info Service (7j/7, de 8h à 2h)</li>
+                <li><strong><a href="tel:0980980930" class="phone-link">0 980 980 930</a></strong> – Alcool Info Service (7j/7, de 8h à 2h)</li>
             </ul>
         </div>
 
         <div class="card-section">
             <h2>ENFANTS, JEUNES & VIOLENCES</h2>
             <ul>
-                <li><strong>119</strong> – Allô Enfance en Danger (24h/24)</li>
-                <li><strong>3919</strong> – Violences Femmes Info (Violences conjugales & sexistes - 24h/24)</li>
-                <li><strong>0 805 802 804</strong> – Viols Femmes Informations (Violences sexuelles)</li>
-                <li><strong>116 000</strong> – Enfants disparus (Numéro européen)</li>
+                <li><strong><a href="tel:119" class="phone-link">119</a></strong> – Allô Enfance en Danger (24h/24)</li>
+                <li><strong><a href="tel:3919" class="phone-link">3919</a></strong> – Violences Femmes Info (Violences conjugales - 24h/24)</li>
+                <li><strong><a href="tel:116000" class="phone-link">116 000</a></strong> – Enfants disparus (Numéro européen)</li>
+                <li><strong><a href="tel:0805802804" class="phone-link">0 805 802 804</a></strong> – Violences sexuelles (Viols Femmes Informations)</li>
+                <li><strong><a href="tel:0800054141" class="phone-link">0 800 05 41 41</a></strong> – SOS Enfants Disparus / Aide aux familles</li>
             </ul>
         </div>
 
         <div class="card-section">
             <h2>AIDE SOCIALE & DROITS</h2>
             <ul>
-                <li><strong>115</strong> – Samu Social (Hébergement d'urgence - 24h/24)</li>
-                <li><strong>116 006</strong> – France Victimes (Aide et accompagnement - 7j/7)</li>
-                <li><strong>3928</strong> – Anti-discriminations (Défenseur des droits)</li>
-                <li><strong>3939</strong> – Allô Service Public (Informations administratives)</li>
+                <li><strong><a href="tel:115" class="phone-link">115</a></strong> – Samu Social (Hébergement d'urgence - 24h/24)</li>
+                <li><strong><a href="tel:116006" class="phone-link">116 006</a></strong> – Aide aux victimes (7j/7)</li>
+                <li><strong><a href="tel:3928" class="phone-link">3928</a></strong> – Anti-discriminations (Défenseur des droits)</li>
+                <li><strong><a href="tel:3939" class="phone-link">3939</a></strong> – Allô Service Public (Informations administratives)</li>
             </ul>
         </div>
     </section>
