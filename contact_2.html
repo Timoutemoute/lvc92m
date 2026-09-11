@@ -1,1 +1,251 @@
+<!DOCTYPE html> 
+<html lang="fr">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact – Les Voix Claires 92</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="Logo.png">
+    
+    <!-- CSS SPÉCIFIQUE AU FORMULAIRE ET AUX MESSAGES DE SUCCÈS -->
+    <style>
+        /* Conteneur du formulaire */
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff; 
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            border: 1px solid #eee;
+        }
+
+        /* Mode sombre pour le formulaire (s'adapte à ton site) */
+        body.dark-mode .form-container {
+            background: #1e1e1e;
+            border: 1px solid #333;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .input-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: inherit;
+        }
+
+        .input-group input, 
+        .input-group textarea {
+            padding: 1rem;
+            border: 2px solid #e1e1e1;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            background-color: #fafafa;
+        }
+
+        body.dark-mode .input-group input,
+        body.dark-mode .input-group textarea {
+            background-color: #2a2a2a;
+            border-color: #444;
+            color: #fff;
+        }
+
+        .input-group input:focus, 
+        .input-group textarea:focus {
+            outline: none;
+            border-color: #0056b3; /* Couleur de focus */
+            background-color: transparent;
+        }
+
+        /* Bouton d'envoi */
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            background-color: #0056b3;
+            color: white;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #004494;
+        }
+
+        /* Messages de statut (Succès / Erreur) */
+        #formMessage {
+            margin-top: 1.5rem;
+            text-align: center;
+            font-weight: 600;
+            border-radius: 8px;
+            display: none; /* Caché par défaut */
+        }
+
+        .success-msg {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border: 1px solid #c3e6cb;
+            border-radius: 8px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .error-msg {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 1rem;
+            border: 1px solid #f5c6cb;
+            border-radius: 8px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <nav> 
+        <img src="Logo.png" alt="Les Voix Claires">
+        <button class="menu-toggle" aria-label="Menu">
+            <span class="hamburger"></span>
+        </button>
+        <div class="nav-links">
+            <a href="index.html">Accueil</a>
+            <a href="urgence.html">Urgences</a>
+            <a href="equipe.html">Notre équipe</a>
+            <a href="recrutement.html">Recrutement</a>
+            <a href="temoignages.html">Témoignages</a>
+            <a href="questionnaire.html">QCM Harcèlement</a>
+            <a href="tchat.html">TCHAT</a>
+            <a href="contact.html" style="font-weight: 800; border-bottom: 2px solid currentColor;">Contact</a>
+            <div class="theme-switch" onclick="toggleTheme()">
+                <span id="themeIcon">🌙</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="menu-overlay"></div>
+
+    <div class="hero" style="padding-bottom: 2rem;">
+        <h1>Nous <span>Contacter</span></h1>
+        <p>Tu n'es pas seul(e). Notre équipe est là pour t'écouter en toute confidentialité.</p>
+    </div>
+
+    <section id="contact-form-section" style="text-align: center; padding: 2rem 5%;">
+        
+        <!-- LE FORMULAIRE -->
+        <!-- REMPLACE "VOTRE_ID_FORMSPREE" PAR TON VRAI ID (Voir explication plus bas) -->
+        <form id="contactForm" action="https://formspree.io/f/VOTRE_ID_FORMSPREE" method="POST" class="form-container">
+            
+            <div class="input-group">
+                <label for="name">Prénom / Pseudo</label>
+                <input type="text" id="name" name="Nom" required placeholder="Comment devons-nous t'appeler ?">
+            </div>
+            
+            <div class="input-group">
+                <label for="email">Adresse e-mail</label>
+                <input type="email" id="email" name="Email" required placeholder="Ton email pour te répondre">
+            </div>
+            
+            <div class="input-group">
+                <label for="subject">Sujet</label>
+                <input type="text" id="subject" name="Sujet" required placeholder="De quoi souhaites-tu parler ?">
+            </div>
+            
+            <div class="input-group">
+                <label for="message">Ton message</label>
+                <textarea id="message" name="Message" rows="5" required placeholder="Explique-nous ta situation en toute sécurité..."></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn" id="btnSubmit">Envoyer le message</button>
+
+            <!-- C'est ici que le message "Mail envoyé" apparaîtra -->
+            <div id="formMessage"></div>
+        </form>
+
+    </section>
+
+    <div class="discord">
+        <h2>Besoin d'une écoute immédiate ?</h2>
+        <p>Notre communauté Discord est un espace sécurisé, modéré et bienveillant. 
+        Nos bénévoles y sont présents pour t'épauler concrètement.</p>
+        <a href="https://discord.gg/AcRcndYhNv" target="_blank" class="btn">Rejoindre le serveur Discord</a>
+    </div>
+    
+    <footer>
+        <div class="footer-links">
+            <a href="mentions-legales.html">Mentions légales</a>
+            <a href="confidentialite.html">Politique de confidentialité</a>
+            <a href="cgu.html">CGU</a>
+        </div>
+        <p>© 2026 Les Voix Claires 92 – Association contre le harcèlement scolaire</p>
+    </footer>
+    
+    <script src="script.js"></script>
+
+    <!-- SCRIPT POUR GÉRER L'ENVOI SANS RECHARGER LA PAGE -->
+    <script>
+        const form = document.getElementById('contactForm');
+        const formMessage = document.getElementById('formMessage');
+        const btnSubmit = document.getElementById('btnSubmit');
+
+        form.addEventListener('submit', async function(event) {
+            event.preventDefault(); // Empêche la page de recharger
+
+            // Changer le texte du bouton pendant l'envoi
+            const originalBtnText = btnSubmit.innerText;
+            btnSubmit.innerText = "Envoi en cours...";
+            btnSubmit.style.opacity = "0.7";
+            btnSubmit.disabled = true;
+
+            const formData = new FormData(form);
+            const actionUrl = form.getAttribute('action');
+
+            try {
+                const response = await fetch(actionUrl, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    // SUCCÈS : Affiche le message de confirmation
+                    formMessage.style.display = "block";
+                    formMessage.innerHTML = "<div class='success-msg'>✅ Ton message a bien été envoyé ! L'équipe des Voix Claires 92 te répondra très vite sur ton adresse e-mail.</div>";
+                    form.reset(); // Vide les champs du formulaire
+                } else {
+                    // ERREUR SERVEUR
+                    formMessage.style.display = "block";
+                    formMessage.innerHTML = "<div class='error-msg'>❌ Oups ! Une erreur s'est produite. Vérifie les informations saisies ou utilise notre serveur Discord.</div>";
+                }
+            } catch (error) {
+                // ERREUR DE CONNEXION (ex: pas de wifi)
+                formMessage.style.display = "block";
+                formMessage.innerHTML = "<div class='error-msg'>❌ Impossible de se connecter au serveur. Vérifie ta connexion internet.</div>";
+            } finally {
+                // Remettre le bouton à son état normal
+                btnSubmit.innerText = originalBtnText;
+                btnSubmit.style.opacity = "1";
+                btnSubmit.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
 
