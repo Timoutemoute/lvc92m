@@ -8,85 +8,117 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="Logo.png">
     <style>
-        /* Styles spécifiques ajoutés pour que les alertes soient jolies et raccord avec ton site */
-        .night-alert {
-            background-color: var(--card-bg, #ffffff);
-            border-top: 4px solid #d9534f;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            margin: 2rem auto;
-            max-width: 800px;
-            text-align: left;
+        .chat-section {
+            max-width: 650px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        .night-alert h2 {
-            color: #d9534f;
-            margin-bottom: 1rem;
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
         }
 
-        .emergency-box {
+        .status-badge.open {
+            background-color: rgba(40, 167, 69, 0.1);
+            color: #28a745;
+        }
+
+        .status-badge.closed {
             background-color: rgba(217, 83, 79, 0.1);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-top: 1.5rem;
+            color: #d9534f;
         }
 
-        .emergency-box h3 {
-            color: #c9302c;
-            margin-top: 0;
-            font-size: 1.1rem;
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
         }
 
-        .emergency-list {
+        .status-badge.open .status-dot { background-color: #28a745; }
+        .status-badge.closed .status-dot { background-color: #d9534f; }
+
+        .clean-card {
+            background-color: var(--card-bg, #ffffff);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .emergency-list-simple {
             list-style: none;
             padding: 0;
-            margin: 0;
+            margin: 1.5rem 0 0 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
-        .emergency-list li {
-            margin-bottom: 0.8rem;
-            font-size: 1.05rem;
+        .emergency-item {
+            background-color: var(--bg-color, #f8f9fa);
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
         }
 
-        .emergency-list li:last-child {
-            margin-bottom: 0;
+        /* Case à cocher élégante et sobre */
+        .cgu-consent-container {
+            margin-top: 1.8rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: #555;
         }
 
-        .emergency-link {
+        .cgu-consent-container input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: var(--primary-color, #0056b3);
+        }
+
+        .cgu-consent-container label {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .cgu-consent-container a {
             color: var(--primary-color, #0056b3);
             text-decoration: underline;
-            font-weight: 600;
-        }
-        
-        .rgpd-box {
-            background-color: var(--card-bg, #f8f9fa);
-            border-left: 4px solid var(--primary-color, #0056b3);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin: 2rem auto;
-            max-width: 800px;
-            text-align: left;
-            font-size: 0.95rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
         }
 
-        /* Support du mode sombre de ton site */
-        body.light .night-alert {
-            background-color: #ffffff;
+        .chat-instruction {
+            font-weight: 600;
+            margin-top: 1.2rem;
+            color: var(--primary-color, #0056b3);
+            transition: opacity 0.3s;
         }
-        body:not(.light) .night-alert {
-            background-color: #1a1a1a; /* À adapter selon ton noir */
-            border-top-color: #ff6b6b;
+
+        /* Mode sombre */
+        body:not(.light) .clean-card {
+            background-color: #1a1a1a;
+            border-color: rgba(255,255,255,0.05);
         }
-        body:not(.light) .emergency-box {
-            background-color: rgba(255, 107, 107, 0.1);
+        body:not(.light) .emergency-item {
+            background-color: #252525;
         }
-        body:not(.light) .emergency-box h3 {
-            color: #ff6b6b;
-        }
-        body:not(.light) .rgpd-box {
-            background-color: #2a2a2a;
+        body:not(.light) .cgu-consent-container {
+            border-top-color: rgba(255, 255, 255, 0.1);
+            color: #ccc;
         }
     </style>
 </head>
@@ -120,16 +152,11 @@
     <div class="menu-overlay"></div>
 
     <section class="page-content" style="padding-top: 120px;">
-        <h1>TCHAT et Assistance</h1>
-        <p class="intro-text" style="text-align: center;">Une oreille attentive pour briser le silence.</p>
+        <div class="chat-section">
+            <h1 style="text-align: center;">TCHAT et Assistance</h1>
+            <p class="intro-text" style="text-align: center; margin-bottom: 2rem;">Une oreille attentive pour briser le silence.</p>
 
-        <div id="dynamic-chat-container" class="chat-container">
-            </div>
-
-        <div class="chat-container">
-            <div class="disclaimer" style="margin-top: 2rem;">
-                <p>En cas d'urgence vitale, appelez le <strong>15</strong>, <strong>17</strong> ou également le <strong>112</strong>. Vous pouvez également consulter notre <a href="urgence.html" style="color: inherit; text-decoration: underline;">fiche urgences</a>.</p>
-            </div>
+            <div id="dynamic-chat-container"></div>
         </div>
     </section>
 
@@ -143,66 +170,77 @@
     </footer>
 
     <script>
+        // Fonction pour activer le module de tchat quand la case est cochée
+        function handleCguConsent(checkbox) {
+            const instruction = document.getElementById('chatInstruction');
+            
+            if (checkbox.checked) {
+                if (instruction) {
+                    instruction.innerHTML = "La bulle de tchat est activée en bas à droite.";
+                    instruction.style.color = "#28a745";
+                }
+                
+                // Injecte le script 3CX uniquement après acceptation
+                if (!document.getElementById('tcx-callus-js')) {
+                    const tcxScript = document.createElement('script');
+                    tcxScript.defer = true;
+                    tcxScript.src = "https://downloads-global.3cx.com/downloads/livechatandtalk/v1/callus.js";
+                    tcxScript.id = "tcx-callus-js";
+                    document.body.appendChild(tcxScript);
+
+                    const tcxSelector = document.createElement('call-us-selector');
+                    tcxSelector.setAttribute('phonesystem-url', 'https://1761.3cx.cloud');
+                    tcxSelector.setAttribute('party', 'LiveChat459960');
+                    document.body.appendChild(tcxSelector);
+                }
+            } else {
+                if (instruction) {
+                    instruction.innerHTML = "Veuillez accepter les conditions ci-dessus pour ouvrir le tchat.";
+                    instruction.style.color = "var(--primary-color, #0056b3)";
+                }
+            }
+        }
+
         document.addEventListener("DOMContentLoaded", function() {
             const container = document.getElementById('dynamic-chat-container');
             const currentHour = new Date().getHours();
             
-            // DÉFINITION DES HORAIRES : Fermé de 21h00 (inclus) à 06h59 (7h non inclus)
+            // Horaires : Fermé de 21h à 7h
             const isNight = currentHour >= 21 || currentHour < 7;
 
             if (isNight) {
-                // ==========================================
-                // VUE NUIT : TCHAT FERMÉ + NUMÉROS D'URGENCE
-                // ==========================================
                 container.innerHTML = `
-                    <div class="night-alert">
-                        <h2>Le Tchat est actuellement fermé</h2>
-                        <p>Nos bénévoles se reposent. Le service d'écoute est ouvert tous les jours de <strong>7h00 à 21h00</strong>.</p>
-                        
-                        <div class="emergency-box">
-                            <h3>Besoin de parler ou d'aide immédiatement ?</h3>
-                            <ul class="emergency-list">
-                                <li><strong>3114</strong> — Prévention du suicide (Gratuit, 24h/24)</li>
-                                <li><strong>112</strong>, <strong>15</strong> ou <strong>17</strong> — Urgences médicales ou police</li>
-                                <li><a href="https://www.masecurite.interieur.gouv.fr/" target="_blank" class="emergency-link">MaSécurité.gouv.fr</a> — Tchat 24h/24 avec un agent de police/gendarmerie</li>
-                            </ul>
+                    <div class="clean-card">
+                        <div class="status-badge closed">
+                            <span class="status-dot"></span> Tchat actuellement fermé
                         </div>
+                        <p style="margin-bottom: 0.5rem;">Nos bénévoles sont indisponibles pour le moment.</p>
+                        <p style="font-size: 0.9rem; color: #777;">Horaires d'écoute : <strong>7h00 – 21h00</strong></p>
+
+                        <ul class="emergency-list-simple">
+                            <li class="emergency-item">3114 — Prévention du suicide (Gratuit 24h/24)</li>
+                            <li class="emergency-item">112, 15 ou 17 — Urgences vitales</li>
+                        </ul>
                     </div>
                 `;
             } else {
-                // ==========================================
-                // VUE JOUR : TCHAT OUVERT + RGPD + SCRIPT 3CX
-                // ==========================================
                 container.innerHTML = `
-                    <div class="info-card">
-                        <h2>Chat en direct</h2>
-                        <p>Discutez avec un membre de notre département d'écoute en toute confidentialité.</p>
-                        <div class="hours-list">
-                            <span class="hour-item" style="color: #28a745; font-weight: 600;">🟢 Ouvert actuellement (7h - 21h)</span>
+                    <div class="clean-card">
+                        <div class="status-badge open">
+                            <span class="status-dot"></span> Écoute ouverte (7h – 21h)
                         </div>
-                    </div>
+                        <p>Discutez en direct et de manière confidentielle avec l'un de nos bénévoles.</p>
 
-                    <div class="rgpd-box">
-                        <p style="margin: 0;">
-                            <strong>Protection des données :</strong> Vos messages sont traités via notre outil sécurisé pour vous écouter et vous accompagner. Aucune conversation n'est associée à votre identité et nous ne conservons aucun identifiant technique à votre insu. En lançant le tchat, vous acceptez ces conditions. 
-                            <a href="confidentialite.html" style="font-weight: 600;">En savoir plus.</a>
+                        <div class="cgu-consent-container">
+                            <input type="checkbox" id="cguConsent" onchange="handleCguConsent(this)">
+                            <label for="cguConsent">J'accepte les <a href="cgu.html" target="_blank">conditions générales d'utilisation</a></label>
+                        </div>
+
+                        <p id="chatInstruction" class="chat-instruction">
+                            Veuillez accepter les conditions ci-dessus pour ouvrir le tchat.
                         </p>
                     </div>
-
-                    <p style="text-align: center; margin-bottom: 20px; font-weight: 600;">Appuyez sur le bouton en bas à droite pour démarrer.</p>
                 `;
-
-                // INJECTION DU SCRIPT 3CX SEULEMENT EN JOURNÉE
-                const tcxScript = document.createElement('script');
-                tcxScript.defer = true;
-                tcxScript.src = "https://downloads-global.3cx.com/downloads/livechatandtalk/v1/callus.js";
-                tcxScript.id = "tcx-callus-js";
-                document.body.appendChild(tcxScript);
-
-                const tcxSelector = document.createElement('call-us-selector');
-                tcxSelector.setAttribute('phonesystem-url', 'https://1761.3cx.cloud');
-                tcxSelector.setAttribute('party', 'LiveChat459960');
-                document.body.appendChild(tcxSelector);
             }
         });
     </script>
