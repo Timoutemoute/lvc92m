@@ -1,5 +1,5 @@
-<!DOCTYPE html> 
-<html lang="fr"> 
+<!DOCTYPE html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,98 +8,30 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="Logo.png">
     <style>
-        .night-alert {
-            background-color: var(--card-bg, #ffffff);
-            border-top: 4px solid #d9534f;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            margin: 2rem auto;
-            max-width: 800px;
-            text-align: left;
-        }
-
-        .night-alert h2 {
-            color: #d9534f;
-            margin-bottom: 1rem;
-        }
-
-        .emergency-box {
-            background-color: rgba(217, 83, 79, 0.1);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .emergency-box h3 {
-            color: #c9302c;
-            margin-top: 0;
-            font-size: 1.1rem;
-        }
-
-        .emergency-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .emergency-list li {
-            margin-bottom: 0.8rem;
-            font-size: 1.05rem;
-        }
-
-        .emergency-list li:last-child {
-            margin-bottom: 0;
-        }
-
-        .emergency-link {
-            color: var(--primary-color, #0056b3);
-            text-decoration: underline;
-            font-weight: 600;
-        }
-        
-        .rgpd-box {
-            background-color: var(--card-bg, #f8f9fa);
-            border-left: 4px solid var(--primary-color, #0056b3);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin: 2rem auto;
-            max-width: 800px;
-            text-align: left;
-            font-size: 0.95rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-        }
-
-        body.light .night-alert {
-            background-color: #ffffff;
-        }
-        body:not(.light) .night-alert {
-            background-color: #1a1a1a;
-            border-top-color: #ff6b6b;
-        }
-        body:not(.light) .emergency-box {
-            background-color: rgba(255, 107, 107, 0.1);
-        }
-        body:not(.light) .emergency-box h3 {
-            color: #ff6b6b;
-        }
-        body:not(.light) .rgpd-box {
-            background-color: #2a2a2a;
-        }
+        .night-alert { background-color: var(--card-bg, #ffffff); border-top: 4px solid #d9534f; padding: 2rem; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin: 2rem auto; max-width: 800px; text-align: left; }
+        .night-alert h2 { color: #d9534f; margin-bottom: 1rem; }
+        .emergency-box { background-color: rgba(217,83,79,0.1); border-radius: 8px; padding: 1.5rem; margin-top: 1.5rem; }
+        .emergency-box h3 { color: #c9302c; margin-top: 0; font-size: 1.1rem; }
+        .emergency-list { list-style: none; padding: 0; margin: 0; }
+        .emergency-list li { margin-bottom: 0.8rem; font-size: 1.05rem; }
+        .emergency-list li:last-child { margin-bottom: 0; }
+        .emergency-link { color: var(--primary-color, #0056b3); text-decoration: underline; font-weight: 600; }
+        .rgpd-box { background-color: var(--card-bg, #f8f9fa); border-left: 4px solid var(--primary-color, #0056b3); padding: 1.5rem; border-radius: 8px; margin: 2rem auto; max-width: 800px; text-align: left; font-size: 0.95rem; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        body.light .night-alert { background-color: #ffffff; }
+        body:not(.light) .night-alert { background-color: #1a1a1a; border-top-color: #ff6b6b; }
+        body:not(.light) .emergency-box { background-color: rgba(255,107,107,0.1); }
+        body:not(.light) .emergency-box h3 { color: #ff6b6b; }
+        body:not(.light) .rgpd-box { background-color: #2a2a2a; }
     </style>
 </head>
 <body>
     <script>
-        if (localStorage.getItem('theme') === 'light') {
-            document.body.classList.add('light');
-        }
+        if (localStorage.getItem('theme') === 'light') { document.body.classList.add('light'); }
     </script>
 
-    <nav> 
+    <nav>
         <img src="Logo.png" alt="Les Voix Claires">
-        <button class="menu-toggle" aria-label="Menu">
-            <span class="hamburger"></span>
-        </button>
+        <button class="menu-toggle" aria-label="Menu"><span class="hamburger"></span></button>
         <div class="nav-links">
             <a href="index.html">Accueil</a>
             <a href="urgence.html">Urgences</a>
@@ -109,10 +41,8 @@
             <a href="questionnaire.html">QCM Harcèlement</a>
             <a href="tchat.html" class="active">TCHAT</a>
             <a href="partenaires.html">Nos Partenaires</a>
-            <a href="contact.html">Contact</a>
-            <div class="theme-switch" onclick="toggleTheme()">
-                <span id="themeIcon">🌙</span>
-            </div>
+            <a href="contact_2.html">Contact</a>
+            <div class="theme-switch" onclick="toggleTheme()"><span id="themeIcon">🌙</span></div>
         </div>
     </nav>
 
@@ -151,7 +81,6 @@
                     <div class="night-alert">
                         <h2>Le Tchat est actuellement fermé</h2>
                         <p>Nos bénévoles se reposent. Le service d'écoute est ouvert tous les jours de <strong>7h00 à 21h00</strong>.</p>
-                        
                         <div class="emergency-box">
                             <h3>Besoin de parler ou d'aide immédiatement ?</h3>
                             <ul class="emergency-list">

@@ -8,141 +8,29 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="Logo.png">
     <style>
-        .recrutement-container {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
+        .recrutement-container { max-width: 700px; margin: 0 auto; }
         .form-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
-            transition: 0.3s;
-            position: relative;
+            background: var(--card); border: 1px solid var(--border); padding: 40px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 30px; transition: 0.3s; position: relative;
         }
-
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 8px;
-            font-size: 0.95rem;
-            color: var(--text);
-        }
-
-        .form-group input, 
-        .form-group select, 
-        .form-group textarea {
-            width: 100%;
-            padding: 12px 16px;
-            border: 2px solid var(--border);
-            background: transparent;
-            color: var(--text);
-            border-radius: 8px;
-            font-size: 0.95rem;
-            font-family: 'Inter', sans-serif;
-            transition: 0.3s;
-            box-sizing: border-box;
-        }
-
-        .form-group input:focus, 
-        .form-group select:focus, 
-        .form-group textarea:focus {
-            border-color: var(--text);
-            outline: none;
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .checkbox-group {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            margin-bottom: 25px;
-            text-align: left;
-            font-size: 0.9rem;
-            color: var(--text);
-            cursor: pointer;
-        }
-
-        .checkbox-group input {
-            width: 18px;
-            height: 18px;
-            margin-top: 2px;
-            cursor: pointer;
-            accent-color: var(--text);
-        }
-
-        .rgpd-notice {
-            background: rgba(255, 255, 255, 0.03);
-            border-left: 4px solid var(--text);
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            line-height: 1.5;
-            margin-bottom: 25px;
-            color: var(--gray, #666);
-            text-align: left;
-        }
-
-        .btn-submit {
-            width: 100%;
-            padding: 14px 30px;
-            border: 2px solid var(--text);
-            background: var(--text);
-            color: var(--bg);
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: 0.3s;
-        }
-
-        .btn-submit:hover {
-            background: transparent;
-            color: var(--text);
-        }
-
-        .btn-submit:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        #success-message {
-            display: none;
-            text-align: center;
-            padding: 30px 0;
-        }
-
-        #success-message h3 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            color: var(--text);
-        }
-
-        #success-message p {
-            font-size: 1.1rem;
-            color: var(--gray, #666);
-            line-height: 1.6;
-        }
+        .form-group { margin-bottom: 20px; text-align: left; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 0.95rem; color: var(--text); }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 16px; border: 2px solid var(--border); background: transparent; color: var(--text); border-radius: 8px; font-size: 0.95rem; font-family: 'Inter', sans-serif; transition: 0.3s; box-sizing: border-box; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--text); outline: none; background: rgba(255,255,255,0.02); }
+        .form-group textarea { resize: vertical; min-height: 120px; }
+        .checkbox-group { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 25px; text-align: left; font-size: 0.9rem; color: var(--text); cursor: pointer; }
+        .checkbox-group input { width: 18px; height: 18px; margin-top: 2px; cursor: pointer; accent-color: var(--text); }
+        .rgpd-notice { background: rgba(255,255,255,0.03); border-left: 4px solid var(--text); padding: 15px; border-radius: 8px; font-size: 0.85rem; line-height: 1.5; margin-bottom: 25px; color: var(--gray, #666); text-align: left; }
+        .btn-submit { width: 100%; padding: 14px 30px; border: 2px solid var(--text); background: var(--text); color: var(--bg); border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: 0.3s; }
+        .btn-submit:hover { background: transparent; color: var(--text); }
+        .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+        #success-message { display: none; text-align: center; padding: 30px 0; }
+        #success-message h3 { font-size: 1.8rem; margin-bottom: 15px; color: var(--text); }
+        #success-message p { font-size: 1.1rem; color: var(--gray,#666); line-height: 1.6; }
     </style>
 </head>
 <body>
     <script>
-        if (localStorage.getItem('theme') === 'light') {
-            document.body.classList.add('light');
-        }
+        if (localStorage.getItem('theme') === 'light') { document.body.classList.add('light'); }
     </script>
 
     <nav>
@@ -159,10 +47,8 @@
             <a href="questionnaire.html">QCM Harcèlement</a>
             <a href="tchat.html">TCHAT</a>
             <a href="partenaires.html">Nos Partenaires</a>
-            <a href="contact.html">Contact</a>
-            <div class="theme-switch" onclick="toggleTheme()">
-                <span id="themeIcon">🌙</span>
-            </div>
+            <a href="contact_2.html">Contact</a>
+            <div class="theme-switch" onclick="toggleTheme()"><span id="themeIcon">🌙</span></div>
         </div>
     </nav>
 
@@ -255,17 +141,10 @@
             e.preventDefault();
             submitBtn.disabled = true;
             submitBtn.textContent = "Envoi en cours...";
-
             const formData = new FormData(form);
-
-            fetch('https://formsubmit.co/ajax/contact@les-voix-claires-92.fr', {
-                method: 'POST',
-                body: formData
-            })
+            fetch('https://formsubmit.co/ajax/contact@les-voix-claires-92.fr', { method: 'POST', body: formData })
             .then(response => {
-                if (!response.ok) {
-                    throw new Error('Erreur lors de la réponse du serveur');
-                }
+                if (!response.ok) throw new Error('Erreur lors de la réponse du serveur');
                 return response.json();
             })
             .then(data => {

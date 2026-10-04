@@ -7,45 +7,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="Logo.png">
-    
     <style>
-        .masonry-grid {
-            column-count: 1;
-            column-gap: 20px;
-            margin-top: 30px;
-        }
-        @media (min-width: 768px) {
-            .masonry-grid { column-count: 2; }
-        }
-        @media (min-width: 1024px) {
-            .masonry-grid { column-count: 3; }
-        }
-
-        .testimonial-card {
-            break-inside: avoid;
-            margin-bottom: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .testimonial-content p {
-            font-style: normal;
-            text-align: left;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        .testimonial-author {
-            font-weight: 600;
-            opacity: 0.8;
-            padding-top: 10px;
-            border-top: 1px solid rgba(0, 0, 0, 0.08);
-        }
-
-        body.dark-mode .testimonial-author {
-            border-top-color: rgba(255, 255, 255, 0.1);
-        }
+        .masonry-grid { column-count: 1; column-gap: 20px; margin-top: 30px; }
+        @media (min-width: 768px) { .masonry-grid { column-count: 2; } }
+        @media (min-width: 1024px) { .masonry-grid { column-count: 3; } }
+        .testimonial-card { break-inside: avoid; margin-bottom: 20px; display: flex; flex-direction: column; justify-content: space-between; }
+        .testimonial-content p { font-style: normal; text-align: left; line-height: 1.6; margin-bottom: 15px; }
+        .testimonial-author { font-weight: 600; opacity: 0.8; padding-top: 10px; border-top: 1px solid rgba(0,0,0,0.08); }
+        body.dark-mode .testimonial-author { border-top-color: rgba(255,255,255,0.1); }
     </style>
 </head>
 <body>
@@ -64,9 +33,7 @@
             <a href="tchat.html">TCHAT</a>
             <a href="partenaires.html">Nos Partenaires</a>
             <a href="contact_2.html">Contact</a>
-            <div class="theme-switch" onclick="toggleTheme()">
-                <span id="themeIcon">🌙</span>
-            </div>
+            <div class="theme-switch" onclick="toggleTheme()"><span id="themeIcon">🌙</span></div>
         </div>
     </nav>
 
@@ -81,36 +48,28 @@
                 <div class="testimonial-content">
                     <p>"En 5e j'ai vomi dans le bus et un groupe de filles m'a harcelée. Elles m'appelaient des insultes, me frappaient, m'humiliaient. J'ai fini par fermer mon téléphone et ne plus vouloir aller à l'école. Grâce à cette association, j'ai retrouvé ma confiance."</p>
                 </div>
-                <div class="testimonial-author">
-                    <span>Anonyme</span>
-                </div>
+                <div class="testimonial-author"><span>Anonyme</span></div>
             </div>
             
             <div class="card testimonial-card">
                 <div class="testimonial-content">
                     <p>"En tant que témoin, je ne savais pas comment réagir. L'association m'a guidé vers les bonnes démarches."</p>
                 </div>
-                <div class="testimonial-author">
-                    <span>Lucas, 16 ans</span>
-                </div>
+                <div class="testimonial-author"><span>Lucas, 16 ans</span></div>
             </div>
             
             <div class="card testimonial-card">
                 <div class="testimonial-content">
                     <p>"Le soutien psychologique m'a sauvé la vie. Aujourd'hui, je participe à des groupes de parole."</p>
                 </div>
-                <div class="testimonial-author">
-                    <span>Sophie, 28 ans</span>
-                </div>
+                <div class="testimonial-author"><span>Sophie, 28 ans</span></div>
             </div>
         </div>
     
         <div class="testimonial-cta card-section" style="margin-top: 60px;">
             <h2>Partagez votre expérience</h2>
             <p>Votre témoignage anonyme peut aider d'autres personnes.</p>
-            <a href="mailto:contact@les-voix-claires-92.fr" class="submit" style="display: inline-block; text-decoration: none; text-align: center; margin-top: 20px;">
-                Nous contacter
-            </a>
+            <a href="mailto:contact@les-voix-claires-92.fr" class="submit" style="display: inline-block; text-decoration: none; text-align: center; margin-top: 20px;">Nous contacter</a>
         </div>
     </section>
 

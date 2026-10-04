@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="fr">
 <head> 
     <meta charset="UTF-8">
@@ -7,13 +7,33 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="Logo.png">
+    <style>
+        .partners-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1100px; margin: auto; padding: 80px 20px; }
+        .partner-card { background: var(--card); border-left: 4px solid var(--text); padding: 35px; border-radius: 12px; position: relative; overflow: hidden; transition: 0.3s; }
+        .partner-card:hover { transform: translateY(-8px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); border-left-color: var(--border); }
+        body.light .partner-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .partner-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--text), transparent); }
+        .partner-card h3 { margin-bottom: 15px; font-size: 1.3rem; }
+        .partner-card p { color: var(--gray); line-height: 1.7; }
+        .partner-card .category { display: inline-block; margin-top: 15px; font-size: 0.8rem; padding: 5px 12px; background: var(--border); border-radius: 20px; color: var(--text); font-weight: 600; }
+        .partners-header { text-align: center; max-width: 800px; margin: auto; padding: 80px 20px 40px; }
+        .partners-header h2 { font-size: 2.2rem; margin-bottom: 20px; }
+        .partners-header p { color: var(--gray); font-size: 1.05rem; line-height: 1.8; }
+        .partnership-cta { background: var(--card); border: 2px dashed var(--border); padding: 60px 40px; margin: 80px 20px; border-radius: 16px; text-align: center; max-width: 900px; margin-left: auto; margin-right: auto; }
+        .partnership-cta h2 { margin-bottom: 20px; font-size: 1.8rem; }
+        .partnership-cta p { color: var(--gray); margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .partnership-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        .partnership-buttons a { padding: 12px 30px; border: 2px solid var(--text); color: var(--text); text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s; }
+        .partnership-buttons a:first-child { background: var(--text); color: var(--bg); }
+        .partnership-buttons a:first-child:hover { background: transparent; color: var(--text); }
+        .partnership-buttons a:last-child:hover { background: var(--text); color: var(--bg); }
+        @media (max-width: 768px) { .partners-grid { padding: 60px 20px; } .partners-header { padding: 60px 20px 30px; } .partnership-cta { margin: 60px 20px; padding: 40px 20px; } .partnership-buttons { flex-direction: column; } .partnership-buttons a { width: 100%; } }
+    </style>
 </head>
 <body>
-    <nav> 
+    <nav>
         <img src="Logo.png" alt="Les Voix Claires">
-        <button class="menu-toggle" aria-label="Menu">
-            <span class="hamburger"></span>
-        </button>
+        <button class="menu-toggle" aria-label="Menu"><span class="hamburger"></span></button>
         <div class="nav-links">
             <a href="index.html">Accueil</a>
             <a href="urgence.html">Urgences</a>
@@ -23,78 +43,65 @@
             <a href="questionnaire.html">QCM Harcèlement</a>
             <a href="tchat.html">TCHAT</a>
             <a href="partenaires.html">Nos Partenaires</a>
-            <a href="contact.html">Contact</a>
-            <div class="theme-switch" onclick="toggleTheme()">
-                <span id="themeIcon">🌙</span>
-            </div>
+            <a href="contact_2.html">Contact</a>
+            <div class="theme-switch" onclick="toggleTheme()"><span id="themeIcon">🌙</span></div>
         </div>
     </nav>
 
     <div class="menu-overlay"></div>
 
-    <div class="hero">
-        <h1>Nos Partenaires <br><span>avec Les Voix Claires 92</span></h1>
-        <p>Les associations et collectifs engagés qui luttent chaque jour à nos côtés contre le harcèlement.</p>
+    <div class="partners-header">
+        <h2>Nos Partenaires</h2>
+        <p>Notre force vient de nos alliances. Découvrez les associations, collectifs et structures qui combattent à nos côtés pour éradiquer le harcèlement.</p>
     </div>
 
-    <section id="mission">
-        <h2>L'union fait la force</h2>
-        <p>Face au harcèlement sous toutes ses formes, briser l'isolement nécessite de travailler main dans la main.
-        <br><br>
-        Découvrez les structures et collectifs précieux avec lesquels nous collaborons pour soutenir, protéger et orienter les victimes vers un avenir plus serein. Chacun de nos partenaires apporte son expertise, son engagement et sa détermination à construire une société où le harcèlement n'a sa place nulle part.</p>
-    </section>
-
-    <section id="actions">
-        <h2>Nos partenaires essentiels</h2>
-        <div class="cards">
-            <div class="card">
-                <h3>SOS Harcèlement 57</h3>
-                <p>Un partenaire indispensable dans notre combat. Cette association mosellane d'aide, d'écoute et d'orientation apporte un soutien fondamental aux victimes et à leurs familles. Grâce à leur expertise et leur réseau, nous pouvons orienter efficacement les personnes en détresse vers les ressources adaptées.</p>
-            </div>
-            <div class="card">
-                <h3>Libère Toi De Cet Harcèlement</h3>
-                <p>Un collectif dédié à la lutte contre le harcèlement scolaire et le cyberharcèlement. Une structure engagée avec laquelle nous partageons la même mission : sensibiliser, prévenir et accompagner les jeunes victimes vers la liberté et l'estime de soi.</p>
-            </div>
-            <div class="card">
-                <h3>Établissements Scolaires</h3>
-                <p>Nous travaillons étroitement avec plusieurs établissements du département pour mener des actions de sensibilisation, de prévention et de formation auprès des élèves, enseignants et parents. L'école est le cœur de notre action.</p>
-            </div>
-            <div class="card">
-                <h3>Partenaires Juridiques</h3>
-                <p>Des avocats et professionnels du droit nous accompagnent pour offrir des conseils juridiques aux victimes et aider à défendre leurs droits. L'accès à la justice est fondamental pour briser le cycle du harcèlement.</p>
-            </div>
+    <div class="partners-grid">
+        <div class="partner-card">
+            <h3>SOS Harcèlement 57</h3>
+            <p>Une association mosellane pionnière en aide et écoute. Ils nous inspirent et nous guident dans notre combat quotidien contre le harcèlement.</p>
+            <div class="category">Association régionale</div>
         </div>
-    </section>
 
-    <section id="values" style="background: var(--card); padding: 60px 20px; margin: 40px 0 0 0;">
-        <div style="max-width: 1100px; margin: auto;">
-            <h2>Pourquoi ces partenariats ?</h2>
-            <div class="cards">
-                <div class="card" style="background: var(--bg); border: 1px solid var(--border);">
-                    <h3>Expertise mutuelle</h3>
-                    <p>Chaque partenaire apporte ses compétences spécifiques pour offrir un accompagnement holistique aux victimes.</p>
-                </div>
-                <div class="card" style="background: var(--bg); border: 1px solid var(--border);">
-                    <h3>Couverture territoriale</h3>
-                    <p>Ensemble, nous atteignons davantage de personnes sur le territoire du Val-d'Oise et au-delà.</p>
-                </div>
-                <div class="card" style="background: var(--bg); border: 1px solid var(--border);">
-                    <h3>Impact renforcé</h3>
-                    <p>Nos actions combinées ont un impact bien plus puissant qu'isolées : sensibilisation, écoute, justice et reconstruction.</p>
-                </div>
-            </div>
+        <div class="partner-card">
+            <h3>Libère Toi De Cet Harcèlement</h3>
+            <p>Un collectif radical dédié à la sensibilisation et à l'accompagnement des jeunes victimes. Partenaires de cœur dans cette lutte.</p>
+            <div class="category">Collectif citoyen</div>
         </div>
-    </section>
 
-    <div class="discord">
-        <h2>Devenir partenaire</h2>
-        <p>Vous représentez une association, une initiative citoyenne, un établissement ou un collectif engagé contre le harcèlement ? Nous croyons fermement à la puissance de la collaboration. Unissons nos actions pour étendre notre champ d'intervention, offrir un bien meilleur soutien aux victimes et construire ensemble une société sans harcèlement.
-        <br><br>
-        Contactez-nous pour discuter d'un potentiel partenariat !</p>
-        <a href="contact.html" class="btn">Prendre contact</a>
-        <a href="mailto:partenariats@les-voix-claires-92.fr" target="_blank" class="btn">Envoyez-nous un mail</a>
+        <div class="partner-card">
+            <h3>Établissements Scolaires</h3>
+            <p>Nous travaillons directement dans les écoles du Val-d'Oise pour prévenir, sensibiliser et former élèves et enseignants.</p>
+            <div class="category">Secteur éducatif</div>
+        </div>
+
+        <div class="partner-card">
+            <h3>Professionnels du Droit</h3>
+            <p>Avocats et juristes bénévoles qui nous aident à défendre les victimes et protéger leurs droits légalement.</p>
+            <div class="category">Secteur juridique</div>
+        </div>
+
+        <div class="partner-card">
+            <h3>Professionnels de Santé</h3>
+            <p>Psychologues, psychiatres et travailleurs sociaux qui nous soutiennent dans l'accompagnement psychologique des victimes.</p>
+            <div class="category">Secteur sanitaire</div>
+        </div>
+
+        <div class="partner-card">
+            <h3>Vous ?</h3>
+            <p>Votre association, votre initiative, votre expertise peut faire une différence. Rejoignez notre réseau et construisons ensemble.</p>
+            <div class="category">En recherche</div>
+        </div>
     </div>
-    
+
+    <div class="partnership-cta">
+        <h2>Intéressé pour devenir partenaire ?</h2>
+        <p>Que vous soyez une association, un établissement, un professionnel ou un collectif engagé, nous accueillons toutes les initiatives qui convergent vers notre mission : zéro harcèlement. Parlons ensemble de comment nous pouvons collaborer.</p>
+        <div class="partnership-buttons">
+            <a href="contact_2.html">Prendre contact</a>
+            <a href="mailto:partenariats@les-voix-claires-92.fr" target="_blank">Email partenariats</a>
+        </div>
+    </div>
+
     <footer>
         <div class="footer-links">
             <a href="mentions-legales.html">Mentions légales</a>

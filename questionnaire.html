@@ -8,227 +8,39 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="Logo.png">
     <style>
-        .questionnaire-container {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .question-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            padding: 30px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            transition: 0.3s;
-        }
-
-        .question-card:hover {
-            border-color: var(--text);
-        }
-
-        .question-number {
-            font-size: 0.85rem;
-            color: var(--gray);
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .question-text {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .option-btn {
-            padding: 12px 16px;
-            border: 2px solid var(--border);
-            background: transparent;
-            color: var(--text);
-            border-radius: 8px;
-            cursor: pointer;
-            text-align: left;
-            font-size: 0.95rem;
-            transition: 0.3s;
-            font-weight: 500;
-        }
-
-        .option-btn:hover {
-            border-color: var(--text);
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .option-btn.selected {
-            background: var(--text);
-            color: var(--bg);
-            border-color: var(--text);
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 6px;
-            background: var(--border);
-            border-radius: 3px;
-            margin-bottom: 30px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: var(--text);
-            transition: width 0.3s ease;
-        }
-
-        .navigation-buttons {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-            justify-content: center;
-        }
-
-        .btn-nav {
-            padding: 12px 30px;
-            border: 2px solid var(--text);
-            background: transparent;
-            color: var(--text);
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .btn-nav:hover {
-            background: var(--text);
-            color: var(--bg);
-        }
-
-        .btn-nav:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .results-section {
-            display: none;
-            text-align: center;
-            padding: 40px 20px;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .results-section.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .result-card {
-            background: var(--card);
-            border: 2px solid var(--border);
-            border-radius: 12px;
-            padding: 40px;
-            margin-bottom: 30px;
-        }
-
-        .result-title {
-            font-size: 1.8rem;
-            font-weight: 800;
-            margin-bottom: 15px;
-        }
-
-        .result-description {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 20px;
-            color: var(--text);
-        }
-
-        .result-warning {
-            background: rgba(255, 0, 0, 0.1);
-            border-left: 4px solid #ff4444;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-            text-align: left;
-        }
-
-        .result-suggestion {
-            background: rgba(0, 200, 100, 0.1);
-            border-left: 4px solid #00c864;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-            text-align: left;
-        }
-
-        .ai-disclaimer {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px dashed var(--border);
-            padding: 20px;
-            border-radius: 8px;
-            margin: 25px 0;
-            text-align: left;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .action-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-top: 25px;
-        }
-
-        .action-btn {
-            padding: 14px 30px;
-            border: 2px solid var(--text);
-            background: transparent;
-            color: var(--text);
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .action-btn:hover {
-            background: var(--text);
-            color: var(--bg);
-        }
-
-        .action-btn.primary {
-            background: var(--text);
-            color: var(--bg);
-        }
-
-        .action-btn.primary:hover {
-            background: transparent;
-            color: var(--text);
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .score-low {
-            color: #00c864;
-        }
-
-        .score-medium {
-            color: #ff9500;
-        }
-
-        .score-high {
-            color: #ff4444;
-        }
+        .questionnaire-container { max-width: 700px; margin: 0 auto; }
+        .question-card { background: var(--card); border: 1px solid var(--border); padding: 30px; border-radius: 12px; margin-bottom: 20px; transition: 0.3s; }
+        .question-card:hover { border-color: var(--text); }
+        .question-number { font-size: 0.85rem; color: var(--gray); margin-bottom: 10px; font-weight: 600; }
+        .question-text { font-size: 1.1rem; font-weight: 600; margin-bottom: 20px; line-height: 1.5; }
+        .options { display: flex; flex-direction: column; gap: 12px; }
+        .option-btn { padding: 12px 16px; border: 2px solid var(--border); background: transparent; color: var(--text); border-radius: 8px; cursor: pointer; text-align: left; font-size: 0.95rem; transition: 0.3s; font-weight: 500; }
+        .option-btn:hover { border-color: var(--text); background: rgba(255,255,255,0.05); }
+        .option-btn.selected { background: var(--text); color: var(--bg); border-color: var(--text); }
+        .progress-bar { width: 100%; height: 6px; background: var(--border); border-radius: 3px; margin-bottom: 30px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--text); transition: width 0.3s ease; }
+        .navigation-buttons { display: flex; gap: 15px; margin-top: 30px; justify-content: center; }
+        .btn-nav { padding: 12px 30px; border: 2px solid var(--text); background: transparent; color: var(--text); border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.3s; }
+        .btn-nav:hover { background: var(--text); color: var(--bg); }
+        .btn-nav:disabled { opacity: 0.5; cursor: not-allowed; }
+        .results-section { display: none; text-align: center; padding: 40px 20px; animation: fadeIn 0.5s ease; }
+        .results-section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .result-card { background: var(--card); border: 2px solid var(--border); border-radius: 12px; padding: 40px; margin-bottom: 30px; }
+        .result-title { font-size: 1.8rem; font-weight: 800; margin-bottom: 15px; }
+        .result-description { font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; color: var(--text); }
+        .result-warning { background: rgba(255, 0, 0, 0.1); border-left: 4px solid #ff4444; padding: 15px; border-radius: 8px; margin: 20px 0; text-align: left; }
+        .result-suggestion { background: rgba(0, 200, 100, 0.1); border-left: 4px solid #00c864; padding: 15px; border-radius: 8px; margin: 20px 0; text-align: left; }
+        .ai-disclaimer { background: rgba(255,255,255,0.03); border: 1px dashed var(--border); padding: 20px; border-radius: 8px; margin: 25px 0; text-align: left; font-size: 0.95rem; line-height: 1.6; }
+        .action-buttons { display: flex; flex-direction: column; gap: 15px; margin-top: 25px; }
+        .action-btn { padding: 14px 30px; border: 2px solid var(--text); background: transparent; color: var(--text); border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.3s; text-decoration: none; display: inline-block; }
+        .action-btn:hover { background: var(--text); color: var(--bg); }
+        .action-btn.primary { background: var(--text); color: var(--bg); }
+        .action-btn.primary:hover { background: transparent; color: var(--text); }
+        .hidden { display: none; }
+        .score-low { color: #00c864; }
+        .score-medium { color: #ff9500; }
+        .score-high { color: #ff4444; }
     </style>
 </head>
 <body>
@@ -246,10 +58,8 @@
             <a href="questionnaire.html" class="active">QCM Harcèlement</a>
             <a href="tchat.html">TCHAT</a>
             <a href="partenaires.html">Nos Partenaires</a>
-            <a href="contact.html">Contact</a>
-            <div class="theme-switch" onclick="toggleTheme()">
-                <span id="themeIcon">🌙</span>
-            </div>
+            <a href="contact_2.html">Contact</a>
+            <div class="theme-switch" onclick="toggleTheme()"><span id="themeIcon">🌙</span></div>
         </div>
     </nav>
 
@@ -257,13 +67,9 @@
 
     <div class="page-content" style="padding-top: 120px;">
         <h1>Est-ce que je suis victime de harcèlement ?</h1>
-        <p style="text-align: center; color: var(--gray); margin-bottom: 30px;">
-            Ce questionnaire est conçu pour t'aider à identifier si tu es confronté à du harcèlement. 
-            Réponds honnêtement à chaque question.
-        </p>
+        <p style="text-align: center; color: var(--gray); margin-bottom: 30px;">Ce questionnaire est conçu pour t'aider à identifier si tu es confronté à du harcèlement. Réponds honnêtement à chaque question.</p>
 
         <div id="questionnaire" class="questionnaire-container">
-            
             <div class="question-card" id="introCard">
                 <div class="question-text" style="text-align: center; font-size: 1.3rem;">Avant de commencer</div>
                 <p style="text-align: center; color: var(--gray); line-height: 1.6; margin-bottom: 25px;">
@@ -271,15 +77,11 @@
                     <strong>Durée estimée :</strong> Moins de 2 minutes. <br>
                     <strong>Confidentialité :</strong> Tes réponses sont strictement anonymes et restent privées.
                 </p>
-                <div style="display: flex; justify-content: center;">
-                    <button class="action-btn primary" onclick="startQuiz()">Commencer le questionnaire</button>
-                </div>
+                <div style="display: flex; justify-content: center;"><button class="action-btn primary" onclick="startQuiz()">Commencer le questionnaire</button></div>
             </div>
 
             <div id="quizContent" class="hidden">
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill"></div>
-                </div>
+                <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
 
                 <div class="question-card" id="q1">
                     <div class="question-number">Question 1 / 10</div>
@@ -420,123 +222,15 @@
 
     <script src="script.js"></script>
     <script>
-        let currentQuestion = 1;
-        const totalQuestions = 10;
-        let score = 0;
-        const answers = {};
-
-        function startQuiz() {
-            document.getElementById('introCard').classList.add('hidden');
-            document.getElementById('quizContent').classList.remove('hidden');
-        }
-
-        function selectAnswer(questionNum, value, points) {
-            answers[questionNum] = { value, points };
-            const buttons = document.querySelectorAll(`#q${questionNum} .option-btn`);
-            buttons.forEach(btn => btn.classList.remove('selected'));
-            const currentEvent = window.event || event;
-            if (currentEvent && currentEvent.target) {
-                currentEvent.target.classList.add('selected');
-            }
-        }
-
-        function updateProgress() {
-            const progress = (currentQuestion / totalQuestions) * 100;
-            document.getElementById('progressFill').style.width = progress + '%';
-        }
-
-        function showQuestion(num) {
-            for (let i = 1; i <= totalQuestions; i++) {
-                document.getElementById(`q${i}`).classList.add('hidden');
-            }
-            document.getElementById(`q${num}`).classList.remove('hidden');
-            document.getElementById('prevBtn').disabled = num === 1;
-            document.getElementById('nextBtn').textContent = num === totalQuestions ? 'Voir l\'analyse' : 'Suivant →';
-            updateProgress();
-        }
-
-        function nextQuestion() {
-            if (currentQuestion < totalQuestions) {
-                currentQuestion++;
-                showQuestion(currentQuestion);
-                window.scrollTo(0, 0);
-            } else if (currentQuestion === totalQuestions) {
-                showResults();
-            }
-        }
-
-        function previousQuestion() {
-            if (currentQuestion > 1) {
-                currentQuestion--;
-                showQuestion(currentQuestion);
-                window.scrollTo(0, 0);
-            }
-        }
-
-        function showResults() {
-            document.getElementById('questionnaire').style.display = 'none';
-            document.getElementById('results').classList.add('active');
-
-            let totalScore = 0;
-            for (let key in answers) {
-                totalScore += answers[key].points;
-            }
-
-            let resultLevel, resultTitle, resultDescription, colorClass;
-
-            if (totalScore <= 5) {
-                resultLevel = 'low';
-                resultTitle = "Aucune situation de harcèlement n'est manifestement détectée";
-                resultDescription = "D'après les signaux actuels analysés, les réponses ne décrivent pas une situation de harcèlement installé. Toutefois, si tu traverses une période difficile ou si quelque chose te pèse, tu peux toujours nous contacter. Nous serons là pour t'écouter sans jugement.";
-                colorClass = 'score-low';
-            } else if (totalScore <= 12) {
-                resultLevel = 'medium';
-                resultTitle = "Vigilance : Risque de harcèlement ou de tensions préoccupantes";
-                resultDescription = "Les réponses indiquent la présence de comportements répétés, de moqueries ou de mise à l'écart qui méritent une attention particulière. Il est important d'en parler à une personne de confiance ou de nous contacter pour obtenir un soutien adapté.";
-                colorClass = 'score-medium';
-            } else {
-                resultLevel = 'high';
-                resultTitle = "Alerte : Situation de harcèlement fortement probable";
-                resultDescription = "Les éléments décrits signalent une situation de harcèlement avérée qui impacte directement ton bien-être. Sache que tu n'es absolument pas responsable de ce qui t'arrive et que tu peux obtenir de l'aide immédiatement.";
-                colorClass = 'score-high';
-            }
-            
-            document.getElementById('resultText').innerHTML = `<strong class="${colorClass}" style="font-size: 1.4rem; display: block; margin-bottom: 15px;">${resultTitle}</strong>${resultDescription}`;
-
-            let warningHTML = '';
-            let suggestionHTML = '';
-
-            if (resultLevel === 'high' || resultLevel === 'medium') {
-                warningHTML = '<div class="result-warning"><strong>Rappel essentiel :</strong> Le harcèlement n\'est jamais la faute de la victime. Demander de l\'aide est un acte de courage, pas un signe de faiblesse.</div>';
-            }
-
-            if (resultLevel === 'high') {
-                suggestionHTML = '<div class="result-suggestion"><strong>Actions recommandées :</strong><ul style="margin-left: 20px; margin-top: 10px; line-height: 1.6;"><li>Informe immédiatement une personne de confiance.</li><li>Préserve les preuves et note les dates ou messages.</li><li>Contacte l\'association pour une écoute ou une orientation.</li></ul></div>';
-            } else if (resultLevel === 'medium') {
-                suggestionHTML = '<div class="result-suggestion"><strong>Actions recommandées :</strong><ul style="margin-left: 20px; margin-top: 10px; line-height: 1.6;"><li>Parle à une personne de confiance.</li><li>Note les faits et les situations qui te dérangent.</li><li>Contacte-nous pour un accompagnement.</li></ul></div>';
-            } else {
-                suggestionHTML = '<div class="result-suggestion"><strong>Conseil :</strong> Continue à t\'entourer de personnes positives et bienveillantes. Notre association reste à ta disposition si tu ressens un changement.</div>';
-            }
-
-            document.getElementById('resultWarning').innerHTML = warningHTML;
-            document.getElementById('resultSuggestion').innerHTML = suggestionHTML;
-
-            window.scrollTo(0, 0);
-        }
-
-        function retakeQuiz() {
-            currentQuestion = 1;
-            score = 0;
-            Object.keys(answers).forEach(key => delete answers[key]);
-            document.getElementById('questionnaire').style.display = 'block';
-            document.getElementById('results').classList.remove('active');
-            document.getElementById('introCard').classList.add('hidden');
-            document.getElementById('quizContent').classList.remove('hidden');
-            document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
-            showQuestion(1);
-            window.scrollTo(0, 0);
-        }
-
+        let currentQuestion = 1; const totalQuestions = 10; let score = 0; const answers = {};
+        function startQuiz(){ document.getElementById('introCard').classList.add('hidden'); document.getElementById('quizContent').classList.remove('hidden'); }
+        function selectAnswer(questionNum, value, points){ answers[questionNum] = { value, points }; const buttons = document.querySelectorAll(`#q${questionNum} .option-btn`); buttons.forEach(btn => btn.classList.remove('selected')); const currentEvent = window.event || event; if (currentEvent && currentEvent.target) currentEvent.target.classList.add('selected'); }
+        function updateProgress(){ const progress = (currentQuestion / totalQuestions) * 100; document.getElementById('progressFill').style.width = progress + '%'; }
+        function showQuestion(num){ for (let i=1; i<=totalQuestions; i++) document.getElementById(`q${i}`).classList.add('hidden'); document.getElementById(`q${num}`).classList.remove('hidden'); document.getElementById('prevBtn').disabled = num===1; document.getElementById('nextBtn').textContent = num===totalQuestions ? 'Voir l\'analyse' : 'Suivant →'; updateProgress(); }
+        function nextQuestion(){ if(currentQuestion < totalQuestions){ currentQuestion++; showQuestion(currentQuestion); window.scrollTo(0,0); } else if(currentQuestion === totalQuestions) showResults(); }
+        function previousQuestion(){ if(currentQuestion > 1){ currentQuestion--; showQuestion(currentQuestion); window.scrollTo(0,0); } }
+        function showResults(){ document.getElementById('questionnaire').style.display='none'; document.getElementById('results').classList.add('active'); let totalScore = 0; for (let key in answers) totalScore += answers[key].points; let resultLevel, resultTitle, resultDescription, colorClass; if(totalScore <= 5){ resultLevel='low'; resultTitle='Aucune situation de harcèlement n\'est manifestement détectée'; resultDescription='D\'après les signaux actuels analysés, les réponses ne décrivent pas une situation de harcèlement installé. Toutefois, si tu traverses une période difficile ou si quelque chose te pèse, tu peux toujours nous contacter. Nous serons là pour t\'écouter sans jugement.'; colorClass='score-low'; } else if(totalScore <= 12){ resultLevel='medium'; resultTitle='Vigilance : Risque de harcèlement ou de tensions préoccupantes'; resultDescription='Les réponses indiquent la présence de comportements répétés, de moqueries ou de mise à l\'écart qui méritent une attention particulière. Il est important d\'en parler à une personne de confiance ou de nous contacter pour obtenir un soutien adapté.'; colorClass='score-medium'; } else { resultLevel='high'; resultTitle='Alerte : Situation de harcèlement fortement probable'; resultDescription='Les éléments décrits signalent une situation de harcèlement avérée qui impacte directement ton bien-être. Sache que tu n\'es absolument pas responsable de ce qui t\'arrive et que tu peux obtenir de l\'aide immédiatement.'; colorClass='score-high'; } document.getElementById('resultText').innerHTML = `<strong class="${colorClass}" style="font-size: 1.4rem; display: block; margin-bottom: 15px;">${resultTitle}</strong>${resultDescription}`; let warningHTML=''; let suggestionHTML=''; if(resultLevel === 'high' || resultLevel === 'medium') warningHTML='<div class="result-warning"><strong>Rappel essentiel :</strong> Le harcèlement n\'est jamais la faute de la victime. Demander de l\'aide est un acte de courage, pas un signe de faiblesse.</div>'; if(resultLevel === 'high'){ suggestionHTML='<div class="result-suggestion"><strong>Actions recommandées :</strong><ul style="margin-left: 20px; margin-top: 10px; line-height: 1.6;"><li>Informe immédiatement une personne de confiance.</li><li>Préserve les preuves et note les dates ou messages.</li><li>Contacte l\'association pour une écoute ou une orientation.</li></ul></div>'; } else if(resultLevel === 'medium'){ suggestionHTML='<div class="result-suggestion"><strong>Actions recommandées :</strong><ul style="margin-left: 20px; margin-top: 10px; line-height: 1.6;"><li>Parle à une personne de confiance.</li><li>Note les faits et les situations qui te dérangent.</li><li>Contacte-nous pour un accompagnement.</li></ul></div>'; } else { suggestionHTML='<div class="result-suggestion"><strong>Conseil :</strong> Continue à t\'entourer de personnes positives et bienveillantes. Notre association reste à ta disposition si tu ressens un changement.</div>'; } document.getElementById('resultWarning').innerHTML = warningHTML; document.getElementById('resultSuggestion').innerHTML = suggestionHTML; window.scrollTo(0,0); }
+        function retakeQuiz(){ currentQuestion=1; score=0; Object.keys(answers).forEach(key => delete answers[key]); document.getElementById('questionnaire').style.display='block'; document.getElementById('results').classList.remove('active'); document.getElementById('introCard').classList.add('hidden'); document.getElementById('quizContent').classList.remove('hidden'); document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected')); showQuestion(1); window.scrollTo(0,0); }
         showQuestion(1);
     </script>
 </body>
