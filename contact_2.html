@@ -1,0 +1,241 @@
+<!DOCTYPE html> 
+<html lang="fr">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nous Contacter – Les Voix Claires 92</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="Logo.png">
+    <style>
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 1100px;
+            margin: auto;
+            padding: 80px 20px;
+        }
+
+        .contact-form-section {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: 16px;
+        }
+
+        .contact-form-section h2 {
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+
+        .contact-info-section {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            padding-top: 40px;
+        }
+
+        .info-box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 30px;
+            border-radius: 16px;
+            transition: 0.3s;
+        }
+
+        .info-box:hover {
+            transform: translateX(10px);
+            border-color: var(--text);
+        }
+
+        .info-box h3 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .info-box p {
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .info-box a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid var(--text);
+            transition: 0.3s;
+        }
+
+        .info-box a:hover {
+            color: var(--gray);
+            border-bottom-color: var(--gray);
+        }
+
+        @media (max-width: 768px) {
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+                padding: 60px 20px;
+                gap: 30px;
+            }
+
+            .contact-info-section {
+                padding-top: 0;
+            }
+
+            .info-box:hover {
+                transform: translateY(-5px);
+            }
+        }
+
+        .form-group label {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--gray);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: transparent;
+            border: 2px solid var(--text);
+            color: var(--text);
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .btn-submit:hover {
+            background: var(--text);
+            color: var(--bg);
+        }
+    </style>
+</head>
+<body>
+    <nav> 
+        <img src="Logo.png" alt="Les Voix Claires">
+        <button class="menu-toggle" aria-label="Menu">
+            <span class="hamburger"></span>
+        </button>
+        <div class="nav-links">
+            <a href="index.html">Accueil</a>
+            <a href="urgence.html">Urgences</a>
+            <a href="equipe.html">Notre équipe</a>
+            <a href="recrutement.html">Recrutement</a>
+            <a href="temoignages.html">Témoignages</a>
+            <a href="questionnaire.html">QCM Harcèlement</a>
+            <a href="tchat.html">TCHAT</a>
+            <a href="partenaires.html">Nos Partenaires</a>
+            <a href="contact.html">Contact</a>
+            <div class="theme-switch" onclick="toggleTheme()">
+                <span id="themeIcon">🌙</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="menu-overlay"></div>
+
+    <div class="hero" style="min-height: 50vh; padding: 100px 20px 40px;">
+        <h1>Nous Contacter</h1>
+        <p style="max-width: 600px;">Une question, une urgence ou juste envie de discuter ? Nous sommes là pour vous écouter.</p>
+    </div>
+
+    <div class="contact-wrapper">
+        <div class="contact-form-section">
+            <h2>Envoyez-nous un message</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="nom">Nom complet</label>
+                    <input type="text" id="nom" name="nom" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="sujet">Sujet</label>
+                    <select id="sujet" name="sujet" required>
+                        <option value="">-- Sélectionnez --</option>
+                        <option value="harcelement">Signaler un harcèlement</option>
+                        <option value="info">Demander des infos</option>
+                        <option value="benevolat">Devenir bénévole</option>
+                        <option value="partenariat">Partenariat</option>
+                        <option value="autre">Autre</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required placeholder="Votre message..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Envoyer</button>
+            </form>
+        </div>
+
+        <div class="contact-info-section">
+            <div class="info-box">
+                <h3>Email</h3>
+                <p>Pour nous contacter directement :</p>
+                <a href="mailto:contact@les-voix-claires-92.fr">contact@les-voix-claires-92.fr</a>
+            </div>
+
+            <div class="info-box">
+                <h3>Discord</h3>
+                <p>Rejoignez notre communauté et discutez en direct avec nos bénévoles :</p>
+                <a href="https://discord.gg/AcRcndYhNv" target="_blank">Accéder au serveur Discord</a>
+            </div>
+
+            <div class="info-box">
+                <h3>Urgence</h3>
+                <p>Vous êtes en danger ou en détresse immédiate ? Consultez notre page :</p>
+                <a href="urgence.html">Ressources d'urgence</a>
+            </div>
+
+            <div class="info-box">
+                <h3>Temps de réponse</h3>
+                <p>Nous traitons généralement les demandes sous 48 heures ouvrables. Merci pour votre patience.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="mentions-legales.html">Mentions légales</a>
+            <a href="confidentialite.html">Politique de confidentialité</a>
+            <a href="cgu.html">CGU</a>
+        </div>
+        <p>© 2026 Les Voix Claires 92 – Association contre le harcèlement scolaire</p>
+    </footer>
+    
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nom = document.getElementById('nom').value;
+            const email = document.getElementById('email').value;
+            const sujet = document.getElementById('sujet').value;
+            const message = document.getElementById('message').value;
+            
+            const mailtoLink = `mailto:contact@les-voix-claires-92.fr?subject=${encodeURIComponent('Contact: ' + sujet)}&body=${encodeURIComponent('Nom: ' + nom + '\nEmail: ' + email + '\n\n' + message)}`;
+            window.location.href = mailtoLink;
+        });
+    </script>
+</body>
+</html>
