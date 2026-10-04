@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="Logo.png">
     <style>
-        /* Styles spécifiques ajoutés pour que les alertes soient jolies et raccord avec ton site */
         .night-alert {
             background-color: var(--card-bg, #ffffff);
             border-top: 4px solid #d9534f;
@@ -71,12 +70,11 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.02);
         }
 
-        /* Support du mode sombre de ton site */
         body.light .night-alert {
             background-color: #ffffff;
         }
         body:not(.light) .night-alert {
-            background-color: #1a1a1a; /* À adapter selon ton noir */
+            background-color: #1a1a1a;
             border-top-color: #ff6b6b;
         }
         body:not(.light) .emergency-box {
@@ -111,6 +109,7 @@
             <a href="questionnaire.html">QCM Harcèlement</a>
             <a href="tchat.html" class="active">TCHAT</a>
             <a href="partenaires.html">Nos Partenaires</a>
+            <a href="contact.html">Contact</a>
             <div class="theme-switch" onclick="toggleTheme()">
                 <span id="themeIcon">🌙</span>
             </div>
@@ -123,12 +122,11 @@
         <h1>TCHAT et Assistance</h1>
         <p class="intro-text" style="text-align: center;">Une oreille attentive pour briser le silence.</p>
 
-        <div id="dynamic-chat-container" class="chat-container">
-            </div>
+        <div id="dynamic-chat-container" class="chat-container"></div>
 
         <div class="chat-container">
             <div class="disclaimer" style="margin-top: 2rem;">
-                <p>En cas d'urgence vitale, appelez le <strong>15</strong>, <strong>17</strong> ou également le <strong>112</strong>. Vous pouvez également consulter notre <a href="urgence.html" style="color: inherit; text-decoration: underline;">fiche urgences</a>.</p>
+                <p>En cas d'urgence vitale, appelez le <strong>15</strong>, <strong>17</strong> ou <strong>112</strong>. Vous pouvez également consulter notre <a href="urgence.html">page d'urgence</a>.</p>
             </div>
         </div>
     </section>
@@ -146,14 +144,9 @@
         document.addEventListener("DOMContentLoaded", function() {
             const container = document.getElementById('dynamic-chat-container');
             const currentHour = new Date().getHours();
-            
-            // DÉFINITION DES HORAIRES : Fermé de 21h00 (inclus) à 06h59 (7h non inclus)
             const isNight = currentHour >= 21 || currentHour < 7;
 
             if (isNight) {
-                // ==========================================
-                // VUE NUIT : TCHAT FERMÉ + NUMÉROS D'URGENCE
-                // ==========================================
                 container.innerHTML = `
                     <div class="night-alert">
                         <h2>Le Tchat est actuellement fermé</h2>
@@ -164,27 +157,24 @@
                             <ul class="emergency-list">
                                 <li><strong>3114</strong> — Prévention du suicide (Gratuit, 24h/24)</li>
                                 <li><strong>112</strong>, <strong>15</strong> ou <strong>17</strong> — Urgences médicales ou police</li>
-                                <li><a href="https://www.masecurite.interieur.gouv.fr/" target="_blank" class="emergency-link">MaSécurité.gouv.fr</a> — Tchat 24h/24 avec un agent de police/gendarmerie</li>
+                                <li><a href="https://www.masecurite.interieur.gouv.fr/" target="_blank" class="emergency-link">MaSécurité.gouv.fr</a> — Aide rapide et sécurisante</li>
                             </ul>
                         </div>
                     </div>
                 `;
             } else {
-                // ==========================================
-                // VUE JOUR : TCHAT OUVERT + RGPD + SCRIPT 3CX
-                // ==========================================
                 container.innerHTML = `
                     <div class="info-card">
                         <h2>Chat en direct</h2>
                         <p>Discutez avec un membre de notre département d'écoute en toute confidentialité.</p>
                         <div class="hours-list">
-                            <span class="hour-item" style="color: #28a745; font-weight: 600;">🟢 Ouvert actuellement (7h - 21h)</span>
+                            <span class="hour-item" style="color: #28a745; font-weight: 600;">Ouvert actuellement (7h - 21h)</span>
                         </div>
                     </div>
 
                     <div class="rgpd-box">
                         <p style="margin: 0;">
-                            <strong>Protection des données :</strong> Vos messages sont traités via notre outil sécurisé pour vous écouter et vous accompagner. Aucune conversation n'est associée à votre identité et nous ne conservons aucun identifiant technique à votre insu. En lançant le tchat, vous acceptez ces conditions. 
+                            <strong>Protection des données :</strong> Vos messages sont traités via notre outil sécurisé pour vous écouter et vous accompagner. Aucune conversation n'est utilisée hors de l'objectif de soutien et d'accompagnement.
                             <a href="confidentialite.html" style="font-weight: 600;">En savoir plus.</a>
                         </p>
                     </div>
@@ -192,7 +182,6 @@
                     <p style="text-align: center; margin-bottom: 20px; font-weight: 600;">Appuyez sur le bouton en bas à droite pour démarrer.</p>
                 `;
 
-                // INJECTION DU SCRIPT 3CX SEULEMENT EN JOURNÉE
                 const tcxScript = document.createElement('script');
                 tcxScript.defer = true;
                 tcxScript.src = "https://downloads-global.3cx.com/downloads/livechatandtalk/v1/callus.js";
