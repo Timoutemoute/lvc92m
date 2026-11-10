@@ -62,6 +62,29 @@
             margin-top: 15px;
         }
 
+        .card-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .partner-link {
+            display: inline-block;
+            background-color: #3157a4;
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 8px 14px;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+        }
+
+        .partner-link:hover,
+        .partner-link:focus-visible {
+            background-color: #203d78;
+        }
 
         footer {
             margin-top: auto;
@@ -99,19 +122,28 @@
             <div class="card">
                 <h3>SOS Harcèlement 57</h3>
                 <p>Une association mosellane pionnière en aide et écoute. Ils nous inspirent et nous guident dans notre combat quotidien contre le harcèlement.</p>
-                <span class="badge">Association régionale</span>
+                <div class="card-actions">
+                    <span class="badge">Association régionale</span>
+                    <a class="partner-link" href="https://www.shc57.fr/" target="_blank" rel="noopener noreferrer">Visiter le site</a>
+                </div>
             </div>
 
             <div class="card">
                 <h3>QorizHosting</h3>
                 <p>Qoriz Hosting conçoit et exploite ses propres serveurs pour offrir une expérience d'hébergement fiable, rapide et transparente à ses clients.</p>
-                <span class="badge">Entreprise</span>
+                <div class="card-actions">
+                    <span class="badge">Entreprise</span>
+                    <a class="partner-link" href="https://www.qorizhosting.fr/" target="_blank" rel="noopener noreferrer">Visiter le site</a>
+                </div>
             </div>
             
             <div class="card">
                 <h3>Libère Toi De Cet Harcèlement</h3>
                 <p>Un collectif radical dédié à la sensibilisation et à l'accompagnement des jeunes victimes. Partenaires de cœur dans cette lutte.</p>
-                <span class="badge">Collectif citoyen</span>
+                <div class="card-actions">
+                    <span class="badge">Collectif citoyen</span>
+                    <a class="partner-link" href="https://liberetoiharcelement.wixsite.com/liberetoiharcelement" target="_blank" rel="noopener noreferrer">Visiter le site</a>
+                </div>
             </div>
 
             <div class="card">
@@ -153,4 +185,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
