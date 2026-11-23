@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="Logo.png">
     <style>
-        .night-alert { background-color: var(--card-bg, #ffffff); border-top: 4px solid #d9534f; padding: 2rem; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin: 2rem auto; max-width: 800px; text-align: left; }
+        .night-alert { background-color: var(--card-bg, #ffffff); border-top: 4px solid #d9534f; padding: 2rem; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin: 2rem auto; max-width: 800px; }
         .night-alert h2 { color: #d9534f; margin-bottom: 1rem; }
         .emergency-box { background-color: rgba(217,83,79,0.1); border-radius: 8px; padding: 1.5rem; margin-top: 1.5rem; }
         .emergency-box h3 { color: #c9302c; margin-top: 0; font-size: 1.1rem; }
@@ -16,7 +16,7 @@
         .emergency-list li { margin-bottom: 0.8rem; font-size: 1.05rem; }
         .emergency-list li:last-child { margin-bottom: 0; }
         .emergency-link { color: var(--primary-color, #0056b3); text-decoration: underline; font-weight: 600; }
-        .rgpd-box { background-color: var(--card-bg, #f8f9fa); border-left: 4px solid var(--primary-color, #0056b3); padding: 1.5rem; border-radius: 8px; margin: 2rem auto; max-width: 800px; text-align: left; font-size: 0.95rem; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .rgpd-box { background-color: var(--card-bg, #f8f9fa); border-left: 4px solid var(--primary-color, #0056b3); padding: 1.5rem; border-radius: 8px; margin: 2rem auto; max-width: 800px; text-align: left; }
         body.light .night-alert { background-color: #ffffff; }
         body:not(.light) .night-alert { background-color: #1a1a1a; border-top-color: #ff6b6b; }
         body:not(.light) .emergency-box { background-color: rgba(255,107,107,0.1); }
@@ -39,7 +39,7 @@
             <a href="recrutement.html">Recrutement</a>
             <a href="temoignages.html">Témoignages</a>
             <a href="questionnaire.html">QCM Harcèlement</a>
-            <a href="tchat.html" class="active">TCHAT</a>
+            <a href="tchat.html" class="active" aria-current="page">TCHAT</a>
             <a href="partenaires.html">Nos Partenaires</a>
             <a href="contact_2.html">Contact</a>
             <div class="theme-switch" onclick="toggleTheme()"><span id="themeIcon">🌙</span></div>
@@ -74,19 +74,19 @@
         document.addEventListener("DOMContentLoaded", function() {
             const container = document.getElementById('dynamic-chat-container');
             const currentHour = new Date().getHours();
-            const isNight = currentHour >= 21 || currentHour < 7;
+            const isOpen = currentHour >= 7 && currentHour < 20;
 
-            if (isNight) {
+            if (!isOpen) {
                 container.innerHTML = `
                     <div class="night-alert">
                         <h2>Le Tchat est actuellement fermé</h2>
-                        <p>Nos bénévoles se reposent. Le service d'écoute est ouvert tous les jours de <strong>7h00 à 21h00</strong>.</p>
+                        <p>Notre service d'écoute est ouvert tous les jours de <strong>7h00 à 20h00</strong>.</p>
                         <div class="emergency-box">
                             <h3>Besoin de parler ou d'aide immédiatement ?</h3>
                             <ul class="emergency-list">
-                                <li><strong>3114</strong> — Prévention du suicide (Gratuit, 24h/24)</li>
+                                <li><strong>3114</strong> — Prévention du suicide (gratuit, 24h/24)</li>
                                 <li><strong>112</strong>, <strong>15</strong> ou <strong>17</strong> — Urgences médicales ou police</li>
-                                <li><a href="https://www.masecurite.interieur.gouv.fr/" target="_blank" class="emergency-link">MaSécurité.gouv.fr</a> — Aide rapide et sécurisante</li>
+                                <li><a href="https://www.masecurite.interieur.gouv.fr/" target="_blank" rel="noopener noreferrer" class="emergency-link">MaSécurité.gouv.fr</a> — Aide rapide et sécurisante</li>
                             </ul>
                         </div>
                     </div>
@@ -97,15 +97,12 @@
                         <h2>Chat en direct</h2>
                         <p>Discutez avec un membre de notre département d'écoute en toute confidentialité.</p>
                         <div class="hours-list">
-                            <span class="hour-item" style="color: #28a745; font-weight: 600;">Ouvert actuellement (7h - 21h)</span>
+                            <span class="hour-item" style="color: #28a745; font-weight: 600;">Ouvert actuellement (7h - 20h)</span>
                         </div>
                     </div>
 
                     <div class="rgpd-box">
-                        <p style="margin: 0;">
-                            <strong>Protection des données :</strong> Vos messages sont traités via notre outil sécurisé pour vous écouter et vous accompagner. Aucune conversation n'est utilisée hors de l'objectif de soutien et d'accompagnement.
-                            <a href="confidentialite.html" style="font-weight: 600;">En savoir plus.</a>
-                        </p>
+                        <p style="margin: 0;"><strong>Protection des données :</strong> Vos messages sont traités via notre outil sécurisé pour vous écouter et vous accompagner. Aucune conversation n'est utilisée à des fins publicitaires. <a href="confidentialite.html" style="font-weight: 600;">En savoir plus.</a></p>
                     </div>
 
                     <p style="text-align: center; margin-bottom: 20px; font-weight: 600;">Appuyez sur le bouton en bas à droite pour démarrer.</p>
