@@ -1,5 +1,5 @@
 // Initialisation au chargement
- document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() {
     // La préférence de thème est facultative : le site reste fonctionnel
     // si le navigateur bloque le stockage local.
     let savedTheme = null;
@@ -14,9 +14,49 @@
     }
     updateThemeControl();
 
+    // Regrouper les liens existants en catégories déroulantes, sans modifier
+    // leurs URL : les pages et les liens déjà présents restent inchangés.
+    const navLinks = document.querySelector('.nav-links');
+    if (navLinks) {
+        const dropdownGroups = [
+            { label: 'S’informer', hrefs: ['temoignages.html', 'questionnaire.html'] },
+            { label: 'Aide et ressources', hrefs: ['urgence.html', 'tchat.html'] },
+            { label: 'L’association', hrefs: ['equipe.html', 'recrutement.html', 'partenaires.html'] }
+        ];
+
+        dropdownGroups.forEach(function(group) {
+            const groupLinks = Array.from(navLinks.querySelectorAll(':scope > a')).filter(function(link) {
+                return group.hrefs.includes(link.getAttribute('href'));
+            });
+            if (groupLinks.length === 0) return;
+
+            const details = document.createElement('details');
+            details.className = 'nav-dropdown';
+            const summary = document.createElement('summary');
+            summary.textContent = group.label;
+            const menu = document.createElement('div');
+            menu.className = 'nav-dropdown-menu';
+
+            groupLinks.forEach(function(link) {
+                menu.appendChild(link);
+            });
+            details.append(summary, menu);
+            // Insérer les catégories avant le sélecteur de thème.
+            const themeSwitch = navLinks.querySelector('.theme-switch');
+            navLinks.insertBefore(details, themeSwitch || null);
+
+            details.addEventListener('toggle', function() {
+                if (details.open) {
+                    navLinks.querySelectorAll('.nav-dropdown[open]').forEach(function(other) {
+                        if (other !== details) other.open = false;
+                    });
+                }
+            });
+        });
+    }
+
     // Menu mobile : synchroniser l'état visuel et les attributs accessibles.
     const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
     const overlay = document.querySelector('.menu-overlay');
 
     if (menuToggle && navLinks && overlay) {
@@ -61,7 +101,6 @@
             }
         });
 
-        // Si l'écran repasse en grand format, ne pas garder le scroll bloqué.
         window.addEventListener('resize', function() {
             if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
                 closeMenu(false);
@@ -69,8 +108,7 @@
         });
     }
 
-    // Les pages existantes utilisent un <div> cliquable pour le thème.
-    // Lui ajouter le comportement clavier et les attributs de bouton.
+    // Rendre le sélecteur de thème accessible au clavier.
     const themeSwitch = document.querySelector('.theme-switch');
     if (themeSwitch) {
         themeSwitch.setAttribute('role', 'switch');
